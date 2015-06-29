@@ -1,4 +1,22 @@
 var searchData=
 [
-  ['0clk',['0clk',['../enumudt.html#adb7a26e95822e53a0ef5432fba38063e',1,'udt::0clk()'],['../enumudt__interface.html#a4ba981b7a7d98cc5c335b45a3bdbd3c1',1,'udt_interface::2clk()']]]
+  ['10ctrl_5fs_5faxi_5fwstrb',['10ctrl_s_axi_wstrb',['../enumudt__interface.html#aee9abc5f1302febb51d3598cf9fdc8c3',1,'udt_interface']]],
+  ['11ctrl_5fs_5faxi_5fwvalid',['11ctrl_s_axi_wvalid',['../enumudt__interface.html#aa33247779670218c422fc7e9cd66dba6',1,'udt_interface']]],
+  ['12ctrl_5fs_5faxi_5fwready',['12ctrl_s_axi_wready',['../enumudt__interface.html#a477ad8c76bb896ebbc8c5a8556eb5047',1,'udt_interface']]],
+  ['13ctrl_5fs_5faxi_5fbresp',['13ctrl_s_axi_bresp',['../enumudt__interface.html#ad1aa9136d2e0ff6de023ff100dfd75ef',1,'udt_interface']]],
+  ['14ctrl_5fs_5faxi_5fbvalid',['14ctrl_s_axi_bvalid',['../enumudt__interface.html#a82b09868b64c905a2632c97cfddda2be',1,'udt_interface']]],
+  ['15ctrl_5fs_5faxi_5fbready',['15ctrl_s_axi_bready',['../enumudt__interface.html#a1f1980d14c282e9540621e9072eae93a',1,'udt_interface']]],
+  ['16ctrl_5fs_5faxi_5faraddr',['16ctrl_s_axi_araddr',['../enumudt__interface.html#ad5b9db11b0c596ec457eae94f9d938c2',1,'udt_interface']]],
+  ['17ctrl_5fs_5faxi_5farvalid',['17ctrl_s_axi_arvalid',['../enumudt__interface.html#ad229facd3aa8d55c82e7d9f40a47d9d2',1,'udt_interface']]],
+  ['18ctrl_5fs_5faxi_5farready',['18ctrl_s_axi_arready',['../enumudt__interface.html#a6e9c3c7e82d2cc48d7e5e6b1f7325d75',1,'udt_interface']]],
+  ['19ctrl_5fs_5faxi_5frdata',['19ctrl_s_axi_rdata',['../enumudt__interface.html#ad10aa53211d4485286cdc52a4bcc88d6',1,'udt_interface']]],
+  ['20ctrl_5fs_5faxi_5frresp',['20ctrl_s_axi_rresp',['../enumudt__interface.html#a4571410bf7633f616fc0d3b0431372ef',1,'udt_interface']]],
+  ['21ctrl_5fs_5faxi_5frvalid',['21ctrl_s_axi_rvalid',['../enumudt__interface.html#a734e784d1e72640885bc1e8729a6d990',1,'udt_interface']]],
+  ['22ctrl_5fs_5faxi_5frready',['22ctrl_s_axi_rready',['../enumudt__interface.html#a0eecce01164e5dbbe33053f9e7f537eb',1,'udt_interface']]],
+  ['4ctrl_5fs_5faxi_5faclk',['4ctrl_s_axi_aclk',['../enumudt__interface.html#ac76681ccd018f988fb45e6303a139e59',1,'udt_interface']]],
+  ['5ctrl_5fs_5faxi_5faresetn',['5ctrl_s_axi_aresetn',['../enumudt__interface.html#a62ebe857af68b66672a5f30017b96d82',1,'udt_interface']]],
+  ['6ctrl_5fs_5faxi_5fawaddr',['6ctrl_s_axi_awaddr',['../enumudt__interface.html#ae06e18d505291ab936ac2a1f90edd19c',1,'udt_interface']]],
+  ['7ctrl_5fs_5faxi_5fawvalid',['7ctrl_s_axi_awvalid',['../enumudt__interface.html#ab5865df8ef1503092a9696c3404c9949',1,'udt_interface']]],
+  ['8ctrl_5fs_5faxi_5fawready',['8ctrl_s_axi_awready',['../enumudt__interface.html#a6e19c2e4ae282ad3a68f14a94a63cb34',1,'udt_interface']]],
+  ['9ctrl_5fs_5faxi_5fwdata',['9ctrl_s_axi_wdata',['../enumudt__interface.html#a80796e85e48c93d119ec1a53ac76e9b0',1,'udt_interface']]]
 ];
