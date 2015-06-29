@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>UDT project: src/configure.v 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">UDT project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="annotated.html"><span>Design&#160;Unit&#160;List</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>变量</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">configure.v</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="configure_8v.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="code" href="enumconfigure.html">   24</a></span>&#160;<span class="vhdlkeyword">module</span>    <a class="code" href="enumconfigure.html">configure</a> (</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="code" href="enumconfigure.html#a5e24b99d879c373a9ecf059bc3a041f8">   25</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#a5e24b99d879c373a9ecf059bc3a041f8">ctrl_s_axi_aclk</a>,                                                        </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="enumconfigure.html#aedd4808e791102a5deb23a9587187bae">   26</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#aedd4808e791102a5deb23a9587187bae">ctrl_s_axi_aresetn</a>,                                                     </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="code" href="enumconfigure.html#a1900846b77c61337142fe59f2e330ee9">   27</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconfigure.html#a1900846b77c61337142fe59f2e330ee9">ctrl_s_axi_awaddr</a>,                                      </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="code" href="enumconfigure.html#af50c8c71b7f2f4587b3d6a0f18aed4da">   28</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#af50c8c71b7f2f4587b3d6a0f18aed4da">ctrl_s_axi_awvalid</a>,                                                     </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="code" href="enumconfigure.html#a16e1eedcc8df4a6d1bf9f9e3e655e2b2">   29</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconfigure.html#a16e1eedcc8df4a6d1bf9f9e3e655e2b2">ctrl_s_axi_awready</a>,                                                     </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="code" href="enumconfigure.html#a7a807eb74434c7f0429a6638c4b6e954">   30</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconfigure.html#a7a807eb74434c7f0429a6638c4b6e954">ctrl_s_axi_wdata</a>,                                       </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="enumconfigure.html#ac1fafa53f64efb4ca3923b683aa9510a">   31</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">3</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enumconfigure.html#ac1fafa53f64efb4ca3923b683aa9510a">ctrl_s_axi_wstrb</a>,                                       </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="enumconfigure.html#ab684694e2f33eaeb268e6c232a07f958">   32</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#ab684694e2f33eaeb268e6c232a07f958">ctrl_s_axi_wvalid</a>,                                                      </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="enumconfigure.html#a9507322724cd15f349445cc27a7bd014">   33</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconfigure.html#a9507322724cd15f349445cc27a7bd014">ctrl_s_axi_wready</a>,                                                      </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="code" href="enumconfigure.html#a7c19081bab99bf514afc7a8533483427">   34</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">1</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enumconfigure.html#a7c19081bab99bf514afc7a8533483427">ctrl_s_axi_bresp</a>,                                       </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="enumconfigure.html#acc9c6621da0b25b7dc67ba41eeed36a2">   35</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconfigure.html#aba77048410adadaef9d1bd2adc15d7ab">ctrl_s_axi_bvalid</a>,                                                      </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="code" href="enumconfigure.html#a01665bd3b60c610d298119f4b438c0f3">   36</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#af4e1fc62466e666fa8be79b4c2b836b1">ctrl_s_axi_bready</a>,                                                      </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="enumconfigure.html#a43575b7f8a6ab191e00ff08bc883195f">   37</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconfigure.html#a5f98461471fed981d8cba50957f1f7e0">ctrl_s_axi_araddr</a>,                                      </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="enumconfigure.html#ad3ceedd6d275a546f9bbc2d60375e74f">   38</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#a11e82cae43ad2175ba75c0f3d14bd503">ctrl_s_axi_arvalid</a>,                                                     </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="enumconfigure.html#ad9fd26fd01c24e59ae11394b3087baed">   39</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconfigure.html#a66e2c3188fd33d22bc90dfe28a72ae70">ctrl_s_axi_arready</a>,                                                     </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="enumconfigure.html#abfa6d740a84665bf00b3681a9a6add31">   40</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconfigure.html#aaeda00858421ad0cd1e3e002d556dd93">ctrl_s_axi_rdata</a>,                                       </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="enumconfigure.html#a939a9eeadbb571263f4bb46d5a1a37ac">   41</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">1</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enumconfigure.html#a04d4e8f8b404c1bc0517ff7097ea84ba">ctrl_s_axi_rresp</a>,                                       </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="enumconfigure.html#ac6b07dcfde826de252c4083807161607">   42</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconfigure.html#a776dd4cf7bd8c03300bda026b2f7bdbb">ctrl_s_axi_rvalid</a>,                                                      </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="enumconfigure.html#a9e2a3e70d07407f3f679f0f19fb0f289">   43</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#a0d476e9d0ecce09bf238f0b8041cceb1">ctrl_s_axi_rready</a>,                                                      </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="enumconfigure.html#a66c8a8a2d227f95873bc394c454963c2">   45</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconfigure.html#a1900846b77c61337142fe59f2e330ee9">ctrl_s_axi_awaddr</a>,                                      </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="enumconfigure.html#abbeff2d1884caa47f7ec2355c97ff489">   46</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#af50c8c71b7f2f4587b3d6a0f18aed4da">ctrl_s_axi_awvalid</a>,                                                     </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="enumconfigure.html#aac2c04c35483ca100c983e0d0445861c">   47</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconfigure.html#a16e1eedcc8df4a6d1bf9f9e3e655e2b2">ctrl_s_axi_awready</a>,                                                     </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="code" href="enumconfigure.html#ad6857740018464866881da0e214b41c7">   48</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconfigure.html#a7a807eb74434c7f0429a6638c4b6e954">ctrl_s_axi_wdata</a>,                                       </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="code" href="enumconfigure.html#a8124a3865b7ff33457e79f7038b77337">   49</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">3</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enumconfigure.html#ac1fafa53f64efb4ca3923b683aa9510a">ctrl_s_axi_wstrb</a>,                                       </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="enumconfigure.html#a9dc88b9ca7e35d47f162d3f88716dcce">   50</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#ab684694e2f33eaeb268e6c232a07f958">ctrl_s_axi_wvalid</a>,                                                      </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="enumconfigure.html#a26fb7d8dd30c5e55f23823d898dd9bbc">   51</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconfigure.html#a9507322724cd15f349445cc27a7bd014">ctrl_s_axi_wready</a>,                                                      </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="enumconfigure.html#a14f4e6156d129e02ff9a197404efb7ec">   52</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">1</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enumconfigure.html#a7c19081bab99bf514afc7a8533483427">ctrl_s_axi_bresp</a>,                                       </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="enumconfigure.html#aba77048410adadaef9d1bd2adc15d7ab">   53</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconfigure.html#aba77048410adadaef9d1bd2adc15d7ab">ctrl_s_axi_bvalid</a>,                                                      </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="enumconfigure.html#af4e1fc62466e666fa8be79b4c2b836b1">   54</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#af4e1fc62466e666fa8be79b4c2b836b1">ctrl_s_axi_bready</a>,                                                      </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="enumconfigure.html#a5f98461471fed981d8cba50957f1f7e0">   55</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconfigure.html#a5f98461471fed981d8cba50957f1f7e0">ctrl_s_axi_araddr</a>,                                      </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="code" href="enumconfigure.html#a11e82cae43ad2175ba75c0f3d14bd503">   56</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#a11e82cae43ad2175ba75c0f3d14bd503">ctrl_s_axi_arvalid</a>,                                                     </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="enumconfigure.html#a66e2c3188fd33d22bc90dfe28a72ae70">   57</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconfigure.html#a66e2c3188fd33d22bc90dfe28a72ae70">ctrl_s_axi_arready</a>,                                                     </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="code" href="enumconfigure.html#aaeda00858421ad0cd1e3e002d556dd93">   58</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconfigure.html#aaeda00858421ad0cd1e3e002d556dd93">ctrl_s_axi_rdata</a>,                                       </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="enumconfigure.html#a04d4e8f8b404c1bc0517ff7097ea84ba">   59</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">1</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enumconfigure.html#a04d4e8f8b404c1bc0517ff7097ea84ba">ctrl_s_axi_rresp</a>,                                       </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="enumconfigure.html#a776dd4cf7bd8c03300bda026b2f7bdbb">   60</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconfigure.html#a776dd4cf7bd8c03300bda026b2f7bdbb">ctrl_s_axi_rvalid</a>,                                                      </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="enumconfigure.html#a0d476e9d0ecce09bf238f0b8041cceb1">   61</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#a0d476e9d0ecce09bf238f0b8041cceb1">ctrl_s_axi_rready</a>,                                                      </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="enumconfigure.html#a4378c356073fa578b54ac3be759718dd">   63</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconfigure.html#a4378c356073fa578b54ac3be759718dd">udt_state</a> ,                                                     </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="enumconfigure.html#a2687cb779e66b28d5974b9cf9a7e1002">   64</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconfigure.html#a2687cb779e66b28d5974b9cf9a7e1002">state_valid</a>,                                                            </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="enumconfigure.html#a59bd4746f13a601e317ba7fccef51c5e">   65</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconfigure.html#a59bd4746f13a601e317ba7fccef51c5e">state_ready</a>,                                                            </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="vhdlkeyword">endmodule</span></div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 六月 29日 星期一 21:53:32 , 为 UDT project使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1
+</small></address>
+</body>
+</html>

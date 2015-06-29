@@ -123,4 +123,27 @@ module  udt_interface #(
 /*	fifo   asyc  fifo   UDP->IN		*/
 /*	fifo   asyc	 fifo	UDP->OUT	*/
 
+configure	con_inst(
+	.ctrl_s_axi_aclk(ctrl_s_axi_aclk),							
+	.ctrl_s_axi_aresetn(ctrl_s_axi_aresetn),							
+	.ctrl_s_axi_awaddr(ctrl_s_axi_awaddr),					
+	.ctrl_s_axi_awvalid(ctrl_s_axi_awvalid),							
+	.ctrl_s_axi_awready(ctrl_s_axi_awready),							
+	.ctrl_s_axi_wdata(ctrl_s_axi_wdata),					
+	.ctrl_s_axi_wstrb(ctrl_s_axi_wstrb),					
+	.ctrl_s_axi_wvalid(ctrl_s_axi_wvalid),							
+	.ctrl_s_axi_wready(ctrl_s_axi_wready),							
+	.ctrl_s_axi_bresp(ctrl_s_axi_bresp),					
+	.ctrl_s_axi_bvalid(ctrl_s_axi_bvalid),							
+	.ctrl_s_axi_bready(ctrl_s_axi_bready),							
+	.ctrl_s_axi_araddr(ctrl_s_axi_araddr),					
+	.ctrl_s_axi_arvalid(ctrl_s_axi_arvalid),							
+	.ctrl_s_axi_arready(ctrl_s_axi_arready),						
+	.ctrl_s_axi_rdata(ctrl_s_axi_rdata),					
+	.ctrl_s_axi_rresp(ctrl_s_axi_rresp),					
+	.ctrl_s_axi_rvalid(ctrl_s_axi_rvalid),							
+	.ctrl_s_axi_rready(ctrl_s_axi_rready),				
+
+);
+
 endmodule
