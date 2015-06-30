@@ -37,20 +37,23 @@ module  udt_interface #(
 	output	[1:0]	ctrl_s_axi_rresp,					//%	控制寄存器-读数据应答
 	output	ctrl_s_axi_rvalid,							//%	控制寄存器-读数据有效
 	input	ctrl_s_axi_rready,							//%	控制寄存器-读数据就绪
-	input	tx_m_axis_aclk,								//% UDT传输数据-发送时钟信号
-	input	tx_m_axis_aresetn,							//% UDT传输数据-发送复位信号（低有效）
-	input	tx_m_axis_tvalid,							//%	UDT传输数据-发送数据有效
-	output	tx_m_axis_tready,							//%	UDT传输数据-发送数据就绪
-	input	[63:0]	tx_m_axis_tdata,					//%	UDT传输数据-发送数据包
-	input	[7:0]	tx_m_axis_tkeep,					//%	UDT传输数据-发送数据字节有效
-	input	tx_m_axis_tlast,							//%	UDT传输数据-发送数据包结束
-	input	rx_s_axis_aclk,								//%	UDT传输数据-接收时钟信号
-	input	rx_s_axis_aresetn,							//%	UDT传输数据-接收复位信号（低有效）
-	output	rx_s_axis_tvalid,							//%	UDT传输数据-接收数据有效
-	input	rx_s_axis_tready,							//%	UDT传输数据-接收数据就绪
-	output	rx_s_axis_tdata,							//%	UDT传输数据-接收数据包
-	output	rx_s_axis_tkeep,							//%	UDT传输数据-接收数据字节有效
-	output	rx_s_axis_tlast,							//%	UDT传输数据-接收数据包结束
+	
+	input	tx_axis_aclk,								//% UDT传输数据-发送时钟信号
+	input	tx_axis_aresetn,							//% UDT传输数据-发送复位信号（低有效）
+	input	tx_axis_tvalid,								//%	UDT传输数据-发送数据有效
+	output	tx_axis_tready,								//%	UDT传输数据-发送数据就绪
+	input	[63:0]	tx_axis_tdata,						//%	UDT传输数据-发送数据包
+	input	[7:0]	tx_axis_tkeep,						//%	UDT传输数据-发送数据字节有效
+	input	tx_axis_tlast,								//%	UDT传输数据-发送数据包结束
+	
+	input	rx_axis_aclk,								//%	UDT传输数据-接收时钟信号
+	input	rx_axis_aresetn,							//%	UDT传输数据-接收复位信号（低有效）
+	output	rx_axis_tvalid,								//%	UDT传输数据-接收数据有效
+	input	rx_axis_tready,								//%	UDT传输数据-接收数据就绪
+	output	rx_axis_tdata,								//%	UDT传输数据-接收数据包
+	output	rx_axis_tkeep,								//%	UDT传输数据-接收数据字节有效
+	output	rx_axis_tlast,								//%	UDT传输数据-接收数据包结束
+	
 	input		udp_clk	,								//%	UDP传输数据-UDP时钟(156Mhz)
 	input		udp_areset,								//%	UDP传输数据-UDP复位(高复位)	
 	input		udp_tx_tready    ,						//%	UDP传输数据-发送数据就绪
@@ -76,6 +79,9 @@ module  udt_interface #(
 	input	[15:0] udp_rx_port_src  ,					//%	UDP传输数据-接收源端口号
 	input	[15:0] udp_rx_port_dest ,					//%	UDP传输数据-接收目的端口号
 	
+	
+	input		ui_clk	,								//%	DDR3-时钟信号
+	input		ui_aresetn	,							//%	DDR3-复位信号（低有效）
 	output  [C_S_AXI_ID_WIDTH-1:0]s_axi_awid,			//%	DDR3-写地址ID
 	output  [C_S_AXI_ADDR_WIDTH-1:0]s_axi_awaddr,		//%	DDR3-写地址
 	output  [7:0]s_axi_awlen,							//%	DDR3-突发式写的长度
@@ -117,11 +123,93 @@ module  udt_interface #(
 	input	init_calib_complete							//% DDR3-初始化完成
 );
 
-/*	fifo   asyc  fifo   UDT->IN		*/
-/*	fifo   asyc	 fifo	UDT->OUT	*/
 
-/*	fifo   asyc  fifo   UDP->IN		*/
-/*	fifo   asyc	 fifo	UDP->OUT	*/
+/*	
+*		fifo   asyc  fifo   UDT->SEND
+*/
+
+wire	core_udt_tx_axis_tvalid;
+wire	core_udt_tx_axis_tready;
+wire	[63:0]	core_udt_tx_axis_tdata;
+wire	[7:0]	core_udt_tx_axis_tkeep;
+wire	core_udt_tx_axis_tlast;
+
+wire	[31:0]	fifo_udt_tx_inst_data_count;
+wire	[31:0]	fifo_udt_tx_inst_wr_data_count;
+wire	[31:0]	fifo_udt_tx_inst_rd_data_count;
+
+wire	fifo_tx_axis_tready ;
+assign	tx_axis_tready = fifo_tx_axis_tready ; // &&   udt连接正常 && 没有发送关闭UDT操作
+
+
+
+axis_data_fifo_64_asyn	fifo_udt_tx_inst(
+	.s_axis_aclk(tx_axis_aclk),
+	.s_axis_aresetn(tx_axis_aresetn),
+	
+	.m_axis_aclk(ui_clk),
+	.m_axis_aresetn(ui_aresetn),
+	
+	.s_axis_tvalid(tx_axis_tvalid), 
+	.s_axis_tready(fifo_tx_axis_tready), 
+	.s_axis_tdata(tx_axis_tdata), 
+	.s_axis_tkeep(tx_axis_tkeep), 
+	.s_axis_tlast(tx_axis_tlast), 
+	.m_axis_tvalid(core_udt_tx_axis_tvalid), 
+	.m_axis_tready(core_udt_tx_axis_tready), 
+	.m_axis_tdata(core_udt_tx_axis_tdata), 
+	.m_axis_tkeep(core_udt_tx_axis_tkeep), 
+	.m_axis_tlast(core_udt_tx_axis_tlast), 
+	.axis_data_count(fifo_udt_tx_inst_data_count), 
+	.axis_wr_data_count(fifo_udt_tx_inst_wr_data_count), 
+	.axis_rd_data_count(fifo_udt_tx_inst_rd_data_count)
+);
+
+/*	fifo   asyc	 fifo	UDT->RECV	*/
+wire	core_udt_rx_axis_tvalid;
+wire	core_udt_rx_axis_tready;
+wire	[63:0]	core_udt_rx_axis_tdata;
+wire	[7:0]	core_udt_rx_axis_tkeep;
+wire	core_udt_rx_axis_tlast;
+
+wire	[31:0]	fifo_udt_rx_inst_data_count;
+wire	[31:0]	fifo_udt_rx_inst_wr_data_count;
+wire	[31:0]	fifo_udt_rx_inst_rd_data_count;
+
+
+axis_data_fifo_64_asyn	fifo_udt_rx_inst(
+	.s_axis_aclk(ui_clk),
+	.s_axis_aresetn(ui_aresetn),
+	
+	.m_axis_aclk(rx_axis_aclk),
+	.m_axis_aresetn(rx_axis_aresetn),
+	
+	.s_axis_tvalid(core_udt_rx_axis_tvalid), 
+	.s_axis_tready(core_udt_rx_axis_tready), 
+	.s_axis_tdata(core_udt_rx_axis_tdata), 
+	.s_axis_tkeep(core_udt_rx_axis_tkeep), 
+	.s_axis_tlast(core_udt_rx_axis_tlast), 
+	
+	.m_axis_tvalid(rx_axis_tvalid), 
+	.m_axis_tready(rx_axis_tready), 
+	.m_axis_tdata(rx_axis_tdata), 
+	.m_axis_tkeep(rx_axis_tkeep), 
+	.m_axis_tlast(rx_axis_tlast), 
+	.axis_data_count(fifo_udt_rx_inst_data_count), 
+	.axis_wr_data_count(fifo_udt_rx_inst_wr_data_count), 
+	.axis_rd_data_count(fifo_udt_rx_inst_rd_data_count)
+);
+/*	asyc  fifo   UDP->IN_DATA	*/
+
+
+/*	asyc	 fifo	UDP->OUT_DATA	*/
+
+
+
+/*	asyc	fifo	UDP-IP 	address	*/
+
+
+/*	asyc	fifo	UDP-IP	address	*/
 
 configure	con_inst(
 	.ctrl_s_axi_aclk(ctrl_s_axi_aclk),							

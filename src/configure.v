@@ -3,7 +3,7 @@
 //% @details 
 
 
-//% 配置寄存器模块主要介于BRAM和用户AXI-LITE之间，用于用户使用UDT寄存器管理UDT
+//% 配置寄存器模块主要接收用户配置命令，以AXI-LITE协议操作BRAM，用户通过操作UDT寄存器来管理UDT
 //% @details
 //%	配置参数：
 //%		1、配置状态寄存器标识为成功再进行2步骤
@@ -21,6 +21,7 @@
 //%			2、若UDT连接状态为连接，向Socket Manager发送关闭连接操作，等待UDT关闭，更新连接寄存器标识为关闭
 //%	读状态寄存器：
 //%			AXI-LITE（读操作）直接读取BRAM
+//%	寄存器映射：
 module    configure (
 	input	ctrl_s_axi_aclk,							//% 用户-时钟信号
 	input   ctrl_s_axi_aresetn,							//% 用户-复位信号
@@ -42,27 +43,10 @@ module    configure (
 	output	ctrl_s_axi_rvalid,							//%	用户-读数据有效
 	input	ctrl_s_axi_rready,							//%	用户-读数据就绪
 	
-	input	[31:0]	ctrl_s_axi_awaddr,					//%	BRAM存储器-写地址信号
-	input	ctrl_s_axi_awvalid,							//% BRAM存储器-写地址有效
-	output	ctrl_s_axi_awready,							//%	BRAM存储器-写地址就绪
-	input	[31:0]	ctrl_s_axi_wdata,					//%	BRAM存储器-写操作数据
-	input	[3:0]	ctrl_s_axi_wstrb,					//%	BRAM存储器-写操作字节使能
-	input	ctrl_s_axi_wvalid,							//%	BRAM存储器-写数据有效
-	output	ctrl_s_axi_wready,							//%	BRAM存储器-写数据就绪
-	output	[1:0]	ctrl_s_axi_bresp,					//%	BRAM存储器-写数据应答
-	output	ctrl_s_axi_bvalid,							//%	BRAM存储器-写应答有效
-	input	ctrl_s_axi_bready,							//%	BRAM存储器-写应答就绪
-	input   [31:0]	ctrl_s_axi_araddr,					//% BRAM存储器-读地址信号
-	input	ctrl_s_axi_arvalid,							//% BRAM存储器-读地址有效
-	output	ctrl_s_axi_arready,							//% BRAM存储器-读地址就绪
-	output  [31:0]	ctrl_s_axi_rdata,					//%	BRAM存储器-读操作数据
-	output	[1:0]	ctrl_s_axi_rresp,					//%	BRAM存储器-读数据应答
-	output	ctrl_s_axi_rvalid,							//%	BRAM存储器-读数据有效
-	input	ctrl_s_axi_rready,							//%	BRAM存储器-读数据就绪
-	
 	input	[31:0]	udt_state ,							//%	连接状态
 	input	state_valid,								//%	连接状态有效
 	output	state_ready,								//%	连接状态就绪
+	
 );
 
 
