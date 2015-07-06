@@ -116,7 +116,7 @@ module  udt_interface #(
 	input	s_axi_arready,								//%	DDR3-读地址就绪
 	output  s_axi_rready,								//%	DDR3-读数据就绪
 	input	[C_S_AXI_ID_WIDTH-1:0]s_axi_rid,			//%	DDR3-读ID
-	input	[511:0]s_axi_rdata,							//%	DDR3-读数据
+	input	[C_S_AXI_DATA_WIDTH-1:0]s_axi_rdata,		//%	DDR3-读数据
 	input	[1:0]s_axi_rresp,							//%	DDR3-读应答
 	input	s_axi_rlast,								//%	DDR3-读结束
 	input	s_axi_rvalid,								//%	DDR3-读有效
@@ -139,7 +139,7 @@ wire	[31:0]	fifo1_wr_data_count;
 wire	[31:0]	fifo1_rd_data_count;
 
 wire	fifo_tx_axis_tready ;
-assign	tx_axis_tready = fifo_tx_axis_tready ; // &&   udt连接正常 && 没有发送关闭UDT操作
+assign	fifo_tx_axis_tready  = tx_axis_tready; // &&   udt连接正常 && 没有发送关闭UDT操作
 
 
 
@@ -356,6 +356,7 @@ axis_data_fifo_192_asyn	fifo_udp_tx_mix_inst(
 	.axis_rd_data_count(fifo6_rd_data_count)
 );
 
+
 core	#(
 	.C_S_AXI_ID_WIDTH(C_S_AXI_ID_WIDTH),
 	.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
@@ -381,76 +382,76 @@ core	#(
 	.udp_tx_port_src(core_tx_port_src),				
 	.udp_tx_port_dest(core_tx_port_dest),				
 	
-	.udp_rx_tready(core_ud)    ,						
-	.udp_rx_tvalid    ,					
-	.udp_rx_tlast     ,						
-	.udp_rx_tkeep     ,				
-	.udp_rx_tdata     ,					
-	.udp_rx_mac_src   ,				
-	.udp_rx_mac_dest  ,					
-	.udp_rx_ip_src    ,				
-	.udp_rx_ip_dest   ,				
-	.udp_rx_port_src  ,				
-	.udp_rx_port_dest ,					
+	.udp_rx_tready(core_udp_rx_axis_tready),						
+	.udp_rx_tvalid(core_udp_rx_axis_tvalid),					
+	.udp_rx_tlast(core_udp_rx_axis_tlast),						
+	.udp_rx_tkeep(core_udp_rx_axis_tkeep),				
+	.udp_rx_tdata(core_udp_rx_axis_tdata),					
+	.udp_rx_mac_src(core_rx_mac_src),				
+	.udp_rx_mac_dest(core_rx_mac_dest),					
+	.udp_rx_ip_src(core_rx_ip_src),				
+	.udp_rx_ip_dest(core_rx_ip_dest),				
+	.udp_rx_port_src(core_rx_port_src),				
+	.udp_rx_port_dest(core_rx_port_dest),					
 	
 	
-	.tx_axis_tvalid,							
-	.tx_axis_tready,								
-	.tx_axis_tdata,						
-	.tx_axis_tkeep,					
-	.tx_axis_tlast,								
+	.tx_axis_tvalid(core_udt_tx_axis_tvalid),							
+	.tx_axis_tready(core_udt_tx_axis_tready),								
+	.tx_axis_tdata(core_udt_tx_axis_tdata),						
+	.tx_axis_tkeep(core_udt_tx_axis_tkeep),					
+	.tx_axis_tlast(core_udt_tx_axis_tlast),								
 	
 	
-	.rx_axis_tvalid,								
-	.rx_axis_tready,							
-	.rx_axis_tdata,								
-	.rx_axis_tkeep,							
-	.rx_axis_tlast,							
+	.rx_axis_tvalid(core_udt_rx_axis_tvalid),								
+	.rx_axis_tready(core_udt_rx_axis_tready),							
+	.rx_axis_tdata(core_udt_rx_axis_tdata),								
+	.rx_axis_tkeep(core_udt_rx_axis_tkeep),							
+	.rx_axis_tlast(core_udt_rx_axis_tlast),							
 		
-		
+	/*	
 	.udt_state ,							
 	.state_valid,								
 	.state_ready,								
+	*/
+	.s_axi_awid(s_axi_awid),			
+	.s_axi_awaddr(s_axi_awaddr),		
+	.s_axi_awlen(s_axi_awlen),							
+	.s_axi_awsize(s_axi_awsize),							
+	.s_axi_awburst(s_axi_awburst),							
+	.s_axi_awlock(s_axi_awlock),							
+	.s_axi_awcache(s_axi_awcache),						
+	.s_axi_awprot(s_axi_awprot),							
+	.s_axi_awqos(s_axi_awqos),							
+	.s_axi_awvalid(s_axi_awvalid),								
+	.s_axi_awready(s_axi_awready),								
+	.s_axi_wdata(s_axi_wdata),		
+	.s_axi_wstrb(s_axi_wstrb),	
+	.s_axi_wlast(s_axi_wlast),								
+	.s_axi_wvalid(s_axi_wvalid),								
+	.s_axi_wready(s_axi_wready),								
+	.s_axi_bready(s_axi_bready),								
+	.s_axi_bid(s_axi_bid),			
+	.s_axi_bresp(s_axi_bresp),						
+	.s_axi_bvalid(s_axi_bvalid),								
 	
-	.s_axi_awid,			
-	.s_axi_awaddr,		
-	.s_axi_awlen,							
-	.s_axi_awsize,							
-	.s_axi_awburst,							
-	.s_axi_awlock,							
-	.s_axi_awcache,						
-	.s_axi_awprot,							
-	.s_axi_awqos,							
-	.s_axi_awvalid,								
-	.s_axi_awready,								
-	.s_axi_wdata,		
-	.s_axi_wstrb,	
-	.s_axi_wlast,								
-	.s_axi_wvalid,								
-	.s_axi_wready,								
-	.s_axi_bready,								
-	.s_axi_bid,			
-	.s_axi_bresp,						
-	.s_axi_bvalid,								
-	
-	.s_axi_arid,			//%	DDR3-读地址ID
-	.s_axi_araddr,		//%	DDR3-读地址
-	.s_axi_arlen,							//%	DDR3-突发式读的长度
-	.s_axi_arsize,							//%	DDR3-突发式读的大小
-	.s_axi_arburst,							//%	DDR3-突发式读的类型
-	.s_axi_arlock,							//%	DDR3-读锁类型
-	.s_axi_arcache,							//%	DDR3-读Cache类型
-	.s_axi_arprot,							//%	DDR3-读保护类型
-	.s_axi_arqos,							//%	DDR3-unknown port
-	.s_axi_arvalid,								//%	DDR3-读地址有效
-	.s_axi_arready,								//%	DDR3-读地址就绪
-	.s_axi_rready,								//%	DDR3-读数据就绪
-	.s_axi_rid,			//%	DDR3-读ID
-	.s_axi_rdata,							//%	DDR3-读数据
-	.s_axi_rresp,							//%	DDR3-读应答
-	.s_axi_rlast,							
-	.s_axi_rvalid,
-	.init_calib_complete						
+	.s_axi_arid(s_axi_arid),
+	.s_axi_araddr(s_axi_araddr),
+	.s_axi_arlen(s_axi_arlen),
+	.s_axi_arsize(s_axi_arsize),
+	.s_axi_arburst(s_axi_arburst),
+	.s_axi_arlock(s_axi_arlock),
+	.s_axi_arcache(s_axi_arcache),	
+	.s_axi_arprot(s_axi_arprot),
+	.s_axi_arqos(s_axi_arqos),
+	.s_axi_arvalid(s_axi_arvalid),	
+	.s_axi_arready(s_axi_arready),	
+	.s_axi_rready(s_axi_rready),
+	.s_axi_rid(s_axi_rid),
+	.s_axi_rdata(s_axi_rdata),
+	.s_axi_rresp(s_axi_rresp),
+	.s_axi_rlast(s_axi_rlast),							
+	.s_axi_rvalid(s_axi_rvalid),
+	.init_calib_complete(init_calib_complete)						
 
 
 );

@@ -97,7 +97,7 @@ module	udt_core
 	input	s_axi_arready,								//%	DDR3-读地址就绪
 	output  s_axi_rready,								//%	DDR3-读数据就绪
 	input	[C_S_AXI_ID_WIDTH-1:0]s_axi_rid,			//%	DDR3-读ID
-	input	[511:0]s_axi_rdata,							//%	DDR3-读数据
+	input	[C_S_AXI_DATA_WIDTH-1:0]s_axi_rdata,		//%	DDR3-读数据
 	input	[1:0]s_axi_rresp,							//%	DDR3-读应答
 	input	s_axi_rlast,								//%	DDR3-读结束
 	input	s_axi_rvalid,								//%	DDR3-读有效

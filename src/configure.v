@@ -47,6 +47,8 @@ module    configure (
 	input	state_valid,								//%	连接状态有效
 	output	state_ready,								//%	连接状态就绪
 	
+	
+	
 );
 
 
