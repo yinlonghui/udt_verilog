@@ -134,9 +134,9 @@ wire	[63:0]	core_udt_tx_axis_tdata;
 wire	[7:0]	core_udt_tx_axis_tkeep;
 wire	core_udt_tx_axis_tlast;
 
-wire	[31:0]	fifo_udt_tx_inst_data_count;
-wire	[31:0]	fifo_udt_tx_inst_wr_data_count;
-wire	[31:0]	fifo_udt_tx_inst_rd_data_count;
+wire	[31:0]	fifo1_data_count;
+wire	[31:0]	fifo1_wr_data_count;
+wire	[31:0]	fifo1_rd_data_count;
 
 wire	fifo_tx_axis_tready ;
 assign	tx_axis_tready = fifo_tx_axis_tready ; // &&   udt连接正常 && 没有发送关闭UDT操作
@@ -160,9 +160,9 @@ axis_data_fifo_64_asyn	fifo_udt_tx_inst(
 	.m_axis_tdata(core_udt_tx_axis_tdata), 
 	.m_axis_tkeep(core_udt_tx_axis_tkeep), 
 	.m_axis_tlast(core_udt_tx_axis_tlast), 
-	.axis_data_count(fifo_udt_tx_inst_data_count), 
-	.axis_wr_data_count(fifo_udt_tx_inst_wr_data_count), 
-	.axis_rd_data_count(fifo_udt_tx_inst_rd_data_count)
+	.axis_data_count(fifo1_data_count), 
+	.axis_wr_data_count(fifo1_wr_data_count), 
+	.axis_rd_data_count(fifo1_rd_data_count)
 );
 
 /*	fifo   asyc	 fifo	UDT->RECV	*/
@@ -172,9 +172,9 @@ wire	[63:0]	core_udt_rx_axis_tdata;
 wire	[7:0]	core_udt_rx_axis_tkeep;
 wire	core_udt_rx_axis_tlast;
 
-wire	[31:0]	fifo_udt_rx_inst_data_count;
-wire	[31:0]	fifo_udt_rx_inst_wr_data_count;
-wire	[31:0]	fifo_udt_rx_inst_rd_data_count;
+wire	[31:0]	fifo2_data_count;
+wire	[31:0]	fifo2_wr_data_count;
+wire	[31:0]	fifo2_rd_data_count;
 
 
 axis_data_fifo_64_asyn	fifo_udt_rx_inst(
@@ -195,21 +195,265 @@ axis_data_fifo_64_asyn	fifo_udt_rx_inst(
 	.m_axis_tdata(rx_axis_tdata), 
 	.m_axis_tkeep(rx_axis_tkeep), 
 	.m_axis_tlast(rx_axis_tlast), 
-	.axis_data_count(fifo_udt_rx_inst_data_count), 
-	.axis_wr_data_count(fifo_udt_rx_inst_wr_data_count), 
-	.axis_rd_data_count(fifo_udt_rx_inst_rd_data_count)
+	.axis_data_count(fifo2_data_count), 
+	.axis_wr_data_count(fifo2_wr_data_count), 
+	.axis_rd_data_count(fifo2_rd_data_count)
 );
+
 /*	asyc  fifo   UDP->IN_DATA	*/
+wire	core_udp_rx_axis_tvalid;
+wire	core_udp_rx_axis_tready;
+wire	[63:0]	core_udp_rx_axis_tdata;
+wire	[7:0]	core_udp_rx_axis_tkeep;
+wire	core_udp_rx_axis_tlast;
+
+wire	[31:0]	fifo3_data_count;
+wire	[31:0]	fifo3_wr_data_count;
+wire	[31:0]	fifo3_rd_data_count;
 
 
-/*	asyc	 fifo	UDP->OUT_DATA	*/
+axis_data_fifo_64_asyn fifo_udp_rx_data_inst(
+
+	.s_axis_aclk(udp_clk),
+	.s_axis_aresetn(!udp_areset),
+	
+	.m_axis_aclk(ui_clk),
+	.m_axis_aresetn(ui_aresetn),
+	
+	.s_axis_tvalid(udp_rx_tvalid), 
+	.s_axis_tready(udp_rx_tready), 
+	.s_axis_tdata(udp_rx_tdata), 
+	.s_axis_tkeep(udp_rx_tkeep), 
+	.s_axis_tlast(udp_rx_tlast), 
+	
+	.m_axis_tvalid(core_udp_rx_axis_tvalid), 
+	.m_axis_tready(core_udp_rx_axis_tready), 
+	.m_axis_tdata(core_udp_rx_axis_tdata), 
+	.m_axis_tkeep(core_udp_rx_axis_tkeep), 
+	.m_axis_tlast(core_udp_rx_axis_tlast), 
+	.axis_data_count(fifo3_data_count), 
+	.axis_wr_data_count(fifo3_wr_data_count), 
+	.axis_rd_data_count(fifo3_rd_data_count)
 
 
+);
+wire	core_udp_tx_axis_tvalid;
+wire	core_udp_tx_axis_tready;
+wire	[63:0]	core_udp_tx_axis_tdata;
+wire	[7:0]	core_udp_tx_axis_tkeep;
+wire	core_udp_tx_axis_tlast;
+wire	[31:0]	fifo4_data_count;
+wire	[31:0]	fifo4_wr_data_count;
+wire	[31:0]	fifo4_rd_data_count;
 
-/*	asyc	fifo	UDP-IP 	address	*/
+axis_data_fifo_64_asyn fifo_udp_tx_data_inst(
+
+	.s_axis_aclk(ui_clk),
+	.s_axis_aresetn(ui_aresetn),
+	
+	.m_axis_aclk(udp_clk),
+	.m_axis_aresetn(!udp_areset),
+	
+	.s_axis_tvalid(core_udp_tx_axis_tvalid), 
+	.s_axis_tready(core_udp_tx_axis_tready), 
+	.s_axis_tdata(core_udp_tx_axis_tdata), 
+	.s_axis_tkeep(core_udp_tx_axis_tkeep), 
+	.s_axis_tlast(core_udp_tx_axis_tlast), 
+	
+	.m_axis_tvalid(udp_tx_tvalid), 
+	.m_axis_tready(udp_tx_tready), 
+	.m_axis_tdata(udp_tx_tdata), 
+	.m_axis_tkeep(udp_tx_tkeep), 
+	.m_axis_tlast(udp_tx_tlast), 
+	.axis_data_count(fifo4_data_count), 
+	.axis_wr_data_count(fifo4_wr_data_count), 
+	.axis_rd_data_count(fifo4_rd_data_count)
+);
+
+/* MAC  IP  and  PORT   48+32+16 = 96   96 *2  =  192*/
+
+wire	[21:0]	udp_rx_mix_keep ;
+wire			udp_rx_tready   ;
+wire	[21:0]	core_rx_mix_keep ;
+wire	core_udp_rx_axis_tvalid ;
+wire	core_udp_rx_axis_tready ;
+wire	core_udp_rx_axis_tlast ;
+assign	udp_rx_mix_keep =     22'h3f_ffff;
+wire	[47:0]	core_rx_mac_src ;
+wire	[47:0]	core_rx_mac_dest ;
+wire	[31:0]	core_rx_ip_src ;
+wire	[31:0]	core_rx_ip_dest ;
+wire	[15:0]	core_rx_port_src ;
+wire	[15:0]	core_rx_port_dest ;
+wire	[31:0]	fifo5_data_count;
+wire	[31:0]	fifo5_wr_data_count;
+wire	[31:0]	fifo5_rd_data_count;
+
+axis_data_fifo_192_asyn	fifo_udp_rx_mix_inst(
+	.s_axis_aclk(udp_clk),
+	.s_axis_aresetn(!udp_areset),
+	
+	.m_axis_aclk(ui_clk),
+	.m_axis_aresetn(ui_aresetn),
+	
+	.s_axis_tvalid(udp_rx_tvalid), 
+	.s_axis_tready(udp_rx_tready), 
+	.s_axis_tdata({udp_rx_mac_src,udp_rx_mac_dest,udp_rx_ip_src,udp_rx_ip_dest,udp_rx_port_src,udp_rx_port_dest}), 
+	.s_axis_tkeep(udp_rx_mix_keep), 
+	.s_axis_tlast(udp_rx_tlast), 
+	
+	.m_axis_tvalid(core_udp_rx_axis_tvalid), 
+	.m_axis_tready(core_udp_rx_axis_tready), 
+	.m_axis_tdata({core_rx_mac_src,core_rx_mac_dest,core_rx_ip_src,core_rx_ip_dest,core_rx_port_src,core_rx_port_dest}), 
+	.m_axis_tkeep(core_rx_mix_keep), 
+	.m_axis_tlast(core_udp_rx_axis_tlast), 
+	.axis_data_count(fifo5_data_count), 
+	.axis_wr_data_count(fifo5_wr_data_count), 
+	.axis_rd_data_count(fifo5_rd_data_count)
+
+);
+
+wire	[21:0]	udp_tx_mix_keep ;
+wire	[21:0]	core_tx_mix_keep ;
+wire	core_udp_tx_axis_tvalid ;
+wire	core_udp_tx_axis_tready ;
+wire	core_udp_tx_axis_tlast ;
+assign	core_tx_mix_keep =     22'h3f_ffff;
+wire	[47:0]	core_tx_mac_src ;
+wire	[47:0]	core_tx_mac_dest ;
+wire	[31:0]	core_tx_ip_src ;
+wire	[31:0]	core_tx_ip_dest ;
+wire	[15:0]	core_tx_port_src ;
+wire	[15:0]	core_tx_port_dest ;
+
+wire	[31:0]	fifo6_data_count;
+wire	[31:0]	fifo6_wr_data_count;
+wire	[31:0]	fifo6_rd_data_count;
+
+/*
+	must wait  udp_tx_data_valid  ==  1 
+*/
+axis_data_fifo_192_asyn	fifo_udp_tx_mix_inst(
+	.s_axis_aclk(ui_clk),
+	.s_axis_aresetn(ui_aresetn),
+	
+	.m_axis_aclk(udp_clk),
+	.m_axis_aresetn(!udp_areset),
+	
+	.s_axis_tvalid(core_udp_tx_axis_tvalid), 
+	.s_axis_tready(core_udp_tx_axis_tlast), 
+	.s_axis_tdata({core_tx_mac_src,core_tx_mac_dest,core_tx_ip_src,core_tx_ip_dest,core_tx_port_src,core_tx_port_dest}), 
+	.s_axis_tkeep(core_tx_mix_keep), 
+	.s_axis_tlast(core_udp_tx_axis_tlast), 
+	
+	.m_axis_tvalid(udp_tx_mix_tvalid), 
+	.m_axis_tready(udp_tx_tready), 
+	.m_axis_tdata({udp_tx_mac_src,udp_tx_mac_dest,udp_tx_ip_src,udp_tx_ip_dest,udp_tx_port_src,udp_tx_port_dest}), 
+	.m_axis_tkeep(udp_tx_mix_keep), 
+	.m_axis_tlast(udp_tx_mix_tlast), 
+	.axis_data_count(fifo6_data_count), 
+	.axis_wr_data_count(fifo6_wr_data_count), 
+	.axis_rd_data_count(fifo6_rd_data_count)
+);
+
+core	#(
+	.C_S_AXI_ID_WIDTH(C_S_AXI_ID_WIDTH),
+	.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+	.C_S_AXI_ADDR_WIDTH(C_S_AXI_ADDR_WIDTH),
+	.FPGA_MAC_SRC(FPGA_MAC_SRC),
+	.FPGA_MAC_DES(FPGA_MAC_DES),
+	.FPGA_IP_SRC(FPGA_IP_SRC),
+	.FPGA_IP_DES_DEAFAULT(FPGA_IP_DES_DEAFAULT),
+	.PORT(PORT)
+)core_inst(
+	.core_clk(ui_clk)	,								
+	.core_rst_n(ui_aresetn)	,								
+		
+	.udp_tx_tready(core_udp_tx_axis_tready),						
+	.udp_tx_tvalid(core_udp_tx_axis_tvalid),						
+	.udp_tx_tlast(core_udp_tx_axis_tlast),						
+	.udp_tx_tkeep(core_udp_tx_axis_tkeep),					
+	.udp_tx_tdata(core_udp_tx_axis_tvalid),					
+	.udp_tx_mac_src(core_tx_mac_src),					
+	.udp_tx_mac_dest(core_tx_mac_dest),					
+	.udp_tx_ip_src(core_tx_ip_src),					
+	.udp_tx_ip_dest(core_tx_ip_dest),				
+	.udp_tx_port_src(core_tx_port_src),				
+	.udp_tx_port_dest(core_tx_port_dest),				
+	
+	.udp_rx_tready(core_ud)    ,						
+	.udp_rx_tvalid    ,					
+	.udp_rx_tlast     ,						
+	.udp_rx_tkeep     ,				
+	.udp_rx_tdata     ,					
+	.udp_rx_mac_src   ,				
+	.udp_rx_mac_dest  ,					
+	.udp_rx_ip_src    ,				
+	.udp_rx_ip_dest   ,				
+	.udp_rx_port_src  ,				
+	.udp_rx_port_dest ,					
+	
+	
+	.tx_axis_tvalid,							
+	.tx_axis_tready,								
+	.tx_axis_tdata,						
+	.tx_axis_tkeep,					
+	.tx_axis_tlast,								
+	
+	
+	.rx_axis_tvalid,								
+	.rx_axis_tready,							
+	.rx_axis_tdata,								
+	.rx_axis_tkeep,							
+	.rx_axis_tlast,							
+		
+		
+	.udt_state ,							
+	.state_valid,								
+	.state_ready,								
+	
+	.s_axi_awid,			
+	.s_axi_awaddr,		
+	.s_axi_awlen,							
+	.s_axi_awsize,							
+	.s_axi_awburst,							
+	.s_axi_awlock,							
+	.s_axi_awcache,						
+	.s_axi_awprot,							
+	.s_axi_awqos,							
+	.s_axi_awvalid,								
+	.s_axi_awready,								
+	.s_axi_wdata,		
+	.s_axi_wstrb,	
+	.s_axi_wlast,								
+	.s_axi_wvalid,								
+	.s_axi_wready,								
+	.s_axi_bready,								
+	.s_axi_bid,			
+	.s_axi_bresp,						
+	.s_axi_bvalid,								
+	
+	.s_axi_arid,			//%	DDR3-读地址ID
+	.s_axi_araddr,		//%	DDR3-读地址
+	.s_axi_arlen,							//%	DDR3-突发式读的长度
+	.s_axi_arsize,							//%	DDR3-突发式读的大小
+	.s_axi_arburst,							//%	DDR3-突发式读的类型
+	.s_axi_arlock,							//%	DDR3-读锁类型
+	.s_axi_arcache,							//%	DDR3-读Cache类型
+	.s_axi_arprot,							//%	DDR3-读保护类型
+	.s_axi_arqos,							//%	DDR3-unknown port
+	.s_axi_arvalid,								//%	DDR3-读地址有效
+	.s_axi_arready,								//%	DDR3-读地址就绪
+	.s_axi_rready,								//%	DDR3-读数据就绪
+	.s_axi_rid,			//%	DDR3-读ID
+	.s_axi_rdata,							//%	DDR3-读数据
+	.s_axi_rresp,							//%	DDR3-读应答
+	.s_axi_rlast,							
+	.s_axi_rvalid,
+	.init_calib_complete						
 
 
-/*	asyc	fifo	UDP-IP	address	*/
+);
 
 configure	con_inst(
 	.ctrl_s_axi_aclk(ctrl_s_axi_aclk),							
@@ -230,7 +474,12 @@ configure	con_inst(
 	.ctrl_s_axi_rdata(ctrl_s_axi_rdata),					
 	.ctrl_s_axi_rresp(ctrl_s_axi_rresp),					
 	.ctrl_s_axi_rvalid(ctrl_s_axi_rvalid),							
-	.ctrl_s_axi_rready(ctrl_s_axi_rready),				
+	.ctrl_s_axi_rready(ctrl_s_axi_rready),		
+//	Global Parameter for core module
+
+
+
+//	
 
 );
 

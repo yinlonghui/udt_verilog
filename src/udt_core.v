@@ -6,7 +6,17 @@
 //% @details
 
 
-module	udt_core(
+module	udt_core
+#(
+	parameter	C_S_AXI_ID_WIDTH  = 8'd4 ,				//% 定义ID位宽
+	parameter	C_S_AXI_DATA_WIDTH = 32'd512,			//%	定义数据位宽
+	parameter	C_S_AXI_ADDR_WIDTH = 32'd32 ,			//%	定义地址位宽
+	parameter	FPGA_MAC_SRC	= 48'hba0203040506,		//%	定义源MAC地址
+	parameter	FPGA_MAC_DES	= 48'hffffffffffff,		//%	定义目的MAC地址
+	parameter	FPGA_IP_SRC		= 32'hc0a8006f,			//%	定义源IP地址
+	parameter	FPGA_IP_DES_DEAFAULT = 32'hc0a800ff,	//%	定义目的默认IP地址 (广播)
+	parameter	PORT	=	32'd 10086					//%	定义监听端口号
+)(
 	input	core_clk	,								//% 	udt模块时钟信号
 	input	core_rst_n	,								//%	udt模块复位信号
 		
@@ -27,6 +37,12 @@ module	udt_core(
 	input		udp_rx_tlast     ,						//%	UDP传输数据-接收数据包结束
 	input	[ 7:0]	udp_rx_tkeep     ,					//%	UDP传输数据-接收数据字节有效
 	input 	[63:0]	udp_rx_tdata     ,					//%	UDP传输数据-接收数据包
+	input	[47:0]	udp_rx_mac_src   ,					//%	UDP传输数据-接收源MAC地址
+	input	[47:0]	udp_rx_mac_dest  ,					//%	UDP传输数据-接收目的MAC地址
+	input	[31:0]	udp_rx_ip_src    ,					//%	UDP传输数据-接收源IP地址
+	input	[31:0] udp_rx_ip_dest   ,					//%	UDP传输数据-接收目的IP地址
+	input	[15:0] udp_rx_port_src  ,					//%	UDP传输数据-接收源端口号
+	input	[15:0] udp_rx_port_dest ,					//%	UDP传输数据-接收目的端口号
 	
 	
 	input	tx_axis_tvalid,								//%	UDT传输数据-发送数据有效
