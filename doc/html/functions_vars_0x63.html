@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>UDT project: Design Unit Members - 变量</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">UDT project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Design&#160;Unit&#160;List</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Design&#160;Unit&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Design&#160;Units</span></a></li>
+      <li><a href="hierarchy.html"><span>Design&#160;Unit&#160;Hierarchy</span></a></li>
+      <li class="current"><a href="functions.html"><span>Design&#160;Unit&#160;Members</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li><a href="functions.html"><span>全部</span></a></li>
+      <li><a href="functions_func.html"><span>Functions/Tasks/Always&#160;Construct</span></a></li>
+      <li class="current"><a href="functions_vars.html"><span>变量</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="functions_vars.html#index_a"><span>a</span></a></li>
+      <li><a href="functions_vars_0x62.html#index_b"><span>b</span></a></li>
+      <li class="current"><a href="functions_vars_0x63.html#index_c"><span>c</span></a></li>
+      <li><a href="functions_vars_0x64.html#index_d"><span>d</span></a></li>
+      <li><a href="functions_vars_0x65.html#index_e"><span>e</span></a></li>
+      <li><a href="functions_vars_0x66.html#index_f"><span>f</span></a></li>
+      <li><a href="functions_vars_0x68.html#index_h"><span>h</span></a></li>
+      <li><a href="functions_vars_0x69.html#index_i"><span>i</span></a></li>
+      <li><a href="functions_vars_0x6b.html#index_k"><span>k</span></a></li>
+      <li><a href="functions_vars_0x6c.html#index_l"><span>l</span></a></li>
+      <li><a href="functions_vars_0x6d.html#index_m"><span>m</span></a></li>
+      <li><a href="functions_vars_0x6e.html#index_n"><span>n</span></a></li>
+      <li><a href="functions_vars_0x6f.html#index_o"><span>o</span></a></li>
+      <li><a href="functions_vars_0x70.html#index_p"><span>p</span></a></li>
+      <li><a href="functions_vars_0x72.html#index_r"><span>r</span></a></li>
+      <li><a href="functions_vars_0x73.html#index_s"><span>s</span></a></li>
+      <li><a href="functions_vars_0x74.html#index_t"><span>t</span></a></li>
+      <li><a href="functions_vars_0x75.html#index_u"><span>u</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="contents">
+&#160;
+
+<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>C_S_AXI_ADDR_WIDTH
+: <a class="el" href="enumudt__core.html#a0a932f86d93d520fa88b2707d5052753">udt_core</a>
+, <a class="el" href="enumudt__interface.html#a8424ba6a39c4ee7ded45675aa98f5111">udt_interface</a>
+</li>
+<li>C_S_AXI_DATA_WIDTH
+: <a class="el" href="enumudt__core.html#a3493f715962044fee012b6b44dc227ad">udt_core</a>
+, <a class="el" href="enumudt__interface.html#af3a8e12303852695e50e6453db41c78b">udt_interface</a>
+</li>
+<li>C_S_AXI_ID_WIDTH
+: <a class="el" href="enumudt__interface.html#ae14db6741824e374991f6701778b9c7b">udt_interface</a>
+, <a class="el" href="enumudt__core.html#a005e74662ef9cf02c347bc9fdb4053c1">udt_core</a>
+</li>
+<li>client_manager
+: <a class="el" href="enumsocket__manager.html#a4c2ddd70a0f5836dce09cb25284314ab">socket_manager</a>
+</li>
+<li>configure
+: <a class="el" href="enumudt__interface.html#a6e1c9db24dc46b14726ee769ade4d93a">udt_interface</a>
+</li>
+<li>core_clk
+: <a class="el" href="enumtrans__keep.html#a2e39bcb41e03fe9c1024e6f492ce4d78">trans_keep</a>
+, <a class="el" href="enumconfigure.html#a53305733d0cc4d48697eb320c8e47399">configure</a>
+, <a class="el" href="enumdecode.html#a0b38bb8bc2a7819c87c0da51f46901f2">decode</a>
+, <a class="el" href="enumserver__manager.html#a5873e86c335eba65b47888e6977ea081">server_manager</a>
+, <a class="el" href="enumsocket__manager.html#a27d3a77a89c701d704969cc5e3a2a92f">socket_manager</a>
+, <a class="el" href="enumclient__manager.html#a74fd4193c121b4dd4eaee8b74a994bfe">client_manager</a>
+, <a class="el" href="enumudt__core.html#ad92bddbcb8ae83aaa81ce49df9212c2c">udt_core</a>
+</li>
+<li>core_rst_n
+: <a class="el" href="enumclient__manager.html#a76632304ba5ef73c7ee800638118f65f">client_manager</a>
+, <a class="el" href="enumconfigure.html#a49898d726eb4b33337b5a47c717db1c1">configure</a>
+, <a class="el" href="enumdecode.html#ac51d1b643062f08b8228e30383db0f30">decode</a>
+, <a class="el" href="enumserver__manager.html#a557f6a01304f688b29efeb629495140a">server_manager</a>
+, <a class="el" href="enumsocket__manager.html#a6f819a146b4a76028682c35cf2f23c54">socket_manager</a>
+, <a class="el" href="enumudt__core.html#ad649a5eec1338abbfa2f4c9f705288a1">udt_core</a>
+</li>
+<li>core_rx_ip_dest
+: <a class="el" href="enumudt__interface.html#a2ca8fec1e247e1816679c4c42d71c20c">udt_interface</a>
+</li>
+<li>core_rx_ip_src
+: <a class="el" href="enumudt__interface.html#a9ba2aff679dba2bd7b38d6375135fc6f">udt_interface</a>
+</li>
+<li>core_rx_mac_dest
+: <a class="el" href="enumudt__interface.html#ae616004a6bfabc5e7677fd1a63ece737">udt_interface</a>
+</li>
+<li>core_rx_mac_src
+: <a class="el" href="enumudt__interface.html#a4a51ab9212c6b6d87cbc581db0c58558">udt_interface</a>
+</li>
+<li>core_rx_mix_keep
+: <a class="el" href="enumudt__interface.html#a799e6e61464867b37bb062c222965937">udt_interface</a>
+</li>
+<li>core_rx_port_dest
+: <a class="el" href="enumudt__interface.html#a3115fb5522cf7f3357fa8325b17882d6">udt_interface</a>
+</li>
+<li>core_rx_port_src
+: <a class="el" href="enumudt__interface.html#aa2086bac899372a54e5b21819587b66c">udt_interface</a>
+</li>
+<li>core_tx_ip_dest
+: <a class="el" href="enumudt__interface.html#aa751dbdb8dfeefc1bb586f49f3430fdd">udt_interface</a>
+</li>
+<li>core_tx_ip_src
+: <a class="el" href="enumudt__interface.html#a33baffa93c635b4c3f62b88f68dee273">udt_interface</a>
+</li>
+<li>core_tx_mac_dest
+: <a class="el" href="enumudt__interface.html#ab67f27de7ea480675a8a7a572ccf79f0">udt_interface</a>
+</li>
+<li>core_tx_mac_src
+: <a class="el" href="enumudt__interface.html#a29e8a58bc5d17248f1c7173863d04864">udt_interface</a>
+</li>
+<li>core_tx_mix_keep
+: <a class="el" href="enumudt__interface.html#a2c9869a0eb2903afbbdf5885c2a37a11">udt_interface</a>
+</li>
+<li>core_tx_port_dest
+: <a class="el" href="enumudt__interface.html#a3554712eb6232ea259a57d12a2fdf15c">udt_interface</a>
+</li>
+<li>core_tx_port_src
+: <a class="el" href="enumudt__interface.html#a116d1e0cab4477f793132361fb819b82">udt_interface</a>
+</li>
+<li>core_udp_rx_axis_tdata
+: <a class="el" href="enumudt__interface.html#a06ce3a89803490ffebbc086d3443da4f">udt_interface</a>
+</li>
+<li>core_udp_rx_axis_tkeep
+: <a class="el" href="enumudt__interface.html#a9b8d243543ec675112c0802a04715e4b">udt_interface</a>
+</li>
+<li>core_udp_rx_axis_tlast
+: <a class="el" href="enumudt__interface.html#a8dd9b47ccfcea320f368f9dfda6eb79b">udt_interface</a>
+</li>
+<li>core_udp_rx_axis_tready
+: <a class="el" href="enumudt__interface.html#aced45c664a7a028e5c5a29a7778d0d0f">udt_interface</a>
+</li>
+<li>core_udp_rx_axis_tvalid
+: <a class="el" href="enumudt__interface.html#ab1b5f64155af45ef6035e07c85e3dab8">udt_interface</a>
+</li>
+<li>core_udp_tx_axis_tdata
+: <a class="el" href="enumudt__interface.html#a93de59fcaa21bdd3f3ef01b5445e29a1">udt_interface</a>
+</li>
+<li>core_udp_tx_axis_tkeep
+: <a class="el" href="enumudt__interface.html#a8b358d3ca052f180ad0961c8b257e154">udt_interface</a>
+</li>
+<li>core_udp_tx_axis_tlast
+: <a class="el" href="enumudt__interface.html#a89081d67125e8f5b0f996a86956dcbb2">udt_interface</a>
+</li>
+<li>core_udp_tx_axis_tready
+: <a class="el" href="enumudt__interface.html#a6bec49bd782d6ea862cceeee0e76c4f5">udt_interface</a>
+</li>
+<li>core_udp_tx_axis_tvalid
+: <a class="el" href="enumudt__interface.html#a03bdc4b03299cde9465d1800c567d734">udt_interface</a>
+</li>
+<li>core_udt_rx_axis_tdata
+: <a class="el" href="enumudt__interface.html#a3ba498bb30535da2ffb4eb31527eb677">udt_interface</a>
+</li>
+<li>core_udt_rx_axis_tkeep
+: <a class="el" href="enumudt__interface.html#a221f0cbff730802ebeef8b3719733dc1">udt_interface</a>
+</li>
+<li>core_udt_rx_axis_tlast
+: <a class="el" href="enumudt__interface.html#a66ff0271161817a313163e71cbcbbb4e">udt_interface</a>
+</li>
+<li>core_udt_rx_axis_tready
+: <a class="el" href="enumudt__interface.html#a1cb0d8081816fb4bdb3b253f6cd57219">udt_interface</a>
+</li>
+<li>core_udt_rx_axis_tvalid
+: <a class="el" href="enumudt__interface.html#a03e5514f3b08d5c1928a2007a901304d">udt_interface</a>
+</li>
+<li>core_udt_tx_axis_tdata
+: <a class="el" href="enumudt__interface.html#a8214fe15a70d80179d9d74707bea0a10">udt_interface</a>
+</li>
+<li>core_udt_tx_axis_tkeep
+: <a class="el" href="enumudt__interface.html#a44782d81b806bb6b2c21c63daac06cbb">udt_interface</a>
+</li>
+<li>core_udt_tx_axis_tlast
+: <a class="el" href="enumudt__interface.html#a4c21ca067e868a49fb8185364f96e78c">udt_interface</a>
+</li>
+<li>core_udt_tx_axis_tready
+: <a class="el" href="enumudt__interface.html#a7a4076a256064d8ecc0d31973e52b2be">udt_interface</a>
+</li>
+<li>core_udt_tx_axis_tvalid
+: <a class="el" href="enumudt__interface.html#a9d1360a69edfa809f0856dc4ea087816">udt_interface</a>
+</li>
+<li>ctrl_s_axi_aclk
+: <a class="el" href="enumconfigure.html#a17098b305ace130642ffca73efd35a11">configure</a>
+, <a class="el" href="enumudt__interface.html#af0e6bfc1c0167729f13cfb85eb8079ba">udt_interface</a>
+</li>
+<li>ctrl_s_axi_araddr
+: <a class="el" href="enumconfigure.html#a05c590d7c67733f95d624925a8c7a538">configure</a>
+, <a class="el" href="enumudt__interface.html#ada3343241e72ac0e2f2fdd5fff248152">udt_interface</a>
+</li>
+<li>ctrl_s_axi_aresetn
+: <a class="el" href="enumudt__interface.html#ac529c5a3ace563e85ae53c037d8531da">udt_interface</a>
+, <a class="el" href="enumconfigure.html#a9278101f77b094475bfb5d1489a27b13">configure</a>
+</li>
+<li>ctrl_s_axi_arready
+: <a class="el" href="enumconfigure.html#addeb293c61e1b567837587af45310777">configure</a>
+, <a class="el" href="enumudt__interface.html#aa08784fa943ab3c7611270269a3b731b">udt_interface</a>
+</li>
+<li>ctrl_s_axi_arvalid
+: <a class="el" href="enumconfigure.html#a561a57f8442be4c1540c6bddc36b7aed">configure</a>
+, <a class="el" href="enumudt__interface.html#a67a23a5df3bfbb84498119aadd44e38b">udt_interface</a>
+</li>
+<li>ctrl_s_axi_awaddr
+: <a class="el" href="enumconfigure.html#a928ed709a37b672daef384dd4b4f9cd4">configure</a>
+, <a class="el" href="enumudt__interface.html#a66437600552a294f90bffdb0ee43f934">udt_interface</a>
+</li>
+<li>ctrl_s_axi_awready
+: <a class="el" href="enumconfigure.html#aa807c852498a43e846699a0421c39d44">configure</a>
+, <a class="el" href="enumudt__interface.html#ae63f8a68a7ac196ae7ef6d1e432781b4">udt_interface</a>
+</li>
+<li>ctrl_s_axi_awvalid
+: <a class="el" href="enumudt__interface.html#a24d755815034a64ead83741e4276df53">udt_interface</a>
+, <a class="el" href="enumconfigure.html#ae6a8be93e6e9dd8eaf4f4f2b34b8bbe8">configure</a>
+</li>
+<li>ctrl_s_axi_bready
+: <a class="el" href="enumconfigure.html#a1eba1e36155b686ff7a736761ccf512b">configure</a>
+, <a class="el" href="enumudt__interface.html#a39f193f820bbc4863a59ca51fbe4a002">udt_interface</a>
+</li>
+<li>ctrl_s_axi_bresp
+: <a class="el" href="enumconfigure.html#a5c76c1a94eb45473749f01c057ecfe10">configure</a>
+, <a class="el" href="enumudt__interface.html#a1c7cef7e0ccee979fe3ce8af74442fa3">udt_interface</a>
+</li>
+<li>ctrl_s_axi_bvalid
+: <a class="el" href="enumconfigure.html#a0492f46046f2cb15618461bf2634fd20">configure</a>
+, <a class="el" href="enumudt__interface.html#a3716160359153184bb81c736a825031f">udt_interface</a>
+</li>
+<li>ctrl_s_axi_rdata
+: <a class="el" href="enumconfigure.html#ab6f44afb1f71ddb13466e45335486ec1">configure</a>
+, <a class="el" href="enumudt__interface.html#aa92fd4c21570fa47932534c44c7bb17e">udt_interface</a>
+</li>
+<li>ctrl_s_axi_rready
+: <a class="el" href="enumudt__interface.html#aeae9202fd73ce9bb1ac06e6340c60465">udt_interface</a>
+, <a class="el" href="enumconfigure.html#a751078d4b548b116bbad9a2bc0ecb5a2">configure</a>
+</li>
+<li>ctrl_s_axi_rresp
+: <a class="el" href="enumudt__interface.html#af5dacf5719aec803e3a87de123c8d04c">udt_interface</a>
+, <a class="el" href="enumconfigure.html#a28435e895f71b6ec0455f4074325b85c">configure</a>
+</li>
+<li>ctrl_s_axi_rvalid
+: <a class="el" href="enumconfigure.html#a4b1a35dbff4b91b419a57dbe4bafbca2">configure</a>
+, <a class="el" href="enumudt__interface.html#a3a24417e6a53d13ff6d897eee7766b17">udt_interface</a>
+</li>
+<li>ctrl_s_axi_wdata
+: <a class="el" href="enumconfigure.html#ac380d4678273971fef94af9a5409c588">configure</a>
+, <a class="el" href="enumudt__interface.html#a4b791adb74130f770e5bf9952a7a4fae">udt_interface</a>
+</li>
+<li>ctrl_s_axi_wready
+: <a class="el" href="enumconfigure.html#a4e099221340bfe3f8f1025cb87b8e5bb">configure</a>
+, <a class="el" href="enumudt__interface.html#a20c1568047ccdbbacddc7fb158ef1c78">udt_interface</a>
+</li>
+<li>ctrl_s_axi_wstrb
+: <a class="el" href="enumconfigure.html#ad0b4a75ba2f1ab3e118765756d5e0f6a">configure</a>
+, <a class="el" href="enumudt__interface.html#ab0ac74baba069cead9d6abb4044e9c6b">udt_interface</a>
+</li>
+<li>ctrl_s_axi_wvalid
+: <a class="el" href="enumconfigure.html#a6c0ada27813c3f68be3c65b3fde1d8ba">configure</a>
+, <a class="el" href="enumudt__interface.html#ad3350414699489b509b28cbfb19eeb98">udt_interface</a>
+</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 7日 星期二 16:30:54 , 为 UDT project使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1
+</small></address>
+</body>
+</html>

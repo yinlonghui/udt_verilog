@@ -62,6 +62,14 @@ module	udt_core
 	output	[31:0]	udt_state ,							//%	连接状态
 	output	state_valid,								//%	连接状态有效
 	input	state_ready,								//%	连接状态就绪
+	input	Req_Connect ,								//%	连接请求
+	output	Res_Connect ,								//% 连接回应
+	input	Req_Close	,								//%	关闭请求
+	output	Res_Close	,								//%	关闭回应
+	input	[31:0]	Snd_Buffer_Size ,					//%	发送buffer大小
+	input	[31:0]	Rev_Buffer_Size	,					//%	接收buffer大小
+	input	[31:0]	FlightFlagSize ,					//%	最大流量窗口大小
+	input	[31:0]	MSSize	,							//%	最大包大小
 	
 	output  [C_S_AXI_ID_WIDTH-1:0]s_axi_awid,			//%	DDR3-写地址ID
 	output  [C_S_AXI_ADDR_WIDTH-1:0]s_axi_awaddr,		//%	DDR3-写地址
@@ -105,6 +113,98 @@ module	udt_core
 
 
 );
+wire	[63:0]	trans_tx_tdata  ;
+wire	[7:0]	trans_tx_tkeep  ;
+wire	trans_tx_tvalid ;
+wire	trans_tx_tready ;
+wire	trans_tx_tlast  ;
+
+trans_keep	udp_tx(
+	.core_clk(core_clk),			
+	.in_tdata(trans_tx_tdata),	
+	.in_tkeep(trans_tx_tkeep),	
+	.in_tvalid(trans_tx_tvalid), 		
+	.in_tready(trans_tx_tready),	
+	.in_tlast(trans_tx_tlast),		
+	
+	.out_tdata(udp_tx_tdata),	
+	.out_tlast(udp_tx_tlast),		
+	.out_tvalid(udp_tx_tvalid),		
+	.out_keep(udp_tx_tkeep),	
+	.out_tready(udp_tx_tready)
+);
+
+wire	[63:0]	trans_rx_tdata  ;
+wire	[7:0]	trans_rx_tkeep  ;
+wire	trans_rx_tvalid ;
+wire	trans_rx_tready ;
+wire	trans_rx_tlast  ;
+
+trans_keep	udp_rx(
+	.core_clk(core_clk),			
+	.in_tdata(udp_rx_tdata),	
+	.in_tkeep(udp_rx_tkeep),	
+	.in_tvalid(udp_rx_tvalid), 		
+	.in_tready(udp_rx_tready),	
+	.in_tlast(udp_rx_tlast),		
+	
+	.out_tdata(trans_rx_tdata),	
+	.out_tlast(trans_rx_tlast),		
+	.out_tvalid(trans_rx_tvalid),		
+	.out_keep(trans_rx_tkeep),	
+	.out_tready(trans_rx_tready)
+);
+
+wire	Data_en ;
+wire	ACK_en	;
+wire	ACK2_en ;
+wire	Keep_live_en ;
+wire	NAK_en ;
+wire	Handshake_en ;
+
+wire	[63:0] data_packet_tdata ;
+wire	data_packet_tlast ;
+wire	[7:0] data_packet_tkeep ;
+wire	data_packet_tvalid ;
+wire	data_packet_tready ;
+
+decode	decode_inst(
+	.core_clk(core_clk) ,								
+	.core_rst_n(core_rst_n),					
+	.in_tdata(trans_rx_tdata),	
+	.in_tkeep(trans_rx_tkeep),
+	.in_tvalid(trans_rx_tvalid), 
+	.in_tready(trans_rx_tready),	
+	.in_tlast(trans_rx_tlast),
+	
+	.out_tdata(data_packet_tdata),
+	.out_tlast(data_packet_tlast),
+	.out_tvalid(data_packet_tvalid),
+	.out_tkeep(data_packet_tkeep),	
+	.out_tready(data_packet_tready),		
+
+	.Data_en(Data_en),						
+	.ACK_en(ACK_en),								
+	.ACK2_en(ACK2_en),						
+	.Keep_live_en(Keep_live_en),							
+	.NAK_en(NAK_en),								
+	.Handshake_en(Handshake_en)							
+
+
+);
+socket_manager	socket_manger_inst(
+
+	.handshake_tdata(data_packet_tdata),
+	.handshake_tkeep(data_packet_tkeep),
+	.handshake_tvalid(data_packet_tvalid && Handshake_en),
+	.handshake_tready(data_packet_tready),
+	.handshake_tlast(data_packet_tlast)	,
+);
+
+//	AXI-interconnect
+
+
+
 
 
 endmodule

@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>UDT project: src/trans_keep.v 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">UDT project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="annotated.html"><span>Design&#160;Unit&#160;List</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">trans_keep.v</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="trans__keep_8v.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="code" href="enumtrans__keep.html">    9</a></span>&#160;<span class="vhdlkeyword">module</span>  <a class="code" href="enumtrans__keep.html">trans_keep</a></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;(</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="code" href="enumtrans__keep.html#a2e39bcb41e03fe9c1024e6f492ce4d78">   11</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumtrans__keep.html#a2e39bcb41e03fe9c1024e6f492ce4d78">core_clk</a> ,                      </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="code" href="enumtrans__keep.html#a4148e53e485e1543506d0388e8812f76">   13</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">63</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumtrans__keep.html#a4148e53e485e1543506d0388e8812f76">in_tdata</a> ,      </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="code" href="enumtrans__keep.html#ad84279aa028c43a28bc09feaa30028e5">   14</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">7</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enumtrans__keep.html#ad84279aa028c43a28bc09feaa30028e5">in_tkeep</a> ,      </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="enumtrans__keep.html#a2230f382c2407ecc4aa2d4cd35b6e81a">   15</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumtrans__keep.html#a2230f382c2407ecc4aa2d4cd35b6e81a">in_tvalid</a> ,             </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="enumtrans__keep.html#a8c43ce104123a78bddee384fcee1ea43">   16</a></span>&#160;        <span class="vhdlkeyword">output</span>  <span class="vhdlkeyword">reg</span>     <a class="code" href="enumtrans__keep.html#a8c43ce104123a78bddee384fcee1ea43">in_tready</a>       ,       </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="enumtrans__keep.html#ad3a072ddb8333a24f9c231611cfe7acc">   17</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumtrans__keep.html#ad3a072ddb8333a24f9c231611cfe7acc">in_tlast</a>        ,               </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="enumtrans__keep.html#ada9ecd0aacdb79af7e1f57982d9683e1">   19</a></span>&#160;        <span class="vhdlkeyword">output</span>  <span class="vhdlkeyword">reg</span>     [<span class="vhdllogic">63</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumtrans__keep.html#ada9ecd0aacdb79af7e1f57982d9683e1">out_tdata</a> ,     </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="code" href="enumtrans__keep.html#ad6af315b7a7d6fe266fc70ded83da2fa">   20</a></span>&#160;        <span class="vhdlkeyword">output</span>  <span class="vhdlkeyword">reg</span>     <a class="code" href="enumtrans__keep.html#ad6af315b7a7d6fe266fc70ded83da2fa">out_tlast</a> ,                     </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="code" href="enumtrans__keep.html#a5705c1f7971d5cd437dcd42da5abbd71">   21</a></span>&#160;        <span class="vhdlkeyword">output</span>  <span class="vhdlkeyword">reg</span>     <a class="code" href="enumtrans__keep.html#a5705c1f7971d5cd437dcd42da5abbd71">out_tvalid</a>      ,               </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="code" href="enumtrans__keep.html#adbad66f45088c492579f2aea6619fbbf">   22</a></span>&#160;        <span class="vhdlkeyword">output</span>  <span class="vhdlkeyword">reg</span>     [<span class="vhdllogic">7</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enumtrans__keep.html#adbad66f45088c492579f2aea6619fbbf">out_keep</a> ,      </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="code" href="enumtrans__keep.html#af1094a747cf7af46326fa37c6749566c">   23</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumtrans__keep.html#af1094a747cf7af46326fa37c6749566c">out_tready</a>                              </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="enumtrans__keep.html#a0fbca32263c93d81502243d7345fba40">   26</a></span>&#160;<span class="vhdlkeyword">always</span>@(*)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="vhdlkeyword">begin</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="enumtrans__keep.html#adbad66f45088c492579f2aea6619fbbf">out_keep</a>[<span class="vhdllogic">7</span>]  =  <a class="code" href="enumtrans__keep.html#ad84279aa028c43a28bc09feaa30028e5">in_tkeep</a>[<span class="vhdllogic">0</span>] ;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="enumtrans__keep.html#adbad66f45088c492579f2aea6619fbbf">out_keep</a>[<span class="vhdllogic">6</span>]  =  <a class="code" href="enumtrans__keep.html#ad84279aa028c43a28bc09feaa30028e5">in_tkeep</a>[<span class="vhdllogic">1</span>] ;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="enumtrans__keep.html#adbad66f45088c492579f2aea6619fbbf">out_keep</a>[<span class="vhdllogic">5</span>]  =  <a class="code" href="enumtrans__keep.html#ad84279aa028c43a28bc09feaa30028e5">in_tkeep</a>[<span class="vhdllogic">2</span>] ;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="enumtrans__keep.html#adbad66f45088c492579f2aea6619fbbf">out_keep</a>[<span class="vhdllogic">4</span>]  =  <a class="code" href="enumtrans__keep.html#ad84279aa028c43a28bc09feaa30028e5">in_tkeep</a>[<span class="vhdllogic">3</span>] ;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="enumtrans__keep.html#adbad66f45088c492579f2aea6619fbbf">out_keep</a>[<span class="vhdllogic">3</span>]  =  <a class="code" href="enumtrans__keep.html#ad84279aa028c43a28bc09feaa30028e5">in_tkeep</a>[<span class="vhdllogic">4</span>] ;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="enumtrans__keep.html#adbad66f45088c492579f2aea6619fbbf">out_keep</a>[<span class="vhdllogic">2</span>]  =  <a class="code" href="enumtrans__keep.html#ad84279aa028c43a28bc09feaa30028e5">in_tkeep</a>[<span class="vhdllogic">5</span>] ;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="enumtrans__keep.html#adbad66f45088c492579f2aea6619fbbf">out_keep</a>[<span class="vhdllogic">1</span>]  =  <a class="code" href="enumtrans__keep.html#ad84279aa028c43a28bc09feaa30028e5">in_tkeep</a>[<span class="vhdllogic">6</span>] ;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="enumtrans__keep.html#adbad66f45088c492579f2aea6619fbbf">out_keep</a>[<span class="vhdllogic">0</span>]  =  <a class="code" href="enumtrans__keep.html#ad84279aa028c43a28bc09feaa30028e5">in_tkeep</a>[<span class="vhdllogic">7</span>] ;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="enumtrans__keep.html#ada9ecd0aacdb79af7e1f57982d9683e1">out_tdata</a>[<span class="vhdllogic">7</span>:<span class="vhdllogic">0</span>]  = <a class="code" href="enumtrans__keep.html#a4148e53e485e1543506d0388e8812f76">in_tdata</a>[<span class="vhdllogic">63</span>:<span class="vhdllogic">56</span>];</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="enumtrans__keep.html#ada9ecd0aacdb79af7e1f57982d9683e1">out_tdata</a>[<span class="vhdllogic">15</span>:<span class="vhdllogic">8</span>]  = <a class="code" href="enumtrans__keep.html#a4148e53e485e1543506d0388e8812f76">in_tdata</a>[<span class="vhdllogic">55</span>:<span class="vhdllogic">48</span>];</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="enumtrans__keep.html#ada9ecd0aacdb79af7e1f57982d9683e1">out_tdata</a>[<span class="vhdllogic">23</span>:<span class="vhdllogic">16</span>]  = <a class="code" href="enumtrans__keep.html#a4148e53e485e1543506d0388e8812f76">in_tdata</a>[<span class="vhdllogic">47</span>:<span class="vhdllogic">40</span>];</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="enumtrans__keep.html#ada9ecd0aacdb79af7e1f57982d9683e1">out_tdata</a>[<span class="vhdllogic">31</span>:<span class="vhdllogic">24</span>]  = <a class="code" href="enumtrans__keep.html#a4148e53e485e1543506d0388e8812f76">in_tdata</a>[<span class="vhdllogic">39</span>:<span class="vhdllogic">32</span>];</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="enumtrans__keep.html#ada9ecd0aacdb79af7e1f57982d9683e1">out_tdata</a>[<span class="vhdllogic">39</span>:<span class="vhdllogic">32</span>]  = <a class="code" href="enumtrans__keep.html#a4148e53e485e1543506d0388e8812f76">in_tdata</a>[<span class="vhdllogic">31</span>:<span class="vhdllogic">24</span>];</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="enumtrans__keep.html#ada9ecd0aacdb79af7e1f57982d9683e1">out_tdata</a>[<span class="vhdllogic">47</span>:<span class="vhdllogic">40</span>]  = <a class="code" href="enumtrans__keep.html#a4148e53e485e1543506d0388e8812f76">in_tdata</a>[<span class="vhdllogic">23</span>:<span class="vhdllogic">16</span>];</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="enumtrans__keep.html#ada9ecd0aacdb79af7e1f57982d9683e1">out_tdata</a>[<span class="vhdllogic">55</span>:<span class="vhdllogic">48</span>]  = <a class="code" href="enumtrans__keep.html#a4148e53e485e1543506d0388e8812f76">in_tdata</a>[<span class="vhdllogic">15</span>:<span class="vhdllogic">8</span>];</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="enumtrans__keep.html#ada9ecd0aacdb79af7e1f57982d9683e1">out_tdata</a>[<span class="vhdllogic">63</span>:<span class="vhdllogic">56</span>]  = <a class="code" href="enumtrans__keep.html#a4148e53e485e1543506d0388e8812f76">in_tdata</a>[<span class="vhdllogic">7</span>:<span class="vhdllogic">0</span>];</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="enumtrans__keep.html#a8c43ce104123a78bddee384fcee1ea43">in_tready</a> = <a class="code" href="enumtrans__keep.html#af1094a747cf7af46326fa37c6749566c">out_tready</a> ;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="enumtrans__keep.html#ad6af315b7a7d6fe266fc70ded83da2fa">out_tlast</a> = <a class="code" href="enumtrans__keep.html#ad3a072ddb8333a24f9c231611cfe7acc">in_tlast</a> ;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="enumtrans__keep.html#a5705c1f7971d5cd437dcd42da5abbd71">out_tvalid</a> = <a class="code" href="enumtrans__keep.html#a2230f382c2407ecc4aa2d4cd35b6e81a">in_tvalid</a> ;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="vhdlkeyword">end</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="vhdlkeyword">endmodule</span></div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 7日 星期二 16:30:54 , 为 UDT project使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1
+</small></address>
+</body>
+</html>

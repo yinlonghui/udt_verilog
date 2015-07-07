@@ -1,10 +1,24 @@
 var searchData=
 [
-  ['66tx_5fm_5faxis_5faclk',['66tx_m_axis_aclk',['../enumudt__interface.html#a271d45c29360907106203215fc44d3b4',1,'udt_interface']]],
-  ['67tx_5fm_5faxis_5faresetn',['67tx_m_axis_aresetn',['../enumudt__interface.html#a6e2e272932f5209033ea9eff57516bb9',1,'udt_interface']]],
-  ['68tx_5fm_5faxis_5ftvalid',['68tx_m_axis_tvalid',['../enumudt__interface.html#ae29cd4ed4e47f7bf3a5b60f6eda55844',1,'udt_interface']]],
-  ['69tx_5fm_5faxis_5ftready',['69tx_m_axis_tready',['../enumudt__interface.html#ad4f1c5240554c66f51400cc69cc0a81c',1,'udt_interface']]],
-  ['70tx_5fm_5faxis_5ftdata',['70tx_m_axis_tdata',['../enumudt__interface.html#a3501a825722fb5b155bb1c223259175b',1,'udt_interface']]],
-  ['71tx_5fm_5faxis_5ftkeep',['71tx_m_axis_tkeep',['../enumudt__interface.html#a04a2a9f7270d2c0b2d5e316348bc7ae7',1,'udt_interface']]],
-  ['72tx_5fm_5faxis_5ftlast',['72tx_m_axis_tlast',['../enumudt__interface.html#aa75adb1b89ba852e6ba7a2ccb1039f7d',1,'udt_interface']]]
+  ['127targettime',['127TargetTime',['../enumsocket__manager.html#affd382afe59b799fa310fda64e09bce5',1,'socket_manager']]],
+  ['128timediff',['128TimeDiff',['../enumsocket__manager.html#a8be0cdf4cde4b7ef479802e127d12bee',1,'socket_manager']]],
+  ['172tx_5faxis_5ftvalid',['172tx_axis_tvalid',['../enumudt__core.html#a7ded7e8f0c6951723e005bf58c31058c',1,'udt_core::172tx_axis_tvalid()'],['../enumudt__interface.html#a9335165a9c41bd7c350768d1ea24dc97',1,'udt_interface::281tx_axis_tvalid()']]],
+  ['173tx_5faxis_5ftready',['173tx_axis_tready',['../enumudt__core.html#ae66dde37af1220c5f45878a5b183f763',1,'udt_core::173tx_axis_tready()'],['../enumudt__interface.html#aafb85e117bd854afd9ffe4035ce1cff5',1,'udt_interface::282tx_axis_tready()']]],
+  ['174tx_5faxis_5ftdata',['174tx_axis_tdata',['../enumudt__core.html#ac89852a1bf709be90bc0b65b24016f14',1,'udt_core::174tx_axis_tdata()'],['../enumudt__interface.html#a144b2fd4f139b7a841464c2b14f82575',1,'udt_interface::283tx_axis_tdata()']]],
+  ['175tx_5faxis_5ftkeep',['175tx_axis_tkeep',['../enumudt__core.html#a12f086687c8d68fd7a5079d8896822fe',1,'udt_core::175tx_axis_tkeep()'],['../enumudt__interface.html#a009a1a12e1485369ee45775118a11aec',1,'udt_interface::284tx_axis_tkeep()']]],
+  ['176tx_5faxis_5ftlast',['176tx_axis_tlast',['../enumudt__core.html#a219fba8b4b9127fa02f7ffa37da4d4de',1,'udt_core::176tx_axis_tlast()'],['../enumudt__interface.html#a6c0acb5752748a662785f5e05438e93a',1,'udt_interface::285tx_axis_tlast()']]],
+  ['231trans_5ftx_5ftdata',['231trans_tx_tdata',['../enumudt__core.html#acf15e82a11b7b8186972f6f2a4caab81',1,'udt_core']]],
+  ['232trans_5ftx_5ftkeep',['232trans_tx_tkeep',['../enumudt__core.html#a7bd9fbdd417c4c68298b2cdf47794914',1,'udt_core']]],
+  ['233trans_5ftx_5ftvalid',['233trans_tx_tvalid',['../enumudt__core.html#a709e714b104748a447597937b8aeb9fd',1,'udt_core']]],
+  ['234trans_5ftx_5ftready',['234trans_tx_tready',['../enumudt__core.html#a1bed9b6d0ac6edc1e9292efdca0f1c24',1,'udt_core']]],
+  ['235trans_5ftx_5ftlast',['235trans_tx_tlast',['../enumudt__core.html#a5fc4a03ce71b1854154207157fcf0f1c',1,'udt_core']]],
+  ['236trans_5frx_5ftdata',['236trans_rx_tdata',['../enumudt__core.html#a2f2e3a5ee976adb77dc0a8be1b55e927',1,'udt_core']]],
+  ['237trans_5frx_5ftkeep',['237trans_rx_tkeep',['../enumudt__core.html#ad212d0c43a6546aa2a2eb2400d7a3c9d',1,'udt_core']]],
+  ['238trans_5frx_5ftvalid',['238trans_rx_tvalid',['../enumudt__core.html#ad5020ca761b54328d32e15480245dac5',1,'udt_core']]],
+  ['239trans_5frx_5ftready',['239trans_rx_tready',['../enumudt__core.html#af7c33def2f7a9de4aaf034dc6a042e57',1,'udt_core']]],
+  ['240trans_5frx_5ftlast',['240trans_rx_tlast',['../enumudt__core.html#a96c22afaf8e28617f5ae37c2356b9de7',1,'udt_core']]],
+  ['279tx_5faxis_5faclk',['279tx_axis_aclk',['../enumudt__interface.html#a16611cf1d5284829c3065f8d7fd5fd7e',1,'udt_interface']]],
+  ['280tx_5faxis_5faresetn',['280tx_axis_aresetn',['../enumudt__interface.html#a042a82867d2689273a976c9cb4804ac9',1,'udt_interface']]],
+  ['92tpye',['92TPYE',['../enumsocket__manager.html#acf7a7f55b42069981158e3052c5bbc0a',1,'socket_manager']]],
+  ['trans_5fkeep',['trans_keep',['../enumudt__core.html#a540900d44b5ea554052766ac4174d2a8',1,'udt_core::trans_keep()'],['../enumudt__core.html#af86dc851495ee3a58ab0ed36b4ef939c',1,'udt_core::trans_keep()']]]
 ];

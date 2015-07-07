@@ -1,41 +1,46 @@
-//%	@file	decode.v
-//%	@brief	±¾ÎÄ¼ş¶¨ÒådecodeÄ£¿é
+ï»¿//%	@file	decode.v
+//%	@brief	æœ¬æ–‡ä»¶å®šä¹‰decodeæ¨¡å—
 //%	@details
 
-//%	±¾Ä£¿é½âÂë¶Ô¶ËµÄUDPÖ¡Ğ­Òé
+//%	æœ¬æ¨¡å—è§£ç å¯¹ç«¯çš„UDPå¸§åè®®
 //% @details
-//%		¿ØÖÆ°ü£º
-//%		Handshake:
-//%		Keep-live:
-//%		NAK:
-//%		ACK:
+//%		UDTåè®®åŒ…æ ¼å¼ï¼š
+//%			æ§åˆ¶åŒ…ï¼š
+//%			Handshake:
+//%			Keep-live:
+//%			NAK:
+//%			ACK:
 //%			Light-ACK
-//%		ACK2:
-//%		Êı¾İ°ü£º
-//%				
+//%			ACK2:
+//%			æ•°æ®åŒ…ï¼š
+//%		è§£æå‡ºå¯¹åº”å†…å®¹,å‘é€åˆ°ç›¸åº”çš„å¤„ç†æ¨¡å—
 
 
 module	decode(
-	input	core_clk ,								//%	Ê±ÖÓ
-	input	core_rst_n ,							//%	¸´Î»
-	input	[C_S_AXI_DATA_WIDTH-1:0]	in_tdata,	//%	UDPÊı¾İ°ü
-	input	[C_S_AXI_DATA_WIDTH/8-1:0]	in_tkeep,	//%	UDP×Ö½ÚÊ¹ÄÜ
-	input	in_tvalid , 							//%	UDP°üÓĞĞ§
-	output	reg	in_tready	,						//%	UDP°ü¾ÍĞ÷
-	input	in_tlast	,							//%	UDP°ü½áÊø
+	input	core_clk ,								//%	æ—¶é’Ÿ
+	input	core_rst_n ,							//%	å¤ä½
+	input	[C_S_AXI_DATA_WIDTH-1:0]	in_tdata,	//%	UDPæ•°æ®åŒ…
+	input	[C_S_AXI_DATA_WIDTH/8-1:0]	in_tkeep,	//%	UDPå­—èŠ‚ä½¿èƒ½
+	input	in_tvalid , 							//%	UDPåŒ…æœ‰æ•ˆ
+	output	reg	in_tready	,						//%	UDPåŒ…å°±ç»ª
+	input	in_tlast	,							//%	UDPåŒ…ç»“æŸ
 	
-	output	reg	[C_S_AXI_DATA_WIDTH-1:0]	out_tdata ,	//%	Êä³ö°ü
-	output	reg	out_tlast ,								//%	Êä³ö°ü½áÊø
-	output	reg	out_tvalid	,							//%	Êä³ö°üÓĞĞ§
-	output	reg	[C_S_AXI_DATA_WIDTH/8-1:0]	out_keep ,	//%	Êä³ö°üÊ¹ÄÜ
-	input	out_tready,									//%	Êä³ö°ü¾ÍĞ÷
+	output	reg	[C_S_AXI_DATA_WIDTH-1:0]	out_tdata ,	//%	è¾“å‡ºåŒ…
+	output	reg	out_tlast ,								//%	è¾“å‡ºåŒ…ç»“æŸ
+	output	reg	out_tvalid	,							//%	è¾“å‡ºåŒ…æœ‰æ•ˆ
+	output	reg	[C_S_AXI_DATA_WIDTH/8-1:0]	out_tkeep ,	//%	è¾“å‡ºåŒ…ä½¿èƒ½
+	input	out_tready,									//%	è¾“å‡ºåŒ…å°±ç»ª
 
-	output	reg	Data_en	,								//%	Êı¾İÓĞĞ§
-	output	reg	ACK_en	,								//%	ACK°üÓĞĞ§
-	output	reg	ACK2_en	,								//%	ACK2°üÓĞĞ§
-	output	reg	Keep_live_en ,							//%	Keep-live°üÓĞĞ§
-	output	reg	NAK_en	,								//%	NAK°üÓĞĞ§
-	output	reg	Handshake_en 							//%	ÎÕÊÖ°üÓĞĞ§
+	output	reg	Data_en	,								//%	æ•°æ®æœ‰æ•ˆ
+	output	reg	ACK_en	,								//%	ACKåŒ…æœ‰æ•ˆ
+	output	reg	ACK2_en	,								//%	ACK2åŒ…æœ‰æ•ˆ
+	output	reg	Keep_live_en ,							//%	Keep-liveåŒ…æœ‰æ•ˆ
+	output	reg	NAK_en	,								//%	NAKåŒ…æœ‰æ•ˆ
+	output	reg	Handshake_en 							//%	æ¡æ‰‹åŒ…æœ‰æ•ˆ
 
 );
+
+
+
+endmodule
 

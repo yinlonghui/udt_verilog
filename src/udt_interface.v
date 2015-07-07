@@ -356,8 +356,11 @@ axis_data_fifo_192_asyn	fifo_udp_tx_mix_inst(
 	.axis_rd_data_count(fifo6_rd_data_count)
 );
 
+wire	[31:0]	udt_state ;
+wire	state_ready ;
+wire	state_valid	;
 
-core	#(
+udt_core	#(
 	.C_S_AXI_ID_WIDTH(C_S_AXI_ID_WIDTH),
 	.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
 	.C_S_AXI_ADDR_WIDTH(C_S_AXI_ADDR_WIDTH),
@@ -408,11 +411,19 @@ core	#(
 	.rx_axis_tkeep(core_udt_rx_axis_tkeep),							
 	.rx_axis_tlast(core_udt_rx_axis_tlast),							
 		
-	/*	
-	.udt_state ,							
-	.state_valid,								
-	.state_ready,								
-	*/
+		
+	.udt_state(udt_state) ,							
+	.state_valid(state_valid),								
+	.state_ready(state_ready),
+	.Req_Connect(Req_Connect),								
+	.Res_Connect(Res_Connect),						
+	.Req_Close(Req_Close),	
+	.Res_Close(Res_Close),					
+	.Snd_Buffer_Size(Snd_Buffer_Size),					
+	.Rev_Buffer_Size(Rev_Buffer_Size),					
+	.FlightFlagSize(FlightFlagSize),			
+	.MSSize(MSSize),	
+	
 	.s_axi_awid(s_axi_awid),			
 	.s_axi_awaddr(s_axi_awaddr),		
 	.s_axi_awlen(s_axi_awlen),							
@@ -455,6 +466,14 @@ core	#(
 
 
 );
+wire	Req_Close ;
+wire	Res_Close ;
+wire	Req_Connect ;
+wire	Res_Connect ;
+wire	[31:0] Snd_Buffer_Size ;
+wire	[31:0] Rev_Buffer_Size ;
+wire	[31:0] MSSize ;
+wire	[31:0] FlightFlagSize ;
 
 configure	con_inst(
 	.ctrl_s_axi_aclk(ctrl_s_axi_aclk),							
@@ -477,11 +496,20 @@ configure	con_inst(
 	.ctrl_s_axi_rvalid(ctrl_s_axi_rvalid),							
 	.ctrl_s_axi_rready(ctrl_s_axi_rready),		
 //	Global Parameter for core module
-
-
-
+	.core_clk(ui_clk)	,								
+	.core_rst_n(ui_aresetn)	,	
+//	udt socket state
+	.udt_state(udt_state) ,							
+	.state_valid(state_valid),								
+	.state_ready(state_ready),	
 //	
-
+	.Req_Connect(Req_Connect),								
+	.Res_Connect(Res_Connect),						
+	.Req_Close(Req_Close),	
+	.Res_Close(Res_Close),					
+	.Snd_Buffer_Size(Snd_Buffer_Size),					
+	.Rev_Buffer_Size(Rev_Buffer_Size),					
+	.FlightFlagSize(FlightFlagSize),			
+	.MSSize(MSSize)	
 );
-
 endmodule

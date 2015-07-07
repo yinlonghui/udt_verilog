@@ -13,7 +13,7 @@
 //%				2.2.1 若在正确的范围，则向写入相应的参数，然后将配置状态寄存器标识为成功配置
 //%				2.2.2 若不在正确的范围，则将配置状态寄存器表示错误状态（越界）
 //%	建立连接:
-//%		-检查连接寄存器的状态：
+//%		检查连接寄存器的状态：
 //%			1、若UDT连接状态寄存器为正在连接或者连接成功状态，则将UDT连接状态寄存器改为连接失败，发送给Socket Manager关闭连接的操作
 //%			2、若UDT连接状态寄存器为关闭状态或者未打开状态，将UDT连接状态寄存器改为正在连接状态，发送给Socket Manager打开连接的操作
 //%	关闭连接：
@@ -22,7 +22,14 @@
 //%	读状态寄存器：
 //%			AXI-LITE（读操作）直接读取BRAM
 //%	寄存器映射：
-module    configure (
+module    configure #(
+		parameter	DEFAULT_SND_BUFFER_SIZE	=	8192 ,
+		parameter	DEFAULT_REV_BUFFER_SIZE =   8192 ,
+		parameter	DEFAULT_FLIGHT_FLAG_SIZE =	256000,
+		parameter	DEFAULT_INIT_SEQ	=	0	,
+		parameter	MAX_DDR3_SIZE	 =	1024*1024*1024*8 ,
+		parameter	MAX_MSSize	= 8000	
+)(
 	input	ctrl_s_axi_aclk,							//% 用户-时钟信号
 	input   ctrl_s_axi_aresetn,							//% 用户-复位信号
 	input	[31:0]	ctrl_s_axi_awaddr,					//%	用户-写地址信号
@@ -42,15 +49,24 @@ module    configure (
 	output	[1:0]	ctrl_s_axi_rresp,					//%	用户-读数据应答
 	output	ctrl_s_axi_rvalid,							//%	用户-读数据有效
 	input	ctrl_s_axi_rready,							//%	用户-读数据就绪
-	
+
+
+	input	core_clk,									//%	核心模块时钟
+	input	core_rst_n,									//%	核心模块复位(低信号复位)	
 	input	[31:0]	udt_state ,							//%	连接状态
 	input	state_valid,								//%	连接状态有效
 	output	state_ready,								//%	连接状态就绪
-	
-	
-	
-);
+	output	Req_Connect ,								//%	连接请求
+	input	Res_Connect ,								//% 连接回应
+	output	Req_Close	,								//%	关闭请求
+	input	Res_Close	,								//%	关闭回应
+	output	[31:0]	Snd_Buffer_Size ,					//%	发送buffer大小
+	output	[31:0]	Rev_Buffer_Size	,					//%	接收buffer大小
+	output	[31:0]	FlightFlagSize ,					//%	最大流量窗口大小
+	output	[31:0]	MSSize								//%	最大包大小
 
+);
+/*			(Snd_Buffer_Size +   Snd_Buffer_Size)*MSSize +   2*m_iFlightFlagSize*sizeof(list) < DEFAULT_FLIGHT_FLAG_SIZE */
 
 
 
