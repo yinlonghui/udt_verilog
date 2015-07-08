@@ -193,7 +193,8 @@ decode	decode_inst(
 
 );
 socket_manager	socket_manger_inst(
-
+	.core_clk(core_clk),
+	.core_rst_n(core_rst_n),
 	.handshake_tdata(data_packet_tdata),
 	.handshake_tkeep(data_packet_tkeep),
 	.handshake_tvalid(data_packet_tvalid && Handshake_en),
@@ -202,9 +203,46 @@ socket_manager	socket_manger_inst(
 );
 
 //	AXI-interconnect
+ProcessNAK	ProcessNAK_inst(
+	.core_clk(core_clk),							
+	.core_rst_n(core_rst_n),
+	.NAK_tdata(data_packet_tdata),
+	.NAK_tkeep(data_packet_tkeep),
+	.NAK_tvalid(data_packet_tvalid && NAK_en),
+	.NAK_tready(data_packet_tready),	
+	.NAK_tlast(data_packet_tlast)
+);
+ProcessData	ProcessData_inst(
+	.core_clk(core_clk),							
+	.core_rst_n(core_rst_n),
+	.DATA_tdata(data_packet_tdata),
+	.DATA_tkeep(data_packet_tkeep),
+	.DATA_tvalid(data_packet_tvalid && Data_en),
+	.DATA_tready(data_packet_tready),	
+	.DATA_tlast(data_packet_tlast)
+);
 
+ProcessACK	ProcessACK_inst(
+	.core_clk(core_clk),							
+	.core_rst_n(core_rst_n),
+	.ACK_tdata(data_packet_tdata),
+	.ACK_tkeep(data_packet_tkeep),
+	.ACK_tvalid(data_packet_tvalid && Data_en),
+	.ACK_tready(data_packet_tready),	
+	.ACK_tlast(data_packet_tlast)
 
+);
 
+ProcessACK2	ProcessACK2_inst(
+	.core_clk(core_clk),							
+	.core_rst_n(core_rst_n),
+	.ACK2_tdata(data_packet_tdata),
+	.ACK2_tkeep(data_packet_tkeep),
+	.ACK2_tvalid(data_packet_tvalid && Data_en),
+	.ACK2_tready(data_packet_tready),	
+	.ACK2_tlast(data_packet_tlast)
+
+);
 
 
 endmodule

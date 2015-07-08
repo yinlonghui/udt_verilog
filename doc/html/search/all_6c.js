@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['117lastacktime',['117LastAckTime',['../enumsocket__manager.html#a1ec48d3f38a51ab86be49f23407418d3',1,'socket_manager']]],
-  ['126lightackcount',['126LightACKCount',['../enumsocket__manager.html#aa1534712e52e06a01ebe2692ae31cbae',1,'socket_manager']]]
+  ['135lastacktime',['135LastAckTime',['../enumserver__manager.html#a1adf715d6ddf9866f47e84966649d598',1,'server_manager::135LastAckTime()'],['../enumsocket__manager.html#aa6a241f7276bee35cab498c064ceb2cb',1,'socket_manager::191LastAckTime()'],['../enumclient__manager.html#a12109c5518da0b9f8a78c201ffc44873',1,'client_manager::24LastAckTime()']]],
+  ['144lightackcount',['144LightACKCount',['../enumserver__manager.html#a5b50646edc879c5f0fa1e17c344dff0e',1,'server_manager::144LightACKCount()'],['../enumsocket__manager.html#a5d80301e9202c82a785c4a99c31d5f19',1,'socket_manager::200LightACKCount()'],['../enumclient__manager.html#afad5b19463ee3baf51b8c33aff113b2d',1,'client_manager::33LightACKCount()']]],
+  ['151lastdecseq',['151LastDecSeq',['../enumserver__manager.html#aafdc73cc5632574b7a4549c9c76e9353',1,'server_manager::151LastDecSeq()'],['../enumsocket__manager.html#a4c90ac1567b70150584c3faa9eef3783',1,'socket_manager::207LastDecSeq()'],['../enumclient__manager.html#a5ef6e4c3ef641e29845e973e028e26bb',1,'client_manager::40LastDecSeq()']]],
+  ['158lastrsptime',['158LastRspTime',['../enumserver__manager.html#afcf74fa21ba09b7b6d2334f5bf3f2562',1,'server_manager::158LastRspTime()'],['../enumsocket__manager.html#a590d22da18cdc573bc86d6d8d9fcb4d4',1,'socket_manager::214LastRspTime()'],['../enumclient__manager.html#a0e1f3649cbd9fc63cbee4de14b4afcc2',1,'client_manager::47LastRspTime()']]]
 ];

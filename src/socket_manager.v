@@ -61,6 +61,11 @@ module	socket_manager #(
 	output	[31:0]	SndLastAck2Time ,					//%	Last time of ACK2 sent back
 	output	[31:0]	FlowWindowSize ,					//%	SND list  size
 	
+	
+	output	[31:0]	LastRspTime,						//%	最后一次对端响应的时间戳。用于EXP Timers , 同时只要有udp数据到来就修改该变量
+	output	[31:0]	NextACKTime,						//%	用于ACK Timers
+	output	[31:0]	NextNACKtime,						//%	用于NACK Timers
+	
 	output	[63:0]	req_tdata	,						//%	请求握手数据包
 	output	[7:0]	req_tkeep	,						//%	请求握手数据使能信号
 	output			req_tvalid	,						//%	请求握手数据有效信号
@@ -119,6 +124,9 @@ generate
 			.SndLastAck2(SndLastAck2) ,						
 			.SndLastAck2Time(SndLastAck2Time) ,					
 			.FlowWindowSize(FlowWindowSize) ,
+			.LastRspTime(LastRspTime),
+			.NextACKTime(NextACKTime),
+			.NextNACKtime(NextNACKtime),
 			.req_tdata(req_tdata),
 			.req_tkeep(req_tkeep),
 			.req_tvalid(req_tvalid),
@@ -173,6 +181,9 @@ generate
 			.SndLastAck2(SndLastAck2) ,						
 			.SndLastAck2Time(SndLastAck2Time) ,					
 			.FlowWindowSize(FlowWindowSize) ,
+			.LastRspTime(LastRspTime),
+			.NextACKTime(NextACKTime),
+			.NextNACKtime(NextNACKtime),
 			.req_tdata(req_tdata),
 			.req_tkeep(req_tkeep),
 			.req_tvalid(req_tvalid),
