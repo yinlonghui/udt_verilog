@@ -1,11 +1,11 @@
-﻿//%	@file	socket_manager.v
+﻿//%	@file	SocketManager.v
 //%	@brief	本文定义Socket_Manager模块
 
 //%	本模块根据参数例化Socket Manager模块
 //%	@details	如果类型为SERVER，则为服务器模式，若为CLINET，则为客户机模式
 
 
-module	socket_manager #(
+module	SocketManager #(
 	parameter	TPYE	=	"SERVER"  // SOCK管理器类型
 )
 (
@@ -78,7 +78,7 @@ generate
 
 	if(TPYE	== "SERVER")	begin:SERVER_MANAGER
 	
-		server_manager	sock_inst(
+		ServerManager	sock_inst(
 			.handshake_tdata(handshake_tdata) ,
 			.handshake_tkeep(handshake_tkeep) ,
 			.handshake_tvalid(handshake_tvalid),
@@ -136,7 +136,7 @@ generate
 	
 	end	else	if(TPYE ==  "CLIENT")begin:CLIENT_MANAGER
 	
-		client_manager	sock_inst(
+		ClientManager	sock_inst(
 			.handshake_tdata(handshake_tdata) ,
 			.handshake_tkeep(handshake_tkeep) ,
 			.handshake_tvalid(handshake_tvalid),

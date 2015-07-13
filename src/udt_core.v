@@ -192,7 +192,7 @@ decode	decode_inst(
 
 
 );
-socket_manager	socket_manger_inst(
+SocketManager	socket_manger_inst(
 	.core_clk(core_clk),
 	.core_rst_n(core_rst_n),
 	.handshake_tdata(data_packet_tdata),
