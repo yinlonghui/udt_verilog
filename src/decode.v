@@ -36,7 +36,8 @@ module	decode(
 	output	reg	ACK2_en	,								//%	ACK2包有效
 	output	reg	Keep_live_en ,							//%	Keep-live包有效
 	output	reg	NAK_en	,								//%	NAK包有效
-	output	reg	Handshake_en 							//%	握手包有效
+	output	reg	Handshake_en , 							//%	握手包有效
+	output	reg	CLOSE_en								//%	关闭信号
 
 );
 

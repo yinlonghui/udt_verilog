@@ -161,6 +161,7 @@ wire	ACK2_en ;
 wire	Keep_live_en ;
 wire	NAK_en ;
 wire	Handshake_en ;
+wire	CLOSE_en	;
 
 wire	[63:0] data_packet_tdata ;
 wire	data_packet_tlast ;
@@ -188,18 +189,130 @@ decode	decode_inst(
 	.ACK2_en(ACK2_en),						
 	.Keep_live_en(Keep_live_en),							
 	.NAK_en(NAK_en),								
-	.Handshake_en(Handshake_en)							
-
+	.Handshake_en(Handshake_en),
+	.CLOSE_en(CLOSE_en)
 
 );
+wire	[31:0]udt_state ,							//%	连接状态
+wire	state_valid,								//%	连接状态有效
+wire	state_ready,								//%	连接状态就绪
+wire	Req_Connect ,								//%	连接请求
+wire	Res_Connect ,								//% 连接回应
+wire	Req_Close	,								//%	关闭请求
+wire	Res_Close	,								//%	关闭回应
+wire	[31:0]	Snd_Buffer_Size ,					//%	发送buffer大小
+wire	[31:0]	Rev_Buffer_Size	,					//%	接收buffer大小
+wire	[31:0]	FlightFlagSize ,					//%	最大流量窗口大小
+wire	[31:0]	MSSize,								//%	最大包大小
+wire	[31:0]	Max_PktSize ,						//%	最大包大小
+wire	[31:0]	Max_PayloadSize ,					//% 最大负载数据大小
+wire	[31:0]	Expiration_counter ,				//%	EXP-timer计数器
+wire	[31:0]	Bandwidth ,							//%	带宽的预估值，1秒1个包
+wire	[31:0]	DeliveryRate ,						//%	包到达的速率（接收端）
+wire	[31:0]	AckSeqNo ,							//%	最后ACK的序列号
+wire	[31:0]	LastAckTime ,						//%	最后LAST的ACK时间戳
+wire	[31:0]	SYNInterval ,						//%	同步（SYN）周期
+wire	[31:0]	RRT ,								//%	往返时延的均值
+wire	[31:0]	RTTVar ,							//%	往返时延的方差
+wire	[31:0]	MinNakInt,							//%	最小NAK周期
+wire	[31:0]	MinExpInt,							//%	最小EXP周期
+wire	[31:0]	ACKInt,								//%	ACK 发送周期
+wire	[31:0]	NAKInt,								//%	NAK 发送周期
+wire	[31:0]	PktCount,							//%	packet counter for ACK
+wire	[31:0]	LightACKCount ,						//%	light ACK 计数器
+wire	[31:0]	TargetTime ,						//%	下个Packet发送时间				
+wire	[31:0]	TimeDiff,							//%	aggregate difference in inter-packet time   
+	
+wire	[31:0]	PeerISN ,							//%	对端初始化的数据包序列号
+wire	[31:0]	RcvLastAck ,						//%	接收端 最后发送ACK（数据包序列号）
+wire	[31:0]	RcvLastAckAck ,						//%	接收端 最后发送ACK 被ACK的（数据）序列号
+wire	[31:0]	RcvCurrSeqNo ,						//%	最大的接收的序列号
+wire	[31:0]	LastDecSeq  ,						//%	Sequence number sent last decrease occurs 
+wire	[31:0]	SndLastAck  ,						//%	Last ACK received
+wire	[31:0]	SndLastDataAck ,					//%	The real last ACK that updates the sender buffer and loss list		
+wire	[31:0]	SndCurrSeqNo ,						//%	The largest sequence number that has been sent
+wire	[31:0]	SndLastAck2  ,						//%	Last ACK2 sent back 
+wire	[31:0]	SndLastAck2Time ,					//%	Last time of ACK2 sent back
+wire	[31:0]	FlowWindowSize ,						//%	SND list  size
+	
+wire	[31:0]	LastRspTime,						//%	最后一次对端响应的时间戳。用于EXP Timers , 同时只要有udp数据到来就修改该变量
+wire	[31:0]	NextACKTime,						//%	用于ACK Timers
+wire	[31:0]	NextNACKtime,						//%	用于NACK Timers
+	
+wire	[63:0]	req_tdata	,						//%	请求握手数据包
+wire	[7:0]	req_tkeep	,						//%	请求握手数据使能信号
+wire	req_tvalid	,						//%	请求握手数据有效信号
+wire	req_tready	,						//%	请求握手数据就绪信号
+wire	req_tlast							//%	请求握手数据结束信号	
+wire	handshake_tready ;
+wire	axis_lock		;
+wire	NAK_tready	;
+wire	DATA_tready ;
+wire	ACK_tready	;
+wire	ACK2_tready ;
+assign	data_packet_tready =  !axis_lock && (handshake_tready || NAK_tready || DATA_tready || ACK_tready ||  ACK2_tready)；
 SocketManager	socket_manger_inst(
+
 	.core_clk(core_clk),
 	.core_rst_n(core_rst_n),
 	.handshake_tdata(data_packet_tdata),
 	.handshake_tkeep(data_packet_tkeep),
 	.handshake_tvalid(data_packet_tvalid && Handshake_en),
-	.handshake_tready(data_packet_tready),
-	.handshake_tlast(data_packet_tlast)	,
+	.handshake_tready(handshake_tready),
+	.handshake_tlast(data_packet_tlast),
+	.[31:0] udt_state ,							//%	连接状态
+	.state_valid,								//%	连接状态有效
+	.state_ready,								//%	连接状态就绪
+	.Req_Connect ,								//%	连接请求
+	.Res_Connect ,								//% 连接回应
+	.Req_Close	,								//%	关闭请求
+	.Res_Close	,								//%	关闭回应
+	.[31:0]	Snd_Buffer_Size ,					//%	发送buffer大小
+	.[31:0]	Rev_Buffer_Size	,					//%	接收buffer大小
+	.[31:0]	FlightFlagSize ,					//%	最大流量窗口大小
+	.[31:0]	MSSize,								//%	最大包大小
+	.[31:0]	Max_PktSize ,						//%	最大包大小
+	.[31:0]	Max_PayloadSize ,					//% 最大负载数据大小
+	.[31:0]	Expiration_counter ,				//%	EXP-timer计数器
+	.[31:0]	Bandwidth ,							//%	带宽的预估值，1秒1个包
+	.[31:0]	DeliveryRate ,						//%	包到达的速率（接收端）
+	.[31:0]	AckSeqNo ,							//%	最后ACK的序列号
+	.[31:0]	LastAckTime ,						//%	最后LAST的ACK时间戳
+	.[31:0]	SYNInterval ,						//%	同步（SYN）周期
+	.[31:0]	RRT ,								//%	往返时延的均值
+	.[31:0]	RTTVar ,							//%	往返时延的方差
+	.[31:0]	MinNakInt,							//%	最小NAK周期
+	.[31:0]	MinExpInt,							//%	最小EXP周期
+	.[31:0]	ACKInt,								//%	ACK 发送周期
+	.[31:0]	NAKInt,								//%	NAK 发送周期
+	.[31:0]	PktCount,							//%	packet counter for ACK
+	.[31:0]	LightACKCount ,						//%	light ACK 计数器
+	.[31:0]	TargetTime ,						//%	下个Packet发送时间				
+	.[31:0]	TimeDiff,							//%	aggregate difference in inter-packet time   
+	
+	.[31:0]	PeerISN ,							//%	对端初始化的数据包序列号
+	.[31:0]	RcvLastAck ,						//%	接收端 最后发送ACK（数据包序列号）
+	.[31:0]	RcvLastAckAck ,						//%	接收端 最后发送ACK 被ACK的（数据）序列号
+	.[31:0]	RcvCurrSeqNo ,						//%	最大的接收的序列号
+	.[31:0]	LastDecSeq  ,						//%	Sequence number sent last decrease occurs 
+	.[31:0]	SndLastAck  ,						//%	Last ACK received
+	.[31:0]	SndLastDataAck ,					//%	The real last ACK that updates the sender buffer and loss list		
+	.[31:0]	SndCurrSeqNo ,						//%	The largest sequence number that has been sent
+	.[31:0]	SndLastAck2  ,						//%	Last ACK2 sent back 
+	.[31:0]	SndLastAck2Time ,					//%	Last time of ACK2 sent back
+	.[31:0]	FlowWindowSize ,						//%	SND list  size
+	
+	.[31:0]	LastRspTime,						//%	最后一次对端响应的时间戳。用于EXP Timers , 同时只要有udp数据到来就修改该变量
+	.[31:0]	NextACKTime,						//%	用于ACK Timers
+	.[31:0]	NextNACKtime,						//%	用于NACK Timers
+	
+	.[63:0]	req_tdata	,						//%	请求握手数据包
+	.[7:0]	req_tkeep	,						//%	请求握手数据使能信号
+	.req_tvalid	,						//%	请求握手数据有效信号
+	.req_tready	,						//%	请求握手数据就绪信号
+	.req_tlast							//%	请求握手数据结束信号	
+	
+	
 );
 
 //	AXI-interconnect
@@ -209,7 +322,7 @@ ProcessNAK	ProcessNAK_inst(
 	.NAK_tdata(data_packet_tdata),
 	.NAK_tkeep(data_packet_tkeep),
 	.NAK_tvalid(data_packet_tvalid && NAK_en),
-	.NAK_tready(data_packet_tready),	
+	.NAK_tready(NAK_tready),	
 	.NAK_tlast(data_packet_tlast)
 );
 ProcessData	ProcessData_inst(
@@ -218,7 +331,7 @@ ProcessData	ProcessData_inst(
 	.DATA_tdata(data_packet_tdata),
 	.DATA_tkeep(data_packet_tkeep),
 	.DATA_tvalid(data_packet_tvalid && Data_en),
-	.DATA_tready(data_packet_tready),	
+	.DATA_tready(DATA_tready),	
 	.DATA_tlast(data_packet_tlast)
 );
 
@@ -228,7 +341,7 @@ ProcessACK	ProcessACK_inst(
 	.ACK_tdata(data_packet_tdata),
 	.ACK_tkeep(data_packet_tkeep),
 	.ACK_tvalid(data_packet_tvalid && Data_en),
-	.ACK_tready(data_packet_tready),	
+	.ACK_tready(ACK_tready),	
 	.ACK_tlast(data_packet_tlast)
 
 );
@@ -239,7 +352,7 @@ ProcessACK2	ProcessACK2_inst(
 	.ACK2_tdata(data_packet_tdata),
 	.ACK2_tkeep(data_packet_tkeep),
 	.ACK2_tvalid(data_packet_tvalid && Data_en),
-	.ACK2_tready(data_packet_tready),	
+	.ACK2_tready(ACK2_tready),	
 	.ACK2_tlast(data_packet_tlast)
 
 );
