@@ -18,8 +18,8 @@ module ClientManager	(
 	output			handshake_tready,					//%	握手包就绪信号
 	input			handshake_tlast	,					//%	握手包结束信号
 	output	[31:0]	udt_state ,							//%	连接状态
-	output	state_valid,								//%	连接状态有效
-	input	state_ready,								//%	连接状态就绪
+	output	state_valid_o,								//%	连接状态有效
+	input	state_ready_i,								//%	连接状态就绪
 	input	Req_Connect ,								//%	连接请求
 	output	Res_Connect ,								//% 连接回应
 	input	Req_Close	,								//%	关闭请求
@@ -182,9 +182,9 @@ mutexValue  #(
 	.valid_i({connect_state_valid,p_c_state_valid,c_state_valid}),
 	.ready_o({connect_state_ready,p_c_state_ready,c_state_ready}),
 	
-	.ready_i(state_ready),
-	.valid_o(state_valid),
-	.value_o(udt_state)
+	.ready_i(state_ready_i),
+	.valid_o(state_valid_o),
+	.value_o(udt_state_o)
 	
 );
 
