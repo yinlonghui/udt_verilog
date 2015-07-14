@@ -139,7 +139,10 @@ wire	[31:0]	fifo1_wr_data_count;
 wire	[31:0]	fifo1_rd_data_count;
 
 wire	fifo_tx_axis_tready ;
-assign	fifo_tx_axis_tready  = tx_axis_tready; // &&   udt连接正常 && 没有发送关闭UDT操作
+
+wire	s2a_ready   ;
+
+assign	fifo_tx_axis_tready  = tx_axis_tready && s2a_ready ; 
 
 
 
@@ -360,6 +363,26 @@ wire	[31:0]	udt_state ;
 wire	state_ready ;
 wire	state_valid	;
 
+
+state2axis   state2axis_inst(
+	.tx_axis_aclk(tx_axis_aclk),
+	.tx_axis_aresetn(tx_axis_aresetn),
+	
+	.tx_axis_tvalid_i(tx_axis_tvalid), 
+	.tx_axis_tready_i(fifo_tx_axis_tready), 
+	.tx_axis_tdata_i(tx_axis_tdata), 
+	.tx_axis_tlast_i(tx_axis_tlast), 
+	
+	.ready_i(s2a_ready),
+	.core_clk(core_clk),
+	.core_rst_n(core_rst_n),
+	
+	.udt_state_i(udt_state),
+	.state_valid_i(state_valid)
+);
+
+
+
 udt_core	#(
 	.C_S_AXI_ID_WIDTH(C_S_AXI_ID_WIDTH),
 	.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
@@ -502,6 +525,7 @@ configure	con_inst(
 	.udt_state(udt_state) ,							
 	.state_valid(state_valid),								
 	.state_ready(state_ready),	
+	
 //	
 	.Req_Connect(Req_Connect),								
 	.Res_Connect(Res_Connect),						

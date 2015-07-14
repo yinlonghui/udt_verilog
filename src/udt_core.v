@@ -193,57 +193,50 @@ decode	decode_inst(
 	.CLOSE_en(CLOSE_en)
 
 );
-wire	[31:0]udt_state ,							//%	连接状态
-wire	state_valid,								//%	连接状态有效
-wire	state_ready,								//%	连接状态就绪
-wire	Req_Connect ,								//%	连接请求
-wire	Res_Connect ,								//% 连接回应
-wire	Req_Close	,								//%	关闭请求
-wire	Res_Close	,								//%	关闭回应
-wire	[31:0]	Snd_Buffer_Size ,					//%	发送buffer大小
-wire	[31:0]	Rev_Buffer_Size	,					//%	接收buffer大小
-wire	[31:0]	FlightFlagSize ,					//%	最大流量窗口大小
-wire	[31:0]	MSSize,								//%	最大包大小
-wire	[31:0]	Max_PktSize ,						//%	最大包大小
-wire	[31:0]	Max_PayloadSize ,					//% 最大负载数据大小
-wire	[31:0]	Expiration_counter ,				//%	EXP-timer计数器
-wire	[31:0]	Bandwidth ,							//%	带宽的预估值，1秒1个包
-wire	[31:0]	DeliveryRate ,						//%	包到达的速率（接收端）
-wire	[31:0]	AckSeqNo ,							//%	最后ACK的序列号
-wire	[31:0]	LastAckTime ,						//%	最后LAST的ACK时间戳
-wire	[31:0]	SYNInterval ,						//%	同步（SYN）周期
-wire	[31:0]	RRT ,								//%	往返时延的均值
-wire	[31:0]	RTTVar ,							//%	往返时延的方差
-wire	[31:0]	MinNakInt,							//%	最小NAK周期
-wire	[31:0]	MinExpInt,							//%	最小EXP周期
-wire	[31:0]	ACKInt,								//%	ACK 发送周期
-wire	[31:0]	NAKInt,								//%	NAK 发送周期
-wire	[31:0]	PktCount,							//%	packet counter for ACK
-wire	[31:0]	LightACKCount ,						//%	light ACK 计数器
-wire	[31:0]	TargetTime ,						//%	下个Packet发送时间				
-wire	[31:0]	TimeDiff,							//%	aggregate difference in inter-packet time   
+
+								
+
+wire	[31:0]	Max_PktSize ;
+wire	[31:0]	Max_PayloadSize ;
+wire	[31:0]	Expiration_counter ;
+wire	[31:0]	Bandwidth ;					
+wire	[31:0]	DeliveryRate ;
+wire	[31:0]	AckSeqNo ;						
+wire	[31:0]	LastAckTime ;
+wire	[31:0]	SYNInterval ;							
+wire	[31:0]	RRT ;							
+wire	[31:0]	RTTVar ;
+wire	[31:0]	MinNakInt ;						
+wire	[31:0]	MinExpInt ;					
+wire	[31:0]	ACKInt    ;						
+wire	[31:0]	NAKInt    ;						
+wire	[31:0]	PktCount  ;						
+wire	[31:0]	LightACKCount ;
+wire	[31:0]	TargetTime ;										
+wire	[31:0]	TimeDiff   ;						
 	
-wire	[31:0]	PeerISN ,							//%	对端初始化的数据包序列号
-wire	[31:0]	RcvLastAck ,						//%	接收端 最后发送ACK（数据包序列号）
-wire	[31:0]	RcvLastAckAck ,						//%	接收端 最后发送ACK 被ACK的（数据）序列号
-wire	[31:0]	RcvCurrSeqNo ,						//%	最大的接收的序列号
-wire	[31:0]	LastDecSeq  ,						//%	Sequence number sent last decrease occurs 
-wire	[31:0]	SndLastAck  ,						//%	Last ACK received
-wire	[31:0]	SndLastDataAck ,					//%	The real last ACK that updates the sender buffer and loss list		
-wire	[31:0]	SndCurrSeqNo ,						//%	The largest sequence number that has been sent
-wire	[31:0]	SndLastAck2  ,						//%	Last ACK2 sent back 
-wire	[31:0]	SndLastAck2Time ,					//%	Last time of ACK2 sent back
-wire	[31:0]	FlowWindowSize ,						//%	SND list  size
+wire	[31:0]	PeerISN ;						
+wire	[31:0]	RcvLastAck ;						
+wire	[31:0]	RcvLastAckAck ;						
+wire	[31:0]	RcvCurrSeqNo  ;					
+wire	[31:0]	LastDecSeq    ;					
+wire	[31:0]	SndLastAck    ;					
+wire	[31:0]	SndLastDataAck ;							
+wire	[31:0]	SndCurrSeqNo   ;					
+wire	[31:0]	SndLastAck2    ;				
+wire	[31:0]	SndLastAck2Time ;
+wire	[31:0]	FlowWindowSize  ;			
 	
-wire	[31:0]	LastRspTime,						//%	最后一次对端响应的时间戳。用于EXP Timers , 同时只要有udp数据到来就修改该变量
-wire	[31:0]	NextACKTime,						//%	用于ACK Timers
-wire	[31:0]	NextNACKtime,						//%	用于NACK Timers
+wire	[31:0]	LastRspTime  ;				
+wire	[31:0]	NextACKTime  ;					
+wire	[31:0]	NextNACKtime ;					
 	
-wire	[63:0]	req_tdata	,						//%	请求握手数据包
-wire	[7:0]	req_tkeep	,						//%	请求握手数据使能信号
-wire	req_tvalid	,						//%	请求握手数据有效信号
-wire	req_tready	,						//%	请求握手数据就绪信号
-wire	req_tlast							//%	请求握手数据结束信号	
+wire	[63:0]	req_tdata	 ;					
+wire	[7:0]	req_tkeep	 ;						
+wire	req_tvalid	;		
+wire	req_tready	;						
+wire	req_tlast	;
+						
 wire	handshake_tready ;
 wire	axis_lock		;
 wire	NAK_tready	;
@@ -251,6 +244,7 @@ wire	DATA_tready ;
 wire	ACK_tready	;
 wire	ACK2_tready ;
 assign	data_packet_tready =  !axis_lock && (handshake_tready || NAK_tready || DATA_tready || ACK_tready ||  ACK2_tready)；
+
 SocketManager	socket_manger_inst(
 
 	.core_clk(core_clk),
@@ -260,57 +254,57 @@ SocketManager	socket_manger_inst(
 	.handshake_tvalid(data_packet_tvalid && Handshake_en),
 	.handshake_tready(handshake_tready),
 	.handshake_tlast(data_packet_tlast),
-	.[31:0] udt_state ,							//%	连接状态
-	.state_valid,								//%	连接状态有效
-	.state_ready,								//%	连接状态就绪
-	.Req_Connect ,								//%	连接请求
-	.Res_Connect ,								//% 连接回应
-	.Req_Close	,								//%	关闭请求
-	.Res_Close	,								//%	关闭回应
-	.[31:0]	Snd_Buffer_Size ,					//%	发送buffer大小
-	.[31:0]	Rev_Buffer_Size	,					//%	接收buffer大小
-	.[31:0]	FlightFlagSize ,					//%	最大流量窗口大小
-	.[31:0]	MSSize,								//%	最大包大小
-	.[31:0]	Max_PktSize ,						//%	最大包大小
-	.[31:0]	Max_PayloadSize ,					//% 最大负载数据大小
-	.[31:0]	Expiration_counter ,				//%	EXP-timer计数器
-	.[31:0]	Bandwidth ,							//%	带宽的预估值，1秒1个包
-	.[31:0]	DeliveryRate ,						//%	包到达的速率（接收端）
-	.[31:0]	AckSeqNo ,							//%	最后ACK的序列号
-	.[31:0]	LastAckTime ,						//%	最后LAST的ACK时间戳
-	.[31:0]	SYNInterval ,						//%	同步（SYN）周期
-	.[31:0]	RRT ,								//%	往返时延的均值
-	.[31:0]	RTTVar ,							//%	往返时延的方差
-	.[31:0]	MinNakInt,							//%	最小NAK周期
-	.[31:0]	MinExpInt,							//%	最小EXP周期
-	.[31:0]	ACKInt,								//%	ACK 发送周期
-	.[31:0]	NAKInt,								//%	NAK 发送周期
-	.[31:0]	PktCount,							//%	packet counter for ACK
-	.[31:0]	LightACKCount ,						//%	light ACK 计数器
-	.[31:0]	TargetTime ,						//%	下个Packet发送时间				
-	.[31:0]	TimeDiff,							//%	aggregate difference in inter-packet time   
+	.udt_state(udt_state) ,								
+	.state_valid(state_valid),									
+	.state_ready(state_ready),									
+	.Req_Connect(Req_Connect) ,									
+	.Res_Connect(Res_Connect),								 
+	.Req_Close(Req_Close)	,									
+	.Res_Close(Res_Close)	,									
+	.Snd_Buffer_Size(Snd_Buffer_Size),						
+	.Rev_Buffer_Size(Rev_Buffer_Size),
+	.FlightFlagSize(FlightFlagSize),						
+	.MSSize(MSSize),									
+	.Max_PktSize(Max_PktSize),							
+	.Max_PayloadSize(Max_PayloadSize) ,					 
+	.Expiration_counter(Expiration_counter),					
+	.Bandwidth(Bandwidth),								
+	.DeliveryRate(DeliveryRate),							
+	.AckSeqNo(AckSeqNo),								
+	.LastAckTime(LastAckTime),							
+	.SYNInterval(SYNInterval),							
+	.RRT(RRT),									
+	.RTTVar(RTTVar),								
+	.MinNakInt(MinNakInt),								
+	.MinExpInt(MinExpInt),								
+	.ACKInt(ACKInt),									 
+	.NAKInt(NAKInt),									 
+	.PktCount(NAKInt),								   
+	.LightACKCount(LightACKCount) ,							  
+	.TargetTime(TargetTime),											
+	.TimeDiff(TimeDiff),								      
 	
-	.[31:0]	PeerISN ,							//%	对端初始化的数据包序列号
-	.[31:0]	RcvLastAck ,						//%	接收端 最后发送ACK（数据包序列号）
-	.[31:0]	RcvLastAckAck ,						//%	接收端 最后发送ACK 被ACK的（数据）序列号
-	.[31:0]	RcvCurrSeqNo ,						//%	最大的接收的序列号
-	.[31:0]	LastDecSeq  ,						//%	Sequence number sent last decrease occurs 
-	.[31:0]	SndLastAck  ,						//%	Last ACK received
-	.[31:0]	SndLastDataAck ,					//%	The real last ACK that updates the sender buffer and loss list		
-	.[31:0]	SndCurrSeqNo ,						//%	The largest sequence number that has been sent
-	.[31:0]	SndLastAck2  ,						//%	Last ACK2 sent back 
-	.[31:0]	SndLastAck2Time ,					//%	Last time of ACK2 sent back
-	.[31:0]	FlowWindowSize ,						//%	SND list  size
+	.PeerISN(PeerISN),								
+	.RcvLastAck(RcvLastAck),							 
+	.RcvLastAckAck(RcvLastAckAck),							  
+	.RcvCurrSeqNo(RcvCurrSeqNo),							
+	.LastDecSeq(LastDecSeq),							 
+	.SndLastAck(SndLastAck),							
+	.SndLastDataAck(SndLastDataAck),								
+	.SndCurrSeqNo(SndCurrSeqNo),							
+	.SndLastAck2(SndLastAck2),							
+	.SndLastAck2Time(SndLastAck2Time),						
+	.FlowWindowSize(FlowWindowSize) ,						
 	
-	.[31:0]	LastRspTime,						//%	最后一次对端响应的时间戳。用于EXP Timers , 同时只要有udp数据到来就修改该变量
-	.[31:0]	NextACKTime,						//%	用于ACK Timers
-	.[31:0]	NextNACKtime,						//%	用于NACK Timers
+	.LastRspTime(LastRspTime),							
+	.NextACKTime(NextACKTime),							
+	.NextNACKtime(NextNACKtime),							
 	
-	.[63:0]	req_tdata	,						//%	请求握手数据包
-	.[7:0]	req_tkeep	,						//%	请求握手数据使能信号
-	.req_tvalid	,						//%	请求握手数据有效信号
-	.req_tready	,						//%	请求握手数据就绪信号
-	.req_tlast							//%	请求握手数据结束信号	
+	.req_tdata(req_tdata)	,							
+	.req_tkeep(req_tkeep)	,							
+	.req_tvalid(req_tvalid)	,							
+	.req_tready(req_tready)	,							
+	.req_tlast(req_tlast)									
 	
 	
 );

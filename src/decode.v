@@ -9,6 +9,7 @@
 //%			Handshake:
 //%			Keep-live:
 //%			NAK:
+//%			CLOSE:
 //%			ACK:
 //%			Light-ACK
 //%			ACK2:

@@ -105,7 +105,10 @@ module ClientManager	(
 	output	[7:0]	req_tkeep	,						//%	请求握手数据使能信号
 	output			req_tvalid	,						//%	请求握手数据有效信号
 	input			req_tready	,						//%	请求握手数据就绪信号
-	input			req_tlast							//%	请求握手数据结束信号
+	input			req_tlast	,						//%	请求握手数据结束信号
+	
+	input			close_tvalid ,						//%	请求关闭有效信号
+	output			close_tready						//% 请求关闭就绪信号
 );
 
 

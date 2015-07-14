@@ -10,14 +10,11 @@
 
 
 module(
-	input	core_clk,									//%	核心模块时钟
-	input	core_rst_n,									//%	核心模块复位(低信号复位)
+	input			core_clk,						//%	核心模块时钟
+	input			core_rst_n,						//%	核心模块复位(低信号复位)
 	
-	input			close_user_req_tvalid,				//%	关闭请求信号有效(用户发起)
-	output			close_req_tready,					//%	关闭请求信号就绪(用户发起)
-
-	input			axis_tvalid	,
-	input			axis_tready	,
+	input			Req_Close_i,				//%	关闭请求信号有效(用户发起)
+	output			Res_Close_o,				//%	关闭请求信号就绪(用户发起)
 );
 
 

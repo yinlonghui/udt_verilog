@@ -69,14 +69,65 @@ module ServerManager(
 	output			req_tvalid	,						//%	请求握手数据有效信号
 	input			req_tready	,						//%	请求握手数据就绪信号
 	input			req_tlast							//%	请求握手数据结束信号
-	/*
-	input			close_user_req_tvalid,				//%	关闭请求信号有效(用户发起)
-	output			close_req_tready,					//%	关闭请求信号就绪(用户发起)
-	
-	input			
-	*/
+
+	input			close_tvalid ,						//%	请求关闭有效信号
+	output			close_tready						//% 请求关闭就绪信号
 );
 
+
+listen  listen_inst(
+		.handshake_tdata(handshake_tdata) ,
+		.handshake_tkeep(handshake_tkeep) ,
+		.handshake_tvalid(handshake_tvalid),
+		.handshake_tready(handshake_tready),
+		.handshake_tlast(handshake_tlast),
+		.udt_state(udt_state) ,							
+		.state_valid(state_valid),								
+		.state_ready(state_ready),
+		.Req_Connect(Req_Connect),								
+		.Res_Connect(Res_Connect),										
+		.Snd_Buffer_Size(Snd_Buffer_Size),					
+		.Rev_Buffer_Size(Rev_Buffer_Size),					
+		.FlightFlagSize(FlightFlagSize),			
+		.MSSize(MSSize),
+		.Max_PktSize(Max_PktSize) ,						
+		.Max_PayloadSize(Max_PayloadSize) ,
+		.Expiration_counter(Expiration_counter),
+		.Bandwidth(Bandwidth) ,
+		.DeliveryRate(DeliveryRate),
+		.AckSeqNo(AckSeqNo),
+		.LastAckTime(LastAckTime),
+		.SYNInterval(SYNInterval),
+		.RRT(RRT) ,
+		.RTTVar(RTTVar) ,
+		.MinNakInt(MinNakInt),
+		.MinExpInt(MinExpInt),
+		.ACKInt(ACKInt),
+		.NAKInt(NAKInt),
+		.PktCount(PktCount),
+		.LightACKCount(LightACKCount),
+		.TargetTime(TargetTime),
+		.TimeDiff(TimeDiff),
+		.PeerISN(PeerISN) ,							
+		.RcvLastAck(RcvLastAck) ,					
+		.RcvLastAckAck(RcvLastAckAck) ,					
+		.RcvCurrSeqNo(RcvCurrSeqNo) ,					
+		.LastDecSeq(LastDecSeq)  ,						 
+		.SndLastAck(SndLastAck)  ,						
+		.SndLastDataAck(SndLastDataAck),							
+		.SndCurrSeqNo(SndCurrSeqNo) ,						
+		.SndLastAck2(SndLastAck2) ,						
+		.SndLastAck2Time(SndLastAck2Time) ,					
+		.FlowWindowSize(FlowWindowSize) ,
+		.LastRspTime(LastRspTime),
+		.NextACKTime(NextACKTime),
+		.NextNACKtime(NextNACKtime),
+		.req_tdata(req_tdata),
+		.req_tkeep(req_tkeep),
+		.req_tvalid(req_tvalid),
+		.req_tready(req_tready),
+		.req_tlast(req_tlast)
+);
 
 
 
