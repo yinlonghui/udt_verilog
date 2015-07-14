@@ -3,7 +3,7 @@
 
 
 
-//%	本模块是管理SERVER端的SOCKET的链接和参数初始化的模块
+//%	本模块实例化了listen,ProcessClose,close模块，主要功能管理SERVER端SOCKET套接字，监视其状态
 //%	@details
 //%		ServerManager功能如下：
 //%		1、连接CLIENT端，进行通信，通过configure模块创建套接字,监听CLIENT端，三次握手通信后建立连接。
@@ -69,21 +69,29 @@ module ServerManager(
 	output			req_tvalid	,						//%	请求握手数据有效信号
 	input			req_tready	,						//%	请求握手数据就绪信号
 	input			req_tlast							//%	请求握手数据结束信号
-
-	input			close_tvalid ,						//%	请求关闭有效信号
-	output			close_tready						//% 请求关闭就绪信号
+	
+	input	close_tvalid	,							//%	关闭控制包有效
+	input	[63:0]	close_tdata		,					//%	关闭控制数据包
+	input	[7:0]	close_tkeep		,					//%	关闭控制使能信号
+	input	close_tlast				,					//%	关闭控制结束信号
+	output	close_tready								//%	关闭控制就绪信号
 );
 
+wire	[31:0]	listen_udt_state ;
+wire	listen_state_valid ;
+reg		listen_state_ready ;
 
 listen  listen_inst(
+		.core_clk(core_clk),
+		.core_rst_n(core_rst_n),
 		.handshake_tdata(handshake_tdata) ,
 		.handshake_tkeep(handshake_tkeep) ,
 		.handshake_tvalid(handshake_tvalid),
 		.handshake_tready(handshake_tready),
 		.handshake_tlast(handshake_tlast),
-		.udt_state(udt_state) ,							
-		.state_valid(state_valid),								
-		.state_ready(state_ready),
+		.udt_state(listen_udt_state) ,							
+		.state_valid(listen_state_valid),								
+		.state_ready(listen_state_ready),
 		.Req_Connect(Req_Connect),								
 		.Res_Connect(Res_Connect),										
 		.Snd_Buffer_Size(Snd_Buffer_Size),					
@@ -127,6 +135,59 @@ listen  listen_inst(
 		.req_tvalid(req_tvalid),
 		.req_tready(req_tready),
 		.req_tlast(req_tlast)
+);
+
+wire	[31:0]	p_c_udt_state ;
+wire	p_c_state_valid ;
+reg		p_c_state_ready ;
+
+ProcessClose	ProcessClose_inst(
+	.core_clk(core_clk),
+	.core_rst_n(core_rst_n),
+	
+	.udt_state_i(p_c_udt_state) ,							
+	.state_valid_i(p_c_state_valid),								
+	.state_ready_o(p_c_state_ready),
+	.close_tvalid_i(close_tvalid),
+	.close_tdata_i(close_tdata),
+	.close_tkeep_i(close_tkeep),
+	.close_tlast_i(close_tlast),
+	.close_tready_o(close_tready)
+);
+
+wire	[31:0]	c_udt_state ;
+wire	c_state_valid ;
+reg 	c_state_ready ;
+
+close	close_inst(
+	.core_clk(core_clk),
+	.core_rst_n(core_rst_n),
+	
+	.udt_state_i(c_udt_state) ,							
+	.state_valid_i(c_state_valid),								
+	.state_ready_o(c_state_ready),
+	
+	
+	.Req_Close_i(Req_Close),
+	.Res_Close_o(Res_Close)
+
+);
+
+mutexValue  #(
+	.WR_NUM(3),
+	.RD_NUM(1)
+)	udt_state_inst(
+
+	.core_clk(core_clk),
+	.core_rst_n(core_rst_n),
+	.value_i({listen_udt_state,p_c_udt_state,c_udt_state}),
+	.valid_i({listen_state_valid,p_c_state_valid,c_state_valid}),
+	.ready_o({listen_state_ready,p_c_state_ready,c_state_ready}),
+	
+	.ready_i(state_ready),
+	.valid_o(state_valid),
+	.value_o(udt_state)
+	
 );
 
 

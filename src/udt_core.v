@@ -241,9 +241,10 @@ wire	handshake_tready ;
 wire	axis_lock		;
 wire	NAK_tready	;
 wire	DATA_tready ;
+wire	CLOSE_tready ;
 wire	ACK_tready	;
 wire	ACK2_tready ;
-assign	data_packet_tready =  !axis_lock && (handshake_tready || NAK_tready || DATA_tready || ACK_tready ||  ACK2_tready)；
+assign	data_packet_tready =  !axis_lock && (handshake_tready || NAK_tready || DATA_tready || ACK_tready ||  ACK2_tready || CLOSE_tready)；
 
 SocketManager	socket_manger_inst(
 
@@ -304,8 +305,14 @@ SocketManager	socket_manger_inst(
 	.req_tkeep(req_tkeep)	,							
 	.req_tvalid(req_tvalid)	,							
 	.req_tready(req_tready)	,							
-	.req_tlast(req_tlast)									
+	.req_tlast(req_tlast)	,		
+
 	
+	.close_tvalid_i(data_packet_tvalid && CLOSE_en),
+	.close_tdata_i(data_packet_tdata),
+	.close_tkeep_i(data_packet_tkeep),
+	.close_tlast_i(data_packet_tlast),
+	.close_tready_o(CLOSE_tready)
 	
 );
 

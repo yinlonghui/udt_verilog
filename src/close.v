@@ -13,6 +13,10 @@ module(
 	input			core_clk,						//%	核心模块时钟
 	input			core_rst_n,						//%	核心模块复位(低信号复位)
 	
+	output	[31:0]	udt_state_o ,						//%	连接状态
+	output	state_valid_o ,								//%	连接状态有效
+	input	state_ready_i ,								//% 连接状态就绪
+	
 	input			Req_Close_i,				//%	关闭请求信号有效(用户发起)
 	output			Res_Close_o,				//%	关闭请求信号就绪(用户发起)
 );

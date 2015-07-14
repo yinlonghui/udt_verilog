@@ -1,50 +1,12 @@
 ﻿//%	@file	ClientManager.v
 //%	@brief	本文件定义client manager模块
 
-//%	本模块是管理CLIENT端的SOCKET的链接和参数初始化的模块
+//%	本模块实例化了listen,ProcessClose,close模块，主要功能管理SERVER端SOCKET套接字，监视其状态
 //%	@details
-//%		step1: configure模块配置完参数后，发送连接请求，就开始初始化部分参数：
-//%				Max_PktSize	= MSSize – 28  
-//%				Max_PayloadSize = Max_PktSize – UDT头 
-//%				Expiration_counter = 1 ; //  用于EXP-timer
-//%				Bandwidth = 1 ;
-//%				DeliveryRate = 16 ;
-//%				AckSeqNo =  0 ； 
-//%				LastAckTime  = 0 ； 
-//%				SYNInterval =  10000  us(10ms)  
-//%				RRT	=	SYNInterval * 10;  
-//%				RTTVar =  SYNInterval/2;  
-//%				MinNakInt	=	300,000us(300ms); 
-//%				MinExpInt		=	300,000us(300ms);
-//%				ACKInt		=	SYNInterval ;  
-//%				NAKInt		=	MinNakInt;  
-//%				PktCount		=	0 ; 
-//%				LightACKCount  =  1 ; 
-//%				TargetTime	=	0;
-//%				TimeDiff     =    0; 
-//%		step2:	发送请求包，从configure获取相应的参数，如UDT_VERISON(UDT版本),SOCKET_TPYE(套节字类型), MAX_PACKET_SIZE(最大包大小),MAX_FLOW_WINDOWS_SIZE(最大流量窗口大小)、CONNECT_TYPE(接类型设置为1), SOCKET_ID (自己的Socket id).
-//%				PACKET-> SOCKET_ID =  0 ;
-//%				INIT_PACKET_SEQ_NUM = 0 ;
-//%				Cookie值随机不从寄存器获取。
-//%				LastDecSeq =  INIT_PACKET_SEQ_NUM -1 
-//%				SndLastAck =  INIT_PACKET_SEQ_NUM  
-//%				SndLastDataAck  =  INIT_PACKET_SEQ_NUM  // The real last ACK that updates the sender buffer and loss list
-//%				SndCurrSeqNo  =   INIT_PACKET_SEQ_NUM -1  // The largest sequence number that has been sent
-//%				SndLastAck2    =  INIT_PACKET_SEQ_NUM    //  Last ACK2 sent back
-//%				发送请求握手包
-//%				SndLastAck2Time  =  当前时间  // The time when last ACK2 was sent back
-//%		step3:	若当前时间和发送请求包时间相隔250ms,则重新再发请求包，继续进行步骤2.若有新的包到达，则解析此包。
-//%		step4:	
-//%				若接收的包不是握手包，则为连接错误,将connect 置为0，修改状态寄存器(此处可能为UDT连接的一个BUG，因为重新配置协议的值是并不可少的，并且这个会影响发送和接收),若此包连接类型为1，则把CONNECT_TYPE接类型设置为-1 ，Cookie值为对端的Cookie值，跳转到步骤3。若此包连接类型不为1，则重新配置UDT参数，如下：
-//%				MAX_PACKET_SIZE =  res-> MAX_PACKET_SIZE;
-//%				Update: Max_PktSize, Max_PayloadSize
-//%				FlowWindowSize =  res-> MAX_FLOW_WINDOWS_SIZE；
-//%				PeerISN =  res-> INIT_PACKET_SEQ_NUM ;     /*对端初始化的数据包序列号*/
-//%				RcvLastAck =  res-> INIT_PACKET_SEQ_NUM ;  /*接收端 最后发送ACK（数据包序列号）*/
-//%				RcvLastAckAck = res-> INIT_PACKET_SEQ_NUM ; /*接收端 最后发送ACK 被ACK的（数据）序列号 */
-//%				RcvCurrSeqNo = res-> INIT_PACKET_SEQ_NUM - 1;  /*最大的接收的序列号*/
-//%				算法中各个数据类型的size由次步骤来配置，如发送BUFFER,接收BUFFER,发送丢失LIST，接收丢失LIST，ACK包历史窗口，接收历史窗口和发送历史窗口。初始化拥塞控制参数。
-//%		step5:	连接完成返回连接成功的状态
+//%		ClientManager功能如下：
+//%		1、向Server端发送请求，通过3次握手后，连接建立完成
+//%		2、处理用户关闭连接
+//%		3、处理对端关闭包
 
 
 module ClientManager	(
@@ -111,7 +73,120 @@ module ClientManager	(
 	output			close_tready						//% 请求关闭就绪信号
 );
 
+wire	[31:0]	connect_udt_state ;
+wire	connect_state_valid ;
+wire	connect_state_ready ;
 
+connect  connect_inst(
+		.core_clk(core_clk),
+		.core_rst_n(core_rst_n),
+		.handshake_tdata(handshake_tdata) ,
+		.handshake_tkeep(handshake_tkeep) ,
+		.handshake_tvalid(handshake_tvalid),
+		.handshake_tready(handshake_tready),
+		.handshake_tlast(handshake_tlast),
+		.udt_state(connect_udt_state) ,							
+		.state_valid(connect_state_valid),								
+		.state_ready(connect_state_ready),
+		.Req_Connect(Req_Connect),								
+		.Res_Connect(Res_Connect),										
+		.Snd_Buffer_Size(Snd_Buffer_Size),					
+		.Rev_Buffer_Size(Rev_Buffer_Size),					
+		.FlightFlagSize(FlightFlagSize),			
+		.MSSize(MSSize),
+		.Max_PktSize(Max_PktSize) ,						
+		.Max_PayloadSize(Max_PayloadSize) ,
+		.Expiration_counter(Expiration_counter),
+		.Bandwidth(Bandwidth) ,
+		.DeliveryRate(DeliveryRate),
+		.AckSeqNo(AckSeqNo),
+		.LastAckTime(LastAckTime),
+		.SYNInterval(SYNInterval),
+		.RRT(RRT) ,
+		.RTTVar(RTTVar) ,
+		.MinNakInt(MinNakInt),
+		.MinExpInt(MinExpInt),
+		.ACKInt(ACKInt),
+		.NAKInt(NAKInt),
+		.PktCount(PktCount),
+		.LightACKCount(LightACKCount),
+		.TargetTime(TargetTime),
+		.TimeDiff(TimeDiff),
+		.PeerISN(PeerISN) ,							
+		.RcvLastAck(RcvLastAck) ,					
+		.RcvLastAckAck(RcvLastAckAck) ,					
+		.RcvCurrSeqNo(RcvCurrSeqNo) ,					
+		.LastDecSeq(LastDecSeq)  ,						 
+		.SndLastAck(SndLastAck)  ,						
+		.SndLastDataAck(SndLastDataAck),							
+		.SndCurrSeqNo(SndCurrSeqNo) ,						
+		.SndLastAck2(SndLastAck2) ,						
+		.SndLastAck2Time(SndLastAck2Time) ,					
+		.FlowWindowSize(FlowWindowSize) ,
+		.LastRspTime(LastRspTime),
+		.NextACKTime(NextACKTime),
+		.NextNACKtime(NextNACKtime),
+		.req_tdata(req_tdata),
+		.req_tkeep(req_tkeep),
+		.req_tvalid(req_tvalid),
+		.req_tready(req_tready),
+		.req_tlast(req_tlast)
+);
+
+
+
+wire	[31:0]	p_c_udt_state ;
+wire	p_c_state_valid ;
+wire	p_c_state_ready ;
+
+ProcessClose	ProcessClose_inst(
+	.core_clk(core_clk),
+	.core_rst_n(core_rst_n),
+	
+	.udt_state_i(p_c_udt_state) ,							
+	.state_valid_i(p_c_state_valid),								
+	.state_ready_o(p_c_state_ready),
+	.close_tvalid_i(close_tvalid),
+	.close_tdata_i(close_tdata),
+	.close_tkeep_i(close_tkeep),
+	.close_tlast_i(close_tlast),
+	.close_tready_o(close_tready)
+);
+
+wire	[31:0]	c_udt_state ;
+wire	c_state_valid ;
+wire	c_state_ready ;
+
+close	close_inst(
+	.core_clk(core_clk),
+	.core_rst_n(core_rst_n),
+	
+	.udt_state_i(c_udt_state) ,							
+	.state_valid_i(c_state_valid),								
+	.state_ready_o(c_state_ready),
+	
+	
+	.Req_Close_i(Req_Close),
+	.Res_Close_o(Res_Close)
+
+);
+
+mutexValue  #(
+	.WR_NUM(3),
+	.RD_NUM(1)
+)	udt_state_inst(
+
+	.core_clk(core_clk),
+	.core_rst_n(core_rst_n),
+	.value_i({connect_udt_state,p_c_udt_state,c_udt_state}),
+	.valid_i({connect_state_valid,p_c_state_valid,c_state_valid}),
+	.ready_o({connect_state_ready,p_c_state_ready,c_state_ready}),
+	
+	.ready_i(state_ready),
+	.valid_o(state_valid),
+	.value_o(udt_state)
+	
+);
 
 
 endmodule

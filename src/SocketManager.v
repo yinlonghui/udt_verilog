@@ -72,8 +72,12 @@ module	SocketManager #(
 	input			req_tready	,						//%	请求握手数据就绪信号
 	input			req_tlast	,						//%	请求握手数据结束信号
 	
-	input			close_tvalid ,						//%	请求关闭有效信号
-	output			close_tready						//% 请求关闭就绪信号
+	input	close_tvalid	,							//%	关闭控制包有效
+	input	[63:0]	close_tdata		,					//%	关闭控制数据包
+	input	[7:0]	close_tkeep		,					//%	关闭控制使能信号
+	input	close_tlast				,					//%	关闭控制结束信号
+	output	close_tready								//%	关闭控制就绪信号
+
 
 );
 
@@ -82,6 +86,8 @@ generate
 	if(TPYE	== "SERVER")	begin:SERVER_MANAGER
 	
 		ServerManager	sock_inst(
+			.core_clk(core_clk),
+			.core_rst_n(core_rst_n),
 			.handshake_tdata(handshake_tdata) ,
 			.handshake_tkeep(handshake_tkeep) ,
 			.handshake_tvalid(handshake_tvalid),
@@ -134,12 +140,19 @@ generate
 			.req_tkeep(req_tkeep),
 			.req_tvalid(req_tvalid),
 			.req_tready(req_tready),
-			.req_tlast(req_tlast)
+			.req_tlast(req_tlast),
+			.close_tvalid(close_tvalid),
+			.close_tdata(close_tdata),
+			.close_tkeep(close_tkeep),
+			.close_tlast(close_tlast),
+			.close_tready(close_tready)
 		);
 	
 	end	else	if(TPYE ==  "CLIENT")begin:CLIENT_MANAGER
 	
 		ClientManager	sock_inst(
+			.core_clk(core_clk),
+			.core_rst_n(core_rst_n),
 			.handshake_tdata(handshake_tdata) ,
 			.handshake_tkeep(handshake_tkeep) ,
 			.handshake_tvalid(handshake_tvalid),
@@ -191,7 +204,13 @@ generate
 			.req_tkeep(req_tkeep),
 			.req_tvalid(req_tvalid),
 			.req_tready(req_tready),
-			.req_tlast(req_tlast)			
+			.req_tlast(req_tlast),
+			.close_tvalid(close_tvalid),
+			.close_tdata(close_tdata),
+			.close_tkeep(close_tkeep),
+			.close_tlast(close_tlast),
+			.close_tready(close_tready)
+			
 		);
 	end
 
