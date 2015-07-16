@@ -1,31 +1,45 @@
-﻿//%	@file	ACKWindows.v
-//%	@brief	本文件定义ACKWindows模块
+﻿//%	@file	RcvLossList.v
+//%	@brief	本文件定义RcvLossList.模块
 
-//%	@brief	ACKWindows模块用于管理ACKWindows
+//%	@brief	RcvLossList模块用于管理接收端丢失链表
 
-module	ACKWindows(
+module	RcvLossList#(	
+	parameter	C_S_AXI_ID_WIDTH  = 8'd4 ,				//% 定义ID位宽
+	parameter	C_S_AXI_DATA_WIDTH = 32'd512,			//%	定义数据位宽
+	parameter	C_S_AXI_ADDR_WIDTH = 32'd32 ,			//%	定义地址位宽
+	parameter	RCVLOSS_START	=	32'h0	,			//%	定义接收起始位置
+	parameter	RCVLOSS_MAX_OFFESET	=	32'h1000		//%	定义发送最大位移
+)(
 	input	core_clk	,	//%	时钟信号
 	input	core_rst_n	,	//%	时钟复位信号(低有效)
+
+	
+	input	getFirstLostSeq_ready_i	,		//%	获取第一个丢失序列就绪信号
+	output	getFirstLostSeq_valid_o ,		//%	获取第一个丢失序列有效信号
+	output	[31:0]	LossSeq_o	,				//%	获取第一个丢失序列号
 	
 	
-	input	seq_i		,	//%
-	input	seq_valid_i ,	
-	output	seq_ready_o	,
-	
-	output	ack_seq_o	,	//%
-	output	ack_seq_valid_o	,
-	input	ack_seq_ready_i ,
-	
-	output	[31:0]	RTT_o	 ,
-	output	RTT_valid_o		,
-	input	RTT_ready_i		,
-	
-	input	store_seq_i ,
-	input	store_ack_i ,
-	output	store_ready_o ,
-	input	store_valid_i ,
+	input			rcv_list_size_ready_i	,			//%	接收链表大小就绪信号
+	output			rcv_list_size_valid_o ,				//%	接收链表大小有效信号
+	output	[31:0]	rcv_list_size_o	,					//%	接收链表大小
 	
 	
+	
+	output	[63:0]	NACK_tdata_o	,
+	output	[7:0]	NACK_tkeep_o	,
+	output			NACK_tvalid_o	,
+	output			NACK_tlast_o	,
+	input			NACK_tready_i	,
+	
+	
+	input	[31:0]		insertStart_i		,
+	input	[31:0]		insertEnd_i			,
+	input				insert_valid_i		,
+	output				insert_ready_o		,
+	
+	input	[31:0]		remove_item_i		,
+	input				remove_item_i		,
+	output				remove_item_o		,
 	
 	output  [C_S_AXI_ID_WIDTH-1:0]s_axi_awid,			//%	DDR3-写地址ID
 	output  [C_S_AXI_ADDR_WIDTH-1:0]s_axi_awaddr,		//%	DDR3-写地址
@@ -66,7 +80,6 @@ module	ACKWindows(
 	input	s_axi_rlast,								//%	DDR3-读结束
 	input	s_axi_rvalid,								//%	DDR3-读有效
 	input	init_calib_complete							//% DDR3-初始化完成
-	
 	
 );
 

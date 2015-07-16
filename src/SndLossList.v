@@ -1,31 +1,31 @@
-﻿//%	@file	ACKWindows.v
-//%	@brief	本文件定义ACKWindows模块
+﻿//%	@file	SndLossList.v
+//%	@brief	本文件定义SndLossList模块
 
-//%	@brief	ACKWindows模块用于管理ACKWindows
+//%	@brief	SndLossList模块用于管理接收端丢失链表
 
-module	ACKWindows(
+module	SndLossList#(	
+	parameter	C_S_AXI_ID_WIDTH  = 8'd4 ,				//% 定义ID位宽
+	parameter	C_S_AXI_DATA_WIDTH = 32'd512,			//%	定义数据位宽
+	parameter	C_S_AXI_ADDR_WIDTH = 32'd32 ,			//%	定义地址位宽
+	parameter	SNDLOSS_START	=	32'h0	,			//%	定义接收起始位置
+	parameter	SNDLOSS_MAX_OFFESET	=	32'h1000		//%	定义发送最大位移
+)(
 	input	core_clk	,	//%	时钟信号
 	input	core_rst_n	,	//%	时钟复位信号(低有效)
 	
 	
-	input	seq_i		,	//%
-	input	seq_valid_i ,	
-	output	seq_ready_o	,
+	input			snd_list_size_ready_i	,			//%	接收链表大小就绪信号
+	output			snd_list_size_valid_o ,				//%	接收链表大小有效信号
+	output	[31:0]	snd_list_size_o	,					//%	接收链表大小
 	
-	output	ack_seq_o	,	//%
-	output	ack_seq_valid_o	,
-	input	ack_seq_ready_i ,
+	input	[31:0]		insertStart_i		,
+	input	[31:0]		insertEnd_i			,
+	input				insert_valid_i		,
+	output				insert_ready_o		,
 	
-	output	[31:0]	RTT_o	 ,
-	output	RTT_valid_o		,
-	input	RTT_ready_i		,
-	
-	input	store_seq_i ,
-	input	store_ack_i ,
-	output	store_ready_o ,
-	input	store_valid_i ,
-	
-	
+	input	[31:0]		remove_item_i		,
+	input				remove_item_i		,
+	output				remove_item_o		,
 	
 	output  [C_S_AXI_ID_WIDTH-1:0]s_axi_awid,			//%	DDR3-写地址ID
 	output  [C_S_AXI_ADDR_WIDTH-1:0]s_axi_awaddr,		//%	DDR3-写地址
@@ -66,7 +66,7 @@ module	ACKWindows(
 	input	s_axi_rlast,								//%	DDR3-读结束
 	input	s_axi_rvalid,								//%	DDR3-读有效
 	input	init_calib_complete							//% DDR3-初始化完成
-	
+
 	
 );
 
