@@ -79,6 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
       <li><a href="functions_vars_0x64.html#index_d"><span>d</span></a></li>
       <li><a href="functions_vars_0x65.html#index_e"><span>e</span></a></li>
       <li><a href="functions_vars_0x66.html#index_f"><span>f</span></a></li>
+      <li><a href="functions_vars_0x67.html#index_g"><span>g</span></a></li>
       <li><a href="functions_vars_0x68.html#index_h"><span>h</span></a></li>
       <li><a href="functions_vars_0x69.html#index_i"><span>i</span></a></li>
       <li><a href="functions_vars_0x6b.html#index_k"><span>k</span></a></li>
@@ -91,6 +92,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
       <li><a href="functions_vars_0x73.html#index_s"><span>s</span></a></li>
       <li><a href="functions_vars_0x74.html#index_t"><span>t</span></a></li>
       <li><a href="functions_vars_0x75.html#index_u"><span>u</span></a></li>
+      <li><a href="functions_vars_0x76.html#index_v"><span>v</span></a></li>
+      <li><a href="functions_vars_0x77.html#index_w"><span>w</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -112,30 +115,76 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 &#160;
 
 <h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
+<li>NACK_tdata_o
+: <a class="el" href="enum_rcv_loss_list.html#a1cdf5dbb8b0b4f31ad6e229cc08198cc">RcvLossList</a>
+</li>
+<li>NACK_tkeep_o
+: <a class="el" href="enum_rcv_loss_list.html#ace211eba9b97b14a09f3fdad6e5095d2">RcvLossList</a>
+</li>
+<li>NACK_tlast_o
+: <a class="el" href="enum_rcv_loss_list.html#a4c96d08eaf2f401deefc25860ebe9df0">RcvLossList</a>
+</li>
+<li>NACK_tready_i
+: <a class="el" href="enum_rcv_loss_list.html#af053300f62a02941eb1e9f89f3de771f">RcvLossList</a>
+</li>
+<li>NACK_tvalid_o
+: <a class="el" href="enum_rcv_loss_list.html#aef3694ce1ef92fff59df5b9cffa2fa00">RcvLossList</a>
+</li>
 <li>NAK_en
-: <a class="el" href="enumdecode.html#a23e1f7ddc344f1e475fc5dafa8d0e09a">decode</a>
-, <a class="el" href="enumudt__core.html#a23d197868ebb4f4ea2c955cb355f29e2">udt_core</a>
+: <a class="el" href="enumdecode.html#a5e14c42730b8a88fcf0b31e660b540e9">decode</a>
+, <a class="el" href="enumudt__core.html#a2a1c9eb3a24c7dc7f3097e0a9149b93f">udt_core</a>
+</li>
+<li>NAK_tdata
+: <a class="el" href="enum_process_n_a_k.html#a18127d50979153328093dc28717fb6af">ProcessNAK</a>
+</li>
+<li>NAK_tkeep
+: <a class="el" href="enum_process_n_a_k.html#aca20dead84c929db4f441f3e7b0fb01c">ProcessNAK</a>
+</li>
+<li>NAK_tlast
+: <a class="el" href="enum_process_n_a_k.html#adf2cb365501d001cceb9100a6db75e79">ProcessNAK</a>
+</li>
+<li>NAK_tready
+: <a class="el" href="enumudt__core.html#ae1c8dd8652c1ef1fc74d7485137bc8f6">udt_core</a>
+, <a class="el" href="enum_process_n_a_k.html#a46d66862f1bb7c9f4fd385b08b054bd5">ProcessNAK</a>
+</li>
+<li>NAK_tvalid
+: <a class="el" href="enum_process_n_a_k.html#a0602e441909d9bfe07ec1858ee796e2f">ProcessNAK</a>
 </li>
 <li>NAKInt
-: <a class="el" href="enumserver__manager.html#ad03a7d66e76a4c7d90b33e58faef9e06">server_manager</a>
-, <a class="el" href="enumclient__manager.html#a146cbd428bc36f83909866c48425aba6">client_manager</a>
-, <a class="el" href="enumsocket__manager.html#aa48dd24fc620829b673c3715bb0c6657">socket_manager</a>
+: <a class="el" href="enumconnect.html#a85cca78fcecdd703d25ec9d523ddd16c">connect</a>
+, <a class="el" href="enumlisten.html#aa22cacbd18482d3abe629fe6bef2445f">listen</a>
+, <a class="el" href="enumudt__core.html#ab9aed6108c45886ae0fee84405027670">udt_core</a>
+</li>
+<li>NAKInt_o
+: <a class="el" href="enum_client_manager.html#a9a1d4c00c255c059908a5ba24a581b83">ClientManager</a>
+, <a class="el" href="enum_server_manager.html#a857c8349d78b44e163da3e7eff41133c">ServerManager</a>
+, <a class="el" href="enum_socket_manager.html#a6c58ef05e1e91e4585151e4d67213af6">SocketManager</a>
 </li>
 <li>NextACKTime
-: <a class="el" href="enumclient__manager.html#a898ce2b417aeb64fc745d6ae8ba4769b">client_manager</a>
-, <a class="el" href="enumsocket__manager.html#aa633c297954d394626bf0374fedf60ae">socket_manager</a>
-, <a class="el" href="enumserver__manager.html#a2f08a95d3fefc92aff90149a59644e77">server_manager</a>
+: <a class="el" href="enumlisten.html#a4f39803f66bf8134540923b76226cf6e">listen</a>
+, <a class="el" href="enumudt__core.html#a7c5833a62dfb3dc933b0e0abb224b3bb">udt_core</a>
+, <a class="el" href="enumconnect.html#a094b28d30c05420a70c3b7bec4f43ceb">connect</a>
+</li>
+<li>NextACKTime_o
+: <a class="el" href="enum_server_manager.html#a62f92a01b53093f08074475e8185ffa8">ServerManager</a>
+, <a class="el" href="enum_socket_manager.html#ae24fd4b2814a6b204f9aa5a0039c9773">SocketManager</a>
+, <a class="el" href="enum_client_manager.html#a1c131a242a1ead71a7c07a1f571ad411">ClientManager</a>
 </li>
 <li>NextNACKtime
-: <a class="el" href="enumserver__manager.html#afe2d41610b852c999c733ccc0b8f5a0d">server_manager</a>
-, <a class="el" href="enumclient__manager.html#a1adebf66f572a082fa7bd0c483812a56">client_manager</a>
-, <a class="el" href="enumsocket__manager.html#adab3e90b20938e350f8b894c9f154a7f">socket_manager</a>
+: <a class="el" href="enumlisten.html#a63e4bbd5cae4373f7a19eecb0b29af51">listen</a>
+, <a class="el" href="enumudt__core.html#afd1b5ce6096893a24ceac8a3c49d54da">udt_core</a>
+, <a class="el" href="enumconnect.html#a61b1577807225cf43a91a673cad954bb">connect</a>
+</li>
+<li>NextNACKtime_o
+: <a class="el" href="enum_server_manager.html#a72b883f5b58cd614290d147b7df23eb3">ServerManager</a>
+, <a class="el" href="enum_socket_manager.html#a14f4cef88594be83b9cbb52bd9ba29e6">SocketManager</a>
+, <a class="el" href="enum_client_manager.html#a8adcfe46c22821584563eb8238cffe39">ClientManager</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 8日 星期三 14:04:52 , 为 UDT project使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 30日 星期四 16:10:01 , 为 UDT project使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>

@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>UDT project: src/ClientManager.v 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">UDT project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="annotated.html"><span>Design&#160;Unit&#160;List</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ClientManager.v</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_client_manager_8v.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="enum_client_manager.html">   12</a></span>&#160;<span class="vhdlkeyword">module</span> <a class="code" href="enum_client_manager.html">ClientManager</a>    (</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a5873e86c335eba65b47888e6977ea081">   13</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enum_client_manager.html#a5873e86c335eba65b47888e6977ea081">core_clk</a>,                                                                       </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a557f6a01304f688b29efeb629495140a">   14</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enum_client_manager.html#a557f6a01304f688b29efeb629495140a">core_rst_n</a>,                                                                     </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="enum_client_manager.html#ad2a6aa94a194c8e141142483f06ceb5d">   15</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">63</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#ad2a6aa94a194c8e141142483f06ceb5d">handshake_tdata_i</a> ,                                     </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a63066f86985d5e1ba941e812ec5a083e">   16</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">7</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enum_client_manager.html#a63066f86985d5e1ba941e812ec5a083e">handshake_tkeep_i</a> ,                                     </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="enum_client_manager.html#aec8a727c0a7ead0f5a2540815dc7dc89">   17</a></span>&#160;        <span class="vhdlkeyword">input</span>                   <a class="code" href="enum_client_manager.html#aec8a727c0a7ead0f5a2540815dc7dc89">handshake_tvalid_i</a>,                                     </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a018a8015abdb38957904b723967371d6">   18</a></span>&#160;        <span class="vhdlkeyword">output</span>                  <a class="code" href="enum_client_manager.html#a018a8015abdb38957904b723967371d6">handshake_tready_o</a>,                                     </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a2dd475c3deae4cc600bee123f467cfd7">   19</a></span>&#160;        <span class="vhdlkeyword">input</span>                   <a class="code" href="enum_client_manager.html#a2dd475c3deae4cc600bee123f467cfd7">handshake_tlast_i</a>,                                      </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a08f57138d19e345e0927477f4b2df4f3">   22</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enum_client_manager.html#a08f57138d19e345e0927477f4b2df4f3">Req_Connect_i</a> ,                                                         </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a671e94eb477d3f112ac46dd504f90e16">   23</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enum_client_manager.html#a671e94eb477d3f112ac46dd504f90e16">Res_Connect_o</a> ,                                                         </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a9d373d0548a0bfce0e4d7713402e2403">   24</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enum_client_manager.html#a9d373d0548a0bfce0e4d7713402e2403">Req_Close_i</a>     ,                                                               </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a525020cee1975df130892909270c9e8e">   25</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enum_client_manager.html#a525020cee1975df130892909270c9e8e">Res_Close_o</a>     ,                                                               </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a5361316a6258514526fe40f72009c9fe">   26</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a5361316a6258514526fe40f72009c9fe">Snd_Buffer_Size_i</a> ,                                     </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a99fef42185d1449ed577d785a919d01d">   27</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a99fef42185d1449ed577d785a919d01d">Rev_Buffer_Size_i</a>       ,                               </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a1307a9c7c2e7aafebb79611fbde133db">   28</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a1307a9c7c2e7aafebb79611fbde133db">FlightFlagSize_i</a> ,                                      </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a92d8da773bdffc4618a51002bbd89155">   29</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a92d8da773bdffc4618a51002bbd89155">MSSize_i</a> ,                                                      </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a93d50e0c453e5c0fe8f090aad08e6e82">   30</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a93d50e0c453e5c0fe8f090aad08e6e82">Max_PktSize_o</a> ,                                         </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a0288ee83d9493cbb45f79892602896b1">   31</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a0288ee83d9493cbb45f79892602896b1">Max_PayloadSize_o</a> ,                                     </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a66d6c3d19c8d3f42e3389f51c58b1984">   32</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a66d6c3d19c8d3f42e3389f51c58b1984">Expiration_counter_o</a> ,                          </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="enum_client_manager.html#adaef8d8ea0f2330ad14f16174fefe97b">   33</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#adaef8d8ea0f2330ad14f16174fefe97b">Bandwidth_o</a> ,                                           </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a7dff17cc6e1d0b97f05152add416c299">   34</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a7dff17cc6e1d0b97f05152add416c299">DeliveryRate_o</a> ,                                        </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a5be6f8f406220a401097e739d16cd86c">   35</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a5be6f8f406220a401097e739d16cd86c">AckSeqNo_o</a> ,                                            </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a2ccdacf2181e0412f5a2044b393866b9">   36</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a2ccdacf2181e0412f5a2044b393866b9">LastAckTime_o</a> ,                                         </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a5c33e072a7e2c4ee21d66d92653b56d6">   37</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a5c33e072a7e2c4ee21d66d92653b56d6">SYNInterval_o</a> ,                                         </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="enum_client_manager.html#ac0d8cfeadf17e7eae0eefe52013bb018">   38</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#ac0d8cfeadf17e7eae0eefe52013bb018">RRT_o</a> ,                                                         </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a54ab5ae3b132d9bd1df16be1321ea63e">   39</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a54ab5ae3b132d9bd1df16be1321ea63e">RTTVar_o</a> ,                                                      </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="enum_client_manager.html#ab1af3db1553d4fa0ffde3fcb9be19f42">   40</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#ab1af3db1553d4fa0ffde3fcb9be19f42">MinNakInt_o</a> ,                                           </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a88579216e943b7b89f82649880311132">   41</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a88579216e943b7b89f82649880311132">MinExpInt_o</a> ,                                           </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a505439936ec79acf8c117ae864e12085">   42</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a505439936ec79acf8c117ae864e12085">ACKInt_o</a> ,                                                      </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a9a1d4c00c255c059908a5ba24a581b83">   43</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a9a1d4c00c255c059908a5ba24a581b83">NAKInt_o</a> ,                                                      </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a16689d9dd19c4b6420a9383185dd7dce">   44</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a16689d9dd19c4b6420a9383185dd7dce">PktCount_o</a> ,                                            </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a897ba31d0cb5fd6449af8badc5ac8700">   45</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a897ba31d0cb5fd6449af8badc5ac8700">LightACKCount_o</a> ,                                       </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="enum_client_manager.html#af163c27885bb4c0db8773c32c8191c04">   46</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#af163c27885bb4c0db8773c32c8191c04">TargetTime_o</a> ,                                          </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a68a09be624d86a9a36296c9d3a59f837">   47</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a68a09be624d86a9a36296c9d3a59f837">TimeDiff_o</a> ,                                            </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="code" href="enum_client_manager.html#aa1ea110fbde1b1ddbee6ec5be3c422c0">   49</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#aa1ea110fbde1b1ddbee6ec5be3c422c0">PeerISN_o</a> ,                                                     </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a5dbdaab485aa71f6964296a9205e268b">   50</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a5dbdaab485aa71f6964296a9205e268b">RcvLastAck_o</a> ,                                          </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a8b1d1cab8984304de5f2cc09beaadf9a">   51</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a8b1d1cab8984304de5f2cc09beaadf9a">RcvLastAckAck_o</a> ,                                       </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a75c8b8c78aa20dabdf039a15cb63f0c1">   52</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a75c8b8c78aa20dabdf039a15cb63f0c1">RcvCurrSeqNo_o</a> ,                                        </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="enum_client_manager.html#ac234cd7449833d66f42b8b616bf652fb">   53</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#ac234cd7449833d66f42b8b616bf652fb">LastDecSeq_o</a>  ,                                         </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a9436ebc134e3a8bf201c0f2df0c29f73">   54</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a9436ebc134e3a8bf201c0f2df0c29f73">SndLastAck_o</a>  ,                                         </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="enum_client_manager.html#aebfee047a00c4797da97f4fe283e33e5">   55</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#aebfee047a00c4797da97f4fe283e33e5">SndLastDataAck_o</a> ,                                      </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a50bf226025a8e2d5201a12c9bcff6532">   56</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a50bf226025a8e2d5201a12c9bcff6532">SndCurrSeqNo_o</a> ,                                        </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a06f9e2b430b20a169f1fb2a28cf91bd9">   57</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a06f9e2b430b20a169f1fb2a28cf91bd9">SndLastAck2_o</a>  ,                                        </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="code" href="enum_client_manager.html#aebada41e842fcffc1b30be58437568a2">   58</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#aebada41e842fcffc1b30be58437568a2">SndLastAck2Time_o</a> ,                                     </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="enum_client_manager.html#ac68b91945056941d4d98ce7bc17f9f1c">   59</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#ac68b91945056941d4d98ce7bc17f9f1c">FlowWindowSize_o</a> ,                                      </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a6840dfdf322ad386739eca0d733aa503">   61</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a6840dfdf322ad386739eca0d733aa503">LastRspTime_o</a>,                                          </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a1c131a242a1ead71a7c07a1f571ad411">   62</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a1c131a242a1ead71a7c07a1f571ad411">NextACKTime_o</a>,                                          </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a8adcfe46c22821584563eb8238cffe39">   63</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a8adcfe46c22821584563eb8238cffe39">NextNACKtime_o</a>,                                         </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a6593477a300752bfc00a066228b762c1">   65</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">63</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_client_manager.html#a6593477a300752bfc00a066228b762c1">req_tdata_o</a>     ,                                               </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="enum_client_manager.html#ac63769c848d1fe9dc31f6c3536d44af4">   66</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">7</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enum_client_manager.html#ac63769c848d1fe9dc31f6c3536d44af4">req_tkeep_o</a>     ,                                               </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a5a0a39db7e608a96ad867d9d10e38794">   67</a></span>&#160;        <span class="vhdlkeyword">output</span>                  <a class="code" href="enum_client_manager.html#a5a0a39db7e608a96ad867d9d10e38794">req_tvalid_o</a>    ,                                       </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a53dc5aec7dc8c7eef48fdd7a27a8dfd3">   68</a></span>&#160;        <span class="vhdlkeyword">input</span>                   <a class="code" href="enum_client_manager.html#a53dc5aec7dc8c7eef48fdd7a27a8dfd3">req_tready_i</a>    ,                                       </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="code" href="enum_client_manager.html#adfaee882c147dd627a9132794c5196f6">   69</a></span>&#160;        <span class="vhdlkeyword">input</span>                   <a class="code" href="enum_client_manager.html#adfaee882c147dd627a9132794c5196f6">req_tlast_i</a>                                                     </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="vhdlkeyword">input</span>   close_tvalid_i  ,                                                       </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">63</span>:<span class="vhdllogic">0</span>]  close_tdata_i           ,                               </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">7</span>:<span class="vhdllogic">0</span>]   close_tkeep_i           ,                               </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="vhdlkeyword">input</span>   close_tlast_i                           ,                               </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="vhdlkeyword">output</span>  close_tready_o                                                          </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a1f3b7889bd846a5458a9dd1f306887ca">   80</a></span>&#160;<a class="code" href="enum_client_manager.html#a1f3b7889bd846a5458a9dd1f306887ca">connect</a>  <span class="vhdlchar">connect_inst</span>(</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                .<a class="code" href="enumconnect.html#af9e85b570b0855292428a6d84c5703ce">core_clk</a>(<a class="code" href="enum_client_manager.html#a5873e86c335eba65b47888e6977ea081">core_clk</a>),</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                .<a class="code" href="enumconnect.html#a93ddf594c2ba7ecb47800891baaaaca0">core_rst_n</a>(<a class="code" href="enum_client_manager.html#a557f6a01304f688b29efeb629495140a">core_rst_n</a>),</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                .<span class="vhdlchar">handshake_tdata_i</span>(<a class="code" href="enum_client_manager.html#ad2a6aa94a194c8e141142483f06ceb5d">handshake_tdata_i</a>) ,</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                .<span class="vhdlchar">handshake_tkeep_i</span>(<a class="code" href="enum_client_manager.html#a63066f86985d5e1ba941e812ec5a083e">handshake_tkeep_i</a>) ,</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                .<span class="vhdlchar">handshake_tvalid_i</span>(<a class="code" href="enum_client_manager.html#aec8a727c0a7ead0f5a2540815dc7dc89">handshake_tvalid_i</a>),</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                .<span class="vhdlchar">handshake_tready_o</span>(<a class="code" href="enum_client_manager.html#a018a8015abdb38957904b723967371d6">handshake_tready_o</a>),</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                .<span class="vhdlchar">handshake_tlast_i</span>(<a class="code" href="enum_client_manager.html#a2dd475c3deae4cc600bee123f467cfd7">handshake_tlast_i</a>),</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                .<span class="vhdlchar">Req_Connect_i</span>(<a class="code" href="enum_client_manager.html#a08f57138d19e345e0927477f4b2df4f3">Req_Connect_i</a>),                                                          </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                .<span class="vhdlchar">Res_Connect_o</span>(<a class="code" href="enum_client_manager.html#a671e94eb477d3f112ac46dd504f90e16">Res_Connect_o</a>),                                                                          </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                .<span class="vhdlchar">Snd_Buffer_Size_i</span>(<a class="code" href="enum_client_manager.html#a5361316a6258514526fe40f72009c9fe">Snd_Buffer_Size_i</a>),                                  </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                .<span class="vhdlchar">Rev_Buffer_Size_i</span>(<a class="code" href="enum_client_manager.html#a99fef42185d1449ed577d785a919d01d">Rev_Buffer_Size_i</a>),                                  </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                .<span class="vhdlchar">FlightFlagSize_i</span>(<a class="code" href="enum_client_manager.html#a1307a9c7c2e7aafebb79611fbde133db">FlightFlagSize_i</a>),                    </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                .<span class="vhdlchar">MSSize_i</span>(<a class="code" href="enum_client_manager.html#a92d8da773bdffc4618a51002bbd89155">MSSize_i</a>),</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                .<span class="vhdlchar">Max_PktSize_o</span>(<a class="code" href="enum_client_manager.html#a93d50e0c453e5c0fe8f090aad08e6e82">Max_PktSize_o</a>) ,                                         </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                .<span class="vhdlchar">Max_PayloadSize_o</span>(<a class="code" href="enum_client_manager.html#a0288ee83d9493cbb45f79892602896b1">Max_PayloadSize_o</a>) ,</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                .<span class="vhdlchar">Expiration_counter_o</span>(<a class="code" href="enum_client_manager.html#a66d6c3d19c8d3f42e3389f51c58b1984">Expiration_counter_o</a>),</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                .<span class="vhdlchar">Bandwidth_o</span>(<a class="code" href="enum_client_manager.html#adaef8d8ea0f2330ad14f16174fefe97b">Bandwidth_o</a>) ,</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                .<span class="vhdlchar">DeliveryRate_o</span>(<a class="code" href="enum_client_manager.html#a7dff17cc6e1d0b97f05152add416c299">DeliveryRate_o</a>),</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                .<span class="vhdlchar">AckSeqNo_o</span>(<a class="code" href="enum_client_manager.html#a5be6f8f406220a401097e739d16cd86c">AckSeqNo_o</a>),</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                .<span class="vhdlchar">LastAckTime_o</span>(<a class="code" href="enum_client_manager.html#a2ccdacf2181e0412f5a2044b393866b9">LastAckTime_o</a>),</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                .<span class="vhdlchar">SYNInterval_o</span>(<a class="code" href="enum_client_manager.html#a5c33e072a7e2c4ee21d66d92653b56d6">SYNInterval_o</a>),</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                .<span class="vhdlchar">RRT_o</span>(<a class="code" href="enum_client_manager.html#ac0d8cfeadf17e7eae0eefe52013bb018">RRT_o</a>) ,</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                .<span class="vhdlchar">RTTVar_o</span>(<a class="code" href="enum_client_manager.html#a54ab5ae3b132d9bd1df16be1321ea63e">RTTVar_o</a>) ,</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                .<span class="vhdlchar">MinNakInt_o</span>(<a class="code" href="enum_client_manager.html#ab1af3db1553d4fa0ffde3fcb9be19f42">MinNakInt_o</a>),</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                .<span class="vhdlchar">MinExpInt_o</span>(<a class="code" href="enum_client_manager.html#a88579216e943b7b89f82649880311132">MinExpInt_o</a>),</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                .<span class="vhdlchar">ACKInt_o</span>(<a class="code" href="enum_client_manager.html#a505439936ec79acf8c117ae864e12085">ACKInt_o</a>),</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                .<span class="vhdlchar">NAKInt_o</span>(<a class="code" href="enum_client_manager.html#a9a1d4c00c255c059908a5ba24a581b83">NAKInt_o</a>),</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                .<span class="vhdlchar">PktCount_o</span>(<a class="code" href="enum_client_manager.html#a16689d9dd19c4b6420a9383185dd7dce">PktCount_o</a>),</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                .<span class="vhdlchar">LightACKCount_o</span>(<a class="code" href="enum_client_manager.html#a897ba31d0cb5fd6449af8badc5ac8700">LightACKCount_o</a>),</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                .<span class="vhdlchar">TargetTime_o</span>(<a class="code" href="enum_client_manager.html#af163c27885bb4c0db8773c32c8191c04">TargetTime_o</a>),</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                .<span class="vhdlchar">TimeDiff_o</span>(<a class="code" href="enum_client_manager.html#a68a09be624d86a9a36296c9d3a59f837">TimeDiff_o</a>),</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                .<span class="vhdlchar">PeerISN_o</span>(<a class="code" href="enum_client_manager.html#aa1ea110fbde1b1ddbee6ec5be3c422c0">PeerISN_o</a>) ,                                                 </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                .<span class="vhdlchar">RcvLastAck_o</span>(<a class="code" href="enum_client_manager.html#a5dbdaab485aa71f6964296a9205e268b">RcvLastAck_o</a>) ,                                   </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                .<span class="vhdlchar">RcvLastAckAck_o</span>(<a class="code" href="enum_client_manager.html#a8b1d1cab8984304de5f2cc09beaadf9a">RcvLastAckAck_o</a>) ,                                     </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                .<span class="vhdlchar">RcvCurrSeqNo_o</span>(<a class="code" href="enum_client_manager.html#a75c8b8c78aa20dabdf039a15cb63f0c1">RcvCurrSeqNo_o</a>) ,                                       </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                .<span class="vhdlchar">LastDecSeq_o</span>(<a class="code" href="enum_client_manager.html#ac234cd7449833d66f42b8b616bf652fb">LastDecSeq_o</a>)  ,                                           </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                .<span class="vhdlchar">SndLastAck_o</span>(<a class="code" href="enum_client_manager.html#a9436ebc134e3a8bf201c0f2df0c29f73">SndLastAck_o</a>)  ,                                          </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                .<span class="vhdlchar">SndLastDataAck_o</span>(<a class="code" href="enum_client_manager.html#aebfee047a00c4797da97f4fe283e33e5">SndLastDataAck_o</a>),                                                    </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                .<span class="vhdlchar">SndCurrSeqNo_o</span>(<a class="code" href="enum_client_manager.html#a50bf226025a8e2d5201a12c9bcff6532">SndCurrSeqNo_o</a>) ,                                               </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                .<span class="vhdlchar">SndLastAck2_o</span>(<a class="code" href="enum_client_manager.html#a06f9e2b430b20a169f1fb2a28cf91bd9">SndLastAck2_o</a>) ,                                         </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                .<span class="vhdlchar">SndLastAck2Time_o</span>(<a class="code" href="enum_client_manager.html#aebada41e842fcffc1b30be58437568a2">SndLastAck2Time_o</a>) ,                                 </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                .<span class="vhdlchar">FlowWindowSize_o</span>(<a class="code" href="enum_client_manager.html#ac68b91945056941d4d98ce7bc17f9f1c">FlowWindowSize_o</a>) ,</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                .<span class="vhdlchar">LastRspTime_o</span>(<a class="code" href="enum_client_manager.html#a6840dfdf322ad386739eca0d733aa503">LastRspTime_o</a>),</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                .<span class="vhdlchar">NextACKTime_o</span>(<a class="code" href="enum_client_manager.html#a1c131a242a1ead71a7c07a1f571ad411">NextACKTime_o</a>),</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                .<span class="vhdlchar">NextNACKtime_o</span>(<a class="code" href="enum_client_manager.html#a8adcfe46c22821584563eb8238cffe39">NextNACKtime_o</a>),</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                .<span class="vhdlchar">req_tdata_o</span>(<a class="code" href="enum_client_manager.html#a6593477a300752bfc00a066228b762c1">req_tdata_o</a>),</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                .<span class="vhdlchar">req_tkeep_o</span>(<a class="code" href="enum_client_manager.html#ac63769c848d1fe9dc31f6c3536d44af4">req_tkeep_o</a>),</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                .<span class="vhdlchar">req_tvalid_o</span>(<a class="code" href="enum_client_manager.html#a5a0a39db7e608a96ad867d9d10e38794">req_tvalid_o</a>),</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                .<span class="vhdlchar">req_tready_i</span>(<span class="vhdlchar">req_tready_o</span>),</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                .<span class="vhdlchar">req_tlast_o</span>(<span class="vhdlchar">req_tlast_o</span>)</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="code" href="enum_client_manager.html#aaa92d38b7ab89ef0bdf285688b5a8fd0">  137</a></span>&#160;<a class="code" href="enum_client_manager.html#aaa92d38b7ab89ef0bdf285688b5a8fd0">ProcessClose</a>    <span class="vhdlchar">ProcessClose_inst</span>(</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        .<a class="code" href="enum_process_close.html#a48ab5aef207e5c6ff057d263490823fc">core_clk</a>(<a class="code" href="enum_client_manager.html#a5873e86c335eba65b47888e6977ea081">core_clk</a>),</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        .<a class="code" href="enum_process_close.html#acb6b64f8f071ed45f87712d34980e2eb">core_rst_n</a>(<a class="code" href="enum_client_manager.html#a557f6a01304f688b29efeb629495140a">core_rst_n</a>),</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        .<a class="code" href="enum_process_close.html#a1cd4d6a1bc35111846e58d077c0e7f9f">close_tvalid_i</a>(<span class="vhdlchar">close_tvalid_i</span>),</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        .<a class="code" href="enum_process_close.html#a0d6b0b5dab006dab0348d6cc231cdc30">close_tdata_i</a>(<span class="vhdlchar">close_tdata_i</span>),</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        .<a class="code" href="enum_process_close.html#a55dffad15038598b62d839ccaa8a08bc">close_tkeep_i</a>(<span class="vhdlchar">close_tkeep_i</span>),</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        .<a class="code" href="enum_process_close.html#abd848216e6e26c970b342251a71517ab">close_tlast_i</a>(<span class="vhdlchar">close_tlast_i</span>),</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        .<a class="code" href="enum_process_close.html#a04b50ff3d0732cf10d088b0f99963609">close_tready_o</a>(<span class="vhdlchar">close_tready_o</span>)</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a34eedf848b7bcd21e807eaebccb90591">  151</a></span>&#160;<a class="code" href="enum_client_manager.html#a34eedf848b7bcd21e807eaebccb90591">close</a>   <span class="vhdlchar">close_inst</span>(</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        .<span class="vhdlchar">core_clk</span>(<a class="code" href="enum_client_manager.html#a5873e86c335eba65b47888e6977ea081">core_clk</a>),</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        .<span class="vhdlchar">core_rst_n</span>(<a class="code" href="enum_client_manager.html#a557f6a01304f688b29efeb629495140a">core_rst_n</a>),</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        .<span class="vhdlchar">Req_Close_i</span>(<span class="vhdlchar">Req_Close</span>),</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        .<span class="vhdlchar">Res_Close_o</span>(<span class="vhdlchar">Res_Close</span>)</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;);</div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="code" href="enum_client_manager.html#a23316a8a2206ccc7a26dbc9645cc0553">  161</a></span>&#160;<a class="code" href="enum_client_manager.html#a23316a8a2206ccc7a26dbc9645cc0553">EXPtimer</a>        <span class="vhdlchar">EXPtimer_inst</span>(</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        .<a class="code" href="enum_e_x_ptimer.html#abcb5492e2fb604b0817b0eac771882ce">core_clk</a>(<a class="code" href="enum_client_manager.html#a5873e86c335eba65b47888e6977ea081">core_clk</a>),</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        .<a class="code" href="enum_e_x_ptimer.html#aa6fdeca90f4116ef2482938bacb7fc2d">core_rst_n</a>(<a class="code" href="enum_client_manager.html#a557f6a01304f688b29efeb629495140a">core_rst_n</a>),</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="vhdlkeyword">endmodule</span></div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 30日 星期四 16:10:00 , 为 UDT project使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1
+</small></address>
+</body>
+</html>

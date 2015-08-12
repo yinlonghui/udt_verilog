@@ -79,6 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
       <li><a href="functions_vars_0x64.html#index_d"><span>d</span></a></li>
       <li><a href="functions_vars_0x65.html#index_e"><span>e</span></a></li>
       <li><a href="functions_vars_0x66.html#index_f"><span>f</span></a></li>
+      <li><a href="functions_vars_0x67.html#index_g"><span>g</span></a></li>
       <li><a href="functions_vars_0x68.html#index_h"><span>h</span></a></li>
       <li><a href="functions_vars_0x69.html#index_i"><span>i</span></a></li>
       <li><a href="functions_vars_0x6b.html#index_k"><span>k</span></a></li>
@@ -91,6 +92,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
       <li><a href="functions_vars_0x73.html#index_s"><span>s</span></a></li>
       <li><a href="functions_vars_0x74.html#index_t"><span>t</span></a></li>
       <li><a href="functions_vars_0x75.html#index_u"><span>u</span></a></li>
+      <li><a href="functions_vars_0x76.html#index_v"><span>v</span></a></li>
+      <li><a href="functions_vars_0x77.html#index_w"><span>w</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -112,127 +115,296 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 &#160;
 
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>rcv_list_size_o
+: <a class="el" href="enum_rcv_loss_list.html#a7d47639c8819f4e10399207828ba2fd4">RcvLossList</a>
+</li>
+<li>rcv_list_size_ready_i
+: <a class="el" href="enum_rcv_loss_list.html#ac8527ed0b1fa1cfc06f1f8b93e980511">RcvLossList</a>
+</li>
+<li>rcv_list_size_valid_o
+: <a class="el" href="enum_rcv_loss_list.html#a0659e3d601f34289f9520b05a752a8ac">RcvLossList</a>
+</li>
+<li>rcv_tdata_i
+: <a class="el" href="enum_rcv_buffer_manager.html#abc51e645670622813b968ff244cf12ea">RcvBufferManager</a>
+</li>
+<li>rcv_tkeep_i
+: <a class="el" href="enum_rcv_buffer_manager.html#a036379867acd6fbfa92fa5b37e8229e2">RcvBufferManager</a>
+</li>
+<li>rcv_tlast_i
+: <a class="el" href="enum_rcv_buffer_manager.html#aa6be0fceb8a26568a2138fec2b3e8d03">RcvBufferManager</a>
+</li>
+<li>rcv_tready_o
+: <a class="el" href="enum_rcv_buffer_manager.html#ad8efbe2c0851fc03b97391a3230f7e12">RcvBufferManager</a>
+</li>
+<li>rcv_tvalid_i
+: <a class="el" href="enum_rcv_buffer_manager.html#afeee73851a9dc7553a41380bd53a44bf">RcvBufferManager</a>
+</li>
 <li>RcvCurrSeqNo
-: <a class="el" href="enumserver__manager.html#a58fae07c152906edfe17c7f5546504ff">server_manager</a>
-, <a class="el" href="enumsocket__manager.html#a054410994c6dcf8f527ed95790eff1e5">socket_manager</a>
-, <a class="el" href="enumclient__manager.html#a45ce2a52b2aa13c79aa70a29ec04db49">client_manager</a>
+: <a class="el" href="enumudt__core.html#abdd83b4848e3693138bfb09655de78a4">udt_core</a>
+, <a class="el" href="enumconnect.html#acd2e6f00406415f5b35616e419722cd8">connect</a>
+, <a class="el" href="enumlisten.html#a662d5cc71952a5e3f7a0347f38be44ad">listen</a>
+</li>
+<li>RcvCurrSeqNo_o
+: <a class="el" href="enum_client_manager.html#a75c8b8c78aa20dabdf039a15cb63f0c1">ClientManager</a>
+, <a class="el" href="enum_server_manager.html#ac6ef3a33e31a040cedbae588f4c885a9">ServerManager</a>
+, <a class="el" href="enum_socket_manager.html#a49e0f5b806a51dc32b5928c51051b4c6">SocketManager</a>
 </li>
 <li>RcvLastAck
-: <a class="el" href="enumclient__manager.html#a217971b1bd36cc192e495dfd4664807b">client_manager</a>
-, <a class="el" href="enumserver__manager.html#aaa3e83d68d436aa714307df5a4a4b38e">server_manager</a>
-, <a class="el" href="enumsocket__manager.html#ae8ea1f27af78dc08fcebd85bea5315cb">socket_manager</a>
+: <a class="el" href="enumudt__core.html#a871a83c28db5b58ab3c1d59d617aae7a">udt_core</a>
+, <a class="el" href="enumlisten.html#ae167657b8f67245b96d5ff4f0a4a9522">listen</a>
+, <a class="el" href="enumconnect.html#afe27a19ff9757b113c7554c9cb53a4b6">connect</a>
+</li>
+<li>RcvLastAck_o
+: <a class="el" href="enum_client_manager.html#a5dbdaab485aa71f6964296a9205e268b">ClientManager</a>
+, <a class="el" href="enum_server_manager.html#acc674ca29d08a2696738d7e89266b509">ServerManager</a>
+, <a class="el" href="enum_socket_manager.html#af3836ac0dccdc81223f4611d8281b52b">SocketManager</a>
 </li>
 <li>RcvLastAckAck
-: <a class="el" href="enumserver__manager.html#ad7538f93ea8b59f8968d64f403e23dfc">server_manager</a>
-, <a class="el" href="enumclient__manager.html#af33287157c7acad4b72792ab850edfe9">client_manager</a>
-, <a class="el" href="enumsocket__manager.html#a7c40caecd410f17000323645d113acc5">socket_manager</a>
+: <a class="el" href="enumudt__core.html#a71eb493ada63b62b7511876a798fd9d9">udt_core</a>
+, <a class="el" href="enumlisten.html#a6d04a1d5475b7ed8745752afcf78b505">listen</a>
+, <a class="el" href="enumconnect.html#af5478b5e75307a635d05bdf133f6e898">connect</a>
+</li>
+<li>RcvLastAckAck_i
+: <a class="el" href="enum_a_c_ktimer.html#a42fc90c2dc30011f467e916415a35ed7">ACKtimer</a>
+</li>
+<li>RcvLastAckAck_o
+: <a class="el" href="enum_server_manager.html#a39d4f085e2feaa303b7e8b01312fdb80">ServerManager</a>
+, <a class="el" href="enum_socket_manager.html#a0b72863ea7d8b9bda99934259cb07d5e">SocketManager</a>
+, <a class="el" href="enum_client_manager.html#a8b1d1cab8984304de5f2cc09beaadf9a">ClientManager</a>
+</li>
+<li>RcvLastAckAck_valid_i
+: <a class="el" href="enum_a_c_ktimer.html#a29e5f06829cc9706aea34333f0e1e428">ACKtimer</a>
+</li>
+<li>RCVLOSS_MAX_OFFESET
+: <a class="el" href="enum_rcv_loss_list.html#ac9865139f0231fb91b89b393f6780d56">RcvLossList</a>
+</li>
+<li>RCVLOSS_START
+: <a class="el" href="enum_rcv_loss_list.html#a32c86e1c583d7ed4afc6f0980bbed890">RcvLossList</a>
+</li>
+<li>RD_NUM
+: <a class="el" href="enummutex_value.html#aa85bfe0a14b0cac697e7f7e402519d2e">mutexValue</a>
+</li>
+<li>ready_i
+: <a class="el" href="enummutex_value.html#a3860dc67327030061d8088ba605e874b">mutexValue</a>
+</li>
+<li>ready_o
+: <a class="el" href="enummutex_value.html#a73d24a8424516ceb7e94e546a6376793">mutexValue</a>
+, <a class="el" href="enumstate2axis.html#a80c1c8bc1aa77b4ca0eb783898f70bd8">state2axis</a>
+</li>
+<li>reg_state
+: <a class="el" href="enumstate2axis.html#af60feb701411b7bba64786e16bbbda83">state2axis</a>
+</li>
+<li>remove_item_i
+: <a class="el" href="enum_rcv_loss_list.html#a3a1d9c2b8d3ffdb500ec3d9984792ee8">RcvLossList</a>
+, <a class="el" href="enum_snd_loss_list.html#a5cb422e0268a03f42d7907bbc8cf97c0">SndLossList</a>
+</li>
+<li>remove_item_o
+: <a class="el" href="enum_rcv_loss_list.html#a3f7f686f81a9508b30b5d9b494d4d21e">RcvLossList</a>
+, <a class="el" href="enum_snd_loss_list.html#ae5e11f8d4e9353c836073d32772cb173">SndLossList</a>
 </li>
 <li>Req_Close
-: <a class="el" href="enumclient__manager.html#a12749af406e6c08a61e27520082bcd94">client_manager</a>
-, <a class="el" href="enumconfigure.html#a787b87c2ea5fa6ffd549633c69454f00">configure</a>
-, <a class="el" href="enumsocket__manager.html#af2fa3679931bb6cc8363eb06cb6e6297">socket_manager</a>
-, <a class="el" href="enumudt__core.html#a6a4b3c574028977739d61380dc271275">udt_core</a>
-, <a class="el" href="enumserver__manager.html#a7535ff329f44169953b12baba45e1d84">server_manager</a>
-, <a class="el" href="enumudt__interface.html#a11c5591c387ea36b77a88288e64690c5">udt_interface</a>
+: <a class="el" href="enumconfigure.html#a1dac428b3ea8a4acd0c568798b79acbc">configure</a>
+, <a class="el" href="enumlisten.html#aa475e03d2ae322607c0e68b4fae2fba3">listen</a>
+, <a class="el" href="enumconnect.html#a6c1302038a9344083ac1f045f67ae57a">connect</a>
+, <a class="el" href="enumudt__interface.html#a6d3e9df0307a909622ec660f055cdc35">udt_interface</a>
+, <a class="el" href="enumudt__core.html#a8cd30d00a0f16a22597840e0e061e708">udt_core</a>
+</li>
+<li>Req_Close_i
+: <a class="el" href="enum_client_manager.html#a9d373d0548a0bfce0e4d7713402e2403">ClientManager</a>
+, <a class="el" href="enum_server_manager.html#a7abcf857cd9d51ec67db761fadf09c38">ServerManager</a>
+, <a class="el" href="enum_socket_manager.html#a4feb1b30e37875dd90d20c9820bff916">SocketManager</a>
 </li>
 <li>Req_Connect
-: <a class="el" href="enumclient__manager.html#afd2d6782ec15fcc8c3043d4378651d89">client_manager</a>
-, <a class="el" href="enumconfigure.html#a88d78fd286a7ccf561a13844109f8fc0">configure</a>
-, <a class="el" href="enumudt__core.html#a4035cb8399d538cdb3598dbfc5871ba2">udt_core</a>
-, <a class="el" href="enumsocket__manager.html#ab945093f8b89383bb57057f21cadce57">socket_manager</a>
-, <a class="el" href="enumserver__manager.html#aea32ce590e25171b3da3c51b7dc7da3d">server_manager</a>
-, <a class="el" href="enumudt__interface.html#a0c9e92dac6c341e0aed0a911542cd0b9">udt_interface</a>
+: <a class="el" href="enumconfigure.html#af05325afae175d37332f591a89cc70a5">configure</a>
+, <a class="el" href="enumlisten.html#a367ce4d409c1e0d49e7f3ac3b5265442">listen</a>
+, <a class="el" href="enumconnect.html#aa3580e935f00d7021610d15f2abbaca0">connect</a>
+, <a class="el" href="enumudt__interface.html#a566e563c97da838b43f6ac7d1a82616a">udt_interface</a>
+, <a class="el" href="enumudt__core.html#af819ade24503a187abad453a6e041fa9">udt_core</a>
+</li>
+<li>Req_Connect_i
+: <a class="el" href="enum_server_manager.html#a88415ee8566f7007512c600df24c0d70">ServerManager</a>
+, <a class="el" href="enum_socket_manager.html#a61734f75aa71798dbe00cde0e619a852">SocketManager</a>
+, <a class="el" href="enum_client_manager.html#a08f57138d19e345e0927477f4b2df4f3">ClientManager</a>
 </li>
 <li>req_tdata
-: <a class="el" href="enumserver__manager.html#a2360df681db3616976cc37830cb143d9">server_manager</a>
-, <a class="el" href="enumclient__manager.html#a5aae8ab9f1aa4fda69c9c516fe83029b">client_manager</a>
-, <a class="el" href="enumsocket__manager.html#a7de83d6c598632a138aabd264ade2de8">socket_manager</a>
+: <a class="el" href="enumconnect.html#a79f712e4f4190e8c64dcb041b1976673">connect</a>
+, <a class="el" href="enumudt__core.html#acd7c736a50006f8222b02cec2e9efba5">udt_core</a>
+, <a class="el" href="enumlisten.html#a04f560f8839341200c3f38dd0c3de886">listen</a>
+</li>
+<li>req_tdata_o
+: <a class="el" href="enum_client_manager.html#a6593477a300752bfc00a066228b762c1">ClientManager</a>
+, <a class="el" href="enum_server_manager.html#a07e0a13071b0190a581c4e96298ee3ef">ServerManager</a>
+, <a class="el" href="enum_socket_manager.html#aea86d925fbc8c85aa6300dd4b2fd2877">SocketManager</a>
 </li>
 <li>req_tkeep
-: <a class="el" href="enumsocket__manager.html#a7f3e0810ae9140bc9bdb7a2c79470841">socket_manager</a>
-, <a class="el" href="enumserver__manager.html#a3094c52de12e5a0ae817903d875a3d16">server_manager</a>
-, <a class="el" href="enumclient__manager.html#a602be82f681aa776c51400d550a9b481">client_manager</a>
+: <a class="el" href="enumudt__core.html#afb1317cd19e872e82750eacfad8f44d3">udt_core</a>
+, <a class="el" href="enumconnect.html#a72346230765fb9e2548c277b93b3b999">connect</a>
+, <a class="el" href="enumlisten.html#a58625efad17f798bae178a29c827bbcc">listen</a>
+</li>
+<li>req_tkeep_o
+: <a class="el" href="enum_server_manager.html#a6acde19255f4c28845fe49b8ebe51a15">ServerManager</a>
+, <a class="el" href="enum_client_manager.html#ac63769c848d1fe9dc31f6c3536d44af4">ClientManager</a>
+, <a class="el" href="enum_socket_manager.html#a6bbd680afbd65a0e10e8bdbba56fa110">SocketManager</a>
 </li>
 <li>req_tlast
-: <a class="el" href="enumclient__manager.html#ae6982a871b9082a375c5b30f1411b0d8">client_manager</a>
-, <a class="el" href="enumserver__manager.html#ab12ca3afea2f1759a7d09ac0d6b65dbc">server_manager</a>
-, <a class="el" href="enumsocket__manager.html#a76667bdd306154409b7a6d3ec30662e9">socket_manager</a>
+: <a class="el" href="enumudt__core.html#a28721281ebc69ce71b416c9bdb509be5">udt_core</a>
+, <a class="el" href="enumconnect.html#a7416fe8d606860bbdfb7efdbe46eb015">connect</a>
+, <a class="el" href="enumlisten.html#ae31d373dfb95e694969d95582c6562c3">listen</a>
+</li>
+<li>req_tlast_i
+: <a class="el" href="enum_server_manager.html#a2f5b82bdf3c08e42707b3575ba3b31d5">ServerManager</a>
+, <a class="el" href="enum_client_manager.html#adfaee882c147dd627a9132794c5196f6">ClientManager</a>
+, <a class="el" href="enum_socket_manager.html#a08e7343386276d64acdf81a1f28f8fa6">SocketManager</a>
 </li>
 <li>req_tready
-: <a class="el" href="enumserver__manager.html#ab61b65fc4a461a72f59e18d72bdc901a">server_manager</a>
-, <a class="el" href="enumsocket__manager.html#ac730bcbe0156a0ffe310ce40eae9a049">socket_manager</a>
-, <a class="el" href="enumclient__manager.html#ab4573b500a6b1490fe68f5f42b8e28f5">client_manager</a>
+: <a class="el" href="enumconnect.html#af38239efd24413fc245d0c43f47c0b07">connect</a>
+, <a class="el" href="enumudt__core.html#a1a3282a5f67a472fad729752844df518">udt_core</a>
+, <a class="el" href="enumlisten.html#a1f40d9f3ebb80b2f929dd1fc376949a1">listen</a>
+</li>
+<li>req_tready_i
+: <a class="el" href="enum_server_manager.html#a39dc9efe0e7533e0906524c9e650aed7">ServerManager</a>
+, <a class="el" href="enum_client_manager.html#a53dc5aec7dc8c7eef48fdd7a27a8dfd3">ClientManager</a>
+, <a class="el" href="enum_socket_manager.html#a6fbae0893dd105a305b29e51e55ad6dd">SocketManager</a>
 </li>
 <li>req_tvalid
-: <a class="el" href="enumclient__manager.html#a56167f19ee6719e2bbd671f2b3eb54b5">client_manager</a>
-, <a class="el" href="enumsocket__manager.html#a1ab6fcb82c83f1bfda092968f923aad2">socket_manager</a>
-, <a class="el" href="enumserver__manager.html#a8cbe58a2a36b5bb95f0298d19cbeccd3">server_manager</a>
+: <a class="el" href="enumudt__core.html#ae1e2e77231ec2fefd9ceec994e08a7ca">udt_core</a>
+, <a class="el" href="enumconnect.html#ab6537c08637e742fe59782e2088a291a">connect</a>
+, <a class="el" href="enumlisten.html#a26aff51735faa7ad4d7735eaaa9f3c3f">listen</a>
+</li>
+<li>req_tvalid_o
+: <a class="el" href="enum_socket_manager.html#a84d3a5e69f3c4d2e0dec6a92ac2b9fda">SocketManager</a>
+, <a class="el" href="enum_server_manager.html#ab827f518a641a2113229b216cd0cb82e">ServerManager</a>
+, <a class="el" href="enum_client_manager.html#a5a0a39db7e608a96ad867d9d10e38794">ClientManager</a>
 </li>
 <li>Res_Close
-: <a class="el" href="enumsocket__manager.html#acbac1590b08efcaad4ae5ada24073dcd">socket_manager</a>
-, <a class="el" href="enumudt__interface.html#a5a4b2809d667084150a3134998d3a031">udt_interface</a>
-, <a class="el" href="enumclient__manager.html#a4160c0025a57a79897a708b4f2d5ea56">client_manager</a>
-, <a class="el" href="enumudt__core.html#ae3ef6d05f5f732058622d594ad9280e4">udt_core</a>
-, <a class="el" href="enumconfigure.html#a84ab7e3f1c9219f2a527acf11c81c516">configure</a>
-, <a class="el" href="enumserver__manager.html#ac865665339671399ad8fb0965bec93b8">server_manager</a>
+: <a class="el" href="enumudt__interface.html#a58cd682393ee937316d1fe08386e1205">udt_interface</a>
+, <a class="el" href="enumconfigure.html#a95fd7ce2b71b3fc8544618ad76014583">configure</a>
+, <a class="el" href="enumlisten.html#ab3a328c58ad2a90168a412dd8d43f518">listen</a>
+, <a class="el" href="enumconnect.html#a58c6c726e55d47d9f3278bfd242d5581">connect</a>
+, <a class="el" href="enumudt__core.html#a83987886c4c42f26ec4ef54a9b54a98c">udt_core</a>
+</li>
+<li>Res_Close_o
+: <a class="el" href="enum_client_manager.html#a525020cee1975df130892909270c9e8e">ClientManager</a>
+, <a class="el" href="enum_server_manager.html#a5303d727315d1597ed355bf9c40567e0">ServerManager</a>
+, <a class="el" href="enum_socket_manager.html#af8e4a25735421fab1e90c2484937dac9">SocketManager</a>
 </li>
 <li>Res_Connect
-: <a class="el" href="enumudt__interface.html#a2690ada3cccba82802ad7900bff58167">udt_interface</a>
-, <a class="el" href="enumudt__core.html#a62379876821b39096c354cc1bb83a86a">udt_core</a>
-, <a class="el" href="enumsocket__manager.html#a8197a1ce02053193c35cb4d54f3f2d83">socket_manager</a>
-, <a class="el" href="enumclient__manager.html#ae139953fb2df209f65060ce9edb64030">client_manager</a>
-, <a class="el" href="enumserver__manager.html#a984d8c0a02fe146a153c5d80229d3897">server_manager</a>
-, <a class="el" href="enumconfigure.html#ad58f3c59c096c51806c155767cc0251e">configure</a>
+: <a class="el" href="enumconfigure.html#ab42b722e2443763264d0250642b093d5">configure</a>
+, <a class="el" href="enumudt__interface.html#a4313e1eddddc1007eaefa1673fff93b4">udt_interface</a>
+, <a class="el" href="enumlisten.html#a1b3ffba14b425665e4fa2c9ebfe08c66">listen</a>
+, <a class="el" href="enumconnect.html#a99fc09137434a2ff283aa31cd983a247">connect</a>
+, <a class="el" href="enumudt__core.html#a15ae9e3796089ee4fca6e2ff19eb9205">udt_core</a>
+</li>
+<li>Res_Connect_o
+: <a class="el" href="enum_server_manager.html#aa764a21ddae7301b8d1461525d2057e5">ServerManager</a>
+, <a class="el" href="enum_socket_manager.html#a026728678009865c6b43bb64c57d8ded">SocketManager</a>
+, <a class="el" href="enum_client_manager.html#a671e94eb477d3f112ac46dd504f90e16">ClientManager</a>
+</li>
+<li>retransmit_offset_i
+: <a class="el" href="enum_snd_buffer_manager.html#aca12a140000bb5c5f2656a74f777e2cf">SndBufferManager</a>
+</li>
+<li>retransmit_ready_o
+: <a class="el" href="enum_snd_buffer_manager.html#a444f6f694dceca6d7517be6bc345a8ff">SndBufferManager</a>
+</li>
+<li>retransmit_tdata_o
+: <a class="el" href="enum_snd_buffer_manager.html#ae2d314e2dc1e4ce778690bac5ace12dd">SndBufferManager</a>
+</li>
+<li>retransmit_tkeep_o
+: <a class="el" href="enum_snd_buffer_manager.html#ae26909fada9f8a6ceb690f0df5440f20">SndBufferManager</a>
+</li>
+<li>retransmit_tlast_o
+: <a class="el" href="enum_snd_buffer_manager.html#ae6f19c41573abf2f57f6e5bdc9814f91">SndBufferManager</a>
+</li>
+<li>retransmit_tready_i
+: <a class="el" href="enum_snd_buffer_manager.html#a99fccf51af362c6d6540a9ab93d80823">SndBufferManager</a>
+</li>
+<li>retransmit_tvalid_o
+: <a class="el" href="enum_snd_buffer_manager.html#aabe8f8b874d06cb3e4da5b2902f1b57a">SndBufferManager</a>
+</li>
+<li>retransmit_valid_i
+: <a class="el" href="enum_snd_buffer_manager.html#aa1907630caa19a697525f89e21b92d47">SndBufferManager</a>
+</li>
+<li>REV_BUFFER_EMPTY_i
+: <a class="el" href="enum_process_close.html#a1aea38f3336e7c5e59a0e7537c99386f">ProcessClose</a>
 </li>
 <li>Rev_Buffer_Size
-: <a class="el" href="enumserver__manager.html#a22a968ba4f99a31f7021b43aeb7b1aa2">server_manager</a>
-, <a class="el" href="enumudt__interface.html#aaebde08549d89eb345a52371d9415381">udt_interface</a>
-, <a class="el" href="enumconfigure.html#ad133cc4b9ade3762e34e39977ad5473b">configure</a>
-, <a class="el" href="enumudt__core.html#ad005b9a823e05161822a1d4ecec9306d">udt_core</a>
-, <a class="el" href="enumsocket__manager.html#a44a64ff596e9cde17bae700d8d8b66bd">socket_manager</a>
-, <a class="el" href="enumclient__manager.html#a06684414940a62aa6d5698e168746460">client_manager</a>
+: <a class="el" href="enumconfigure.html#a81280b41b3b03d582605239244eb5bf7">configure</a>
+, <a class="el" href="enumconnect.html#ab708c056662e290052ddfe42cb56bac8">connect</a>
+, <a class="el" href="enumudt__interface.html#a8f137c9a8e96148074078da23287e750">udt_interface</a>
+, <a class="el" href="enumlisten.html#aa7fc0f9c59a691876701074250dc4e6c">listen</a>
+, <a class="el" href="enumudt__core.html#abc7d0c8375219f1c8a771e3e98769201">udt_core</a>
+</li>
+<li>Rev_Buffer_Size_i
+: <a class="el" href="enum_socket_manager.html#a59796b60a816361cf595dbdf6c16da39">SocketManager</a>
+, <a class="el" href="enum_client_manager.html#a99fef42185d1449ed577d785a919d01d">ClientManager</a>
+, <a class="el" href="enum_server_manager.html#aff499eb2c67aaa196b9343fd11acf5c4">ServerManager</a>
 </li>
 <li>RRT
-: <a class="el" href="enumclient__manager.html#afc75ef1ef834b7035585c1f8e570dbb4">client_manager</a>
-, <a class="el" href="enumserver__manager.html#a46fe6eeee22a259b54a2dbc1d1083533">server_manager</a>
-, <a class="el" href="enumsocket__manager.html#ac5bc542014fd2b4b4b5d83ef90d0cf82">socket_manager</a>
+: <a class="el" href="enumconnect.html#adf8340a0309cf6036bf03c3b3b0d1288">connect</a>
+, <a class="el" href="enumlisten.html#a59b6441f36c071e2884642947300bcf8">listen</a>
+, <a class="el" href="enumudt__core.html#ad0f8253cba9fbd105ea1bc0a20cbf327">udt_core</a>
+</li>
+<li>RRT_o
+: <a class="el" href="enum_server_manager.html#aca108eaa28c25470667c5d83f2ebbd9a">ServerManager</a>
+, <a class="el" href="enum_client_manager.html#ac0d8cfeadf17e7eae0eefe52013bb018">ClientManager</a>
+, <a class="el" href="enum_socket_manager.html#a71d6de2e660e8d20d723585a2160c86d">SocketManager</a>
+</li>
+<li>RTT
+: <a class="el" href="enum_a_c_ktimer.html#a938cf475c2a3145fee52bd909dd358d9">ACKtimer</a>
+</li>
+<li>RTT_i
+: <a class="el" href="enum_a_c_ktimer.html#a00eeaeb4e450e42e3f8a71417b4a0bb3">ACKtimer</a>
+</li>
+<li>RTT_o
+: <a class="el" href="enum_a_c_k_windows.html#a80dfb747809857e2da38ee83d7f9add6">ACKWindows</a>
+</li>
+<li>RTT_ready_i
+: <a class="el" href="enum_a_c_k_windows.html#a836a0c62b0e0acb86ad55c09db74cc24">ACKWindows</a>
+</li>
+<li>RTT_valid_o
+: <a class="el" href="enum_a_c_k_windows.html#a82e1f42499d426f29035b3835a0fc32b">ACKWindows</a>
 </li>
 <li>RTTVar
-: <a class="el" href="enumserver__manager.html#ae432c293af5b0eddaaec14e800399ee5">server_manager</a>
-, <a class="el" href="enumclient__manager.html#ae24077abec823e275783a6856780d0b6">client_manager</a>
-, <a class="el" href="enumsocket__manager.html#aeda8823c4a6cfce775ced87bc7ef6027">socket_manager</a>
+: <a class="el" href="enumlisten.html#aafcb835ab8864c510afc95851f568a7f">listen</a>
+, <a class="el" href="enumudt__core.html#a43d93483776163bfc4295357e9d2c5fd">udt_core</a>
+, <a class="el" href="enumconnect.html#a45bb0cd5948aa809e65265d54fd52c42">connect</a>
+</li>
+<li>RTTVar_o
+: <a class="el" href="enum_client_manager.html#a54ab5ae3b132d9bd1df16be1321ea63e">ClientManager</a>
+, <a class="el" href="enum_socket_manager.html#afa7e61fc3c58cd13f12574778ee725e7">SocketManager</a>
+, <a class="el" href="enum_server_manager.html#ac47f503792d5a490f2a7f64219f8ccae">ServerManager</a>
 </li>
 <li>rx_axis_aclk
-: <a class="el" href="enumudt__interface.html#a2b867319c744335a4d45d5ede081793e">udt_interface</a>
+: <a class="el" href="enumudt__interface.html#a37cf63009ce912a677756d5f3d40c917">udt_interface</a>
 </li>
 <li>rx_axis_aresetn
-: <a class="el" href="enumudt__interface.html#a900c2a1d36cdf064db3cd316e300a476">udt_interface</a>
+: <a class="el" href="enumudt__interface.html#ae5e35aeb2f5708eb0a08da960b8b7572">udt_interface</a>
 </li>
 <li>rx_axis_tdata
-: <a class="el" href="enumudt__core.html#a4421ae0894c59569b247b6955c3ac277">udt_core</a>
-, <a class="el" href="enumudt__interface.html#a9f43fb7621da6026338cd03f8dfd3c43">udt_interface</a>
+: <a class="el" href="enumudt__interface.html#a31b600f15765f3f89d6eb1cc87b8c11e">udt_interface</a>
+, <a class="el" href="enumudt__core.html#a44612e3f085a828e6c0cc9badc9cc2cb">udt_core</a>
 </li>
 <li>rx_axis_tkeep
-: <a class="el" href="enumudt__core.html#af6bda691ec5bdea580ae859f2f87f3e9">udt_core</a>
-, <a class="el" href="enumudt__interface.html#aa15ce7bacf110ef52e9dcc0f1f735ccd">udt_interface</a>
+: <a class="el" href="enumudt__core.html#ac31505599e0dd18152d1e0f0b40e6569">udt_core</a>
+, <a class="el" href="enumudt__interface.html#a6e60406b59f2df5e73dba4e01f343a2c">udt_interface</a>
 </li>
 <li>rx_axis_tlast
-: <a class="el" href="enumudt__core.html#a41dc6f6376d3fffa49f0f4f48c601660">udt_core</a>
-, <a class="el" href="enumudt__interface.html#a9787c97f5213a45e9716857ab4453bd4">udt_interface</a>
+: <a class="el" href="enumudt__interface.html#a6fb020bba6c9689ebf4e5e5f306cac72">udt_interface</a>
+, <a class="el" href="enumudt__core.html#a530a2d8255f5df9e01076a938e1ea500">udt_core</a>
 </li>
 <li>rx_axis_tready
-: <a class="el" href="enumudt__core.html#a5257468ba4dbd3ce87fe367e992f57de">udt_core</a>
-, <a class="el" href="enumudt__interface.html#a107227212d93649d538b0c62d7f05fec">udt_interface</a>
+: <a class="el" href="enumudt__interface.html#a2bd99c19a56610676f8b99415a179c31">udt_interface</a>
+, <a class="el" href="enumudt__core.html#a9eaa126add241afc28b00741db1348dd">udt_core</a>
 </li>
 <li>rx_axis_tvalid
-: <a class="el" href="enumudt__core.html#a0e719cf45ce12d06326e9321c51032b7">udt_core</a>
-, <a class="el" href="enumudt__interface.html#ac15b79889baf337d7442e998dc775254">udt_interface</a>
+: <a class="el" href="enumudt__core.html#a9dff7935dc8860748115914802ad7537">udt_core</a>
+, <a class="el" href="enumudt__interface.html#a5a0bacaf2d4ddc82783103e164c2477a">udt_interface</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 8日 星期三 14:04:52 , 为 UDT project使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 30日 星期四 16:10:01 , 为 UDT project使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>

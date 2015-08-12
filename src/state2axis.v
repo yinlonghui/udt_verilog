@@ -33,7 +33,7 @@ begin
 	begin
 		reg_state <= 0 ;
 	end	else begin
-		if(tx_axis_tvalid == tx_axis_tready)
+		if(tx_axis_tvalid_i == tx_axis_tready_i)
 			reg_state <= 1 ;
 		else	if(tx_axis_tlast)
 			reg_state <= 0 ;

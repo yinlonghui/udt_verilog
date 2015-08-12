@@ -26,12 +26,18 @@ module    configure #(
 		parameter	DEFAULT_SND_BUFFER_SIZE	=	8192 ,
 		parameter	DEFAULT_REV_BUFFER_SIZE =   8192 ,
 		parameter	DEFAULT_FLIGHT_FLAG_SIZE =	256000,
+		parameter	MAX_MSSize	= 8000	,
+		parameter	MAX_MEMORY_SIZE	=   1024*1024 ,
 		parameter	DEFAULT_INIT_SEQ	=	0	,
-		parameter	MAX_DDR3_SIZE	 =	1024*1024*1024*8 ,
-		parameter	MAX_MSSize	= 8000	
+		parameter	INIT_STATE	=	32'h0000_0000 ,
+		parameter	CONNECTING	=	32'h0000_0001 ,
+		parameter	CONNECTED	=	32'h0000_0010 ,
+		parameter	CLOSING	=	32'h0000_0100	,
+		parameter	CLOSED	=	32'h0000_1000	
+	
 )(
-	input	ctrl_s_axi_aclk,							//% 用户-时钟信号
-	input   ctrl_s_axi_aresetn,							//% 用户-复位信号
+	input	ctrl_s_axi_aclk,							//% 用户-时钟信号(100Mhz)
+	input   ctrl_s_axi_aresetn,							//% 用户-复位信号(低信号复位)
 	input	[31:0]	ctrl_s_axi_awaddr,					//%	用户-写地址信号
 	input	ctrl_s_axi_awvalid,							//% 用户-写地址有效
 	output	ctrl_s_axi_awready,							//%	用户-写地址就绪
@@ -49,25 +55,178 @@ module    configure #(
 	output	[1:0]	ctrl_s_axi_rresp,					//%	用户-读数据应答
 	output	ctrl_s_axi_rvalid,							//%	用户-读数据有效
 	input	ctrl_s_axi_rready,							//%	用户-读数据就绪
-
-
-	input	core_clk,									//%	核心模块时钟
-	input	core_rst_n,									//%	核心模块复位(低信号复位)	
+	
 	input	[31:0]	udt_state ,							//%	连接状态
 	input	state_valid,								//%	连接状态有效
-	output	state_ready,								//%	连接状态就绪
-	output	Req_Connect ,								//%	连接请求
+	output	reg	state_ready,							//%	连接状态就绪
+	
+	
+	output	reg	Req_Connect ,							//%	连接请求
 	input	Res_Connect ,								//% 连接回应
-	output	Req_Close	,								//%	关闭请求
+	
+	output	reg	Req_Close	,							//%	关闭请求
 	input	Res_Close	,								//%	关闭回应
-	output	[31:0]	Snd_Buffer_Size ,					//%	发送buffer大小
-	output	[31:0]	Rev_Buffer_Size	,					//%	接收buffer大小
-	output	[31:0]	FlightFlagSize ,					//%	最大流量窗口大小
-	output	[31:0]	MSSize								//%	最大包大小
+	
+	output	reg	user_closed	,							//%	关闭信号
+	output	reg	user_valid	,							//%	关闭信号有效
+	input	user_ready	,								//%	关闭信号就绪
+	
+	
+	output	reg	[31:0]	Snd_Buffer_Size ,					//%	发送buffer大小
+	output	reg	[31:0]	Rev_Buffer_Size	,					//%	接收buffer大小
+	output	reg [31:0]	 FlightFlagSize ,					//%	最大流量窗口大小
+	output	reg [31:0]	MSSize	,							//%	最大包大小
+	output	reg	[31:0]	INIT_SEQ							//%	初始化序列号
 
 );
 /*			(Snd_Buffer_Size +   Snd_Buffer_Size)*MSSize +   2*m_iFlightFlagSize*sizeof(list) < DEFAULT_FLIGHT_FLAG_SIZE */
 
 
+
+
+
+reg	[31:0]	CTRL_state_reg ;
+
+parameter	RIGHT_INIT		= 32'h0000_0000 ;
+parameter	OUT_SND_BUFFER 	= 32'h0000_0001 ;
+parameter	OUT_REV_BUFFER 	= 32'h0000_0002 ;
+parameter	OUT_FLIGHT_SIZE = 32'h0000_0003 ;
+parameter	OUT_MMSIZE		= 32'h0000_0004 ;
+parameter	INIT_ERR_OPEN	= 32'h0000_0005 ;
+parameter	INIT_ERR_CLOSE	= 32'h0000_0006 ;
+parameter	REPEAT_OPEN		= 32'h0000_0007 ;
+parameter	REPEAT_CLOSE	= 32'h0000_0008 ;
+parameter	UNOPEN_CLOSE	= 32'h0000_0009 ;
+
+
+integer	CTRL_State , CTRL_Next_State ;
+
+
+localparam	CTRL_IDLE = 1 , CTRL_INIT  = 2 , CTRL_CONNECT = 3, CTRL_SND_BUFFER  = 4 , CTRL_REV_BUFFER = 5 , CTRL_FLIGHT_SIZE = 6 ,
+			CTRL_MSSIZE = 7 ,  CTRL_INIT_SEQ = 8 , CTRL_CLOSE  = 9 , READ_REG = 10 , LOAD_STATE = 11 ;
+
+always@(posedge	ctrl_s_axi_aclk or negedge	ctrl_s_axi_aresetn)
+begin
+	if(!ctrl_s_axi_aresetn)
+		CTRL_State <=  CTRL_IDLE ;
+	else
+		CTRL_State <=  CTRL_Next_State ;
+end
+
+always@(*)
+begin
+	case(CTRL_State)
+	
+		CTRL_IDLE:
+		begin
+			if(ctrl_s_axi_awvalid)
+				CTRL_Next_State = CTRL_INIT ;
+			else
+				CTRL_Next_State = CTRL_IDLE	;
+		end
+		CTRL_INIT:
+		begin
+			if(ctrl_s_axi_awvalid) 
+			begin
+				if(ctrl_s_axi_awaddr == 32'h0000_0000)
+					CTRL_Next_State = CTRL_CONNECT ;
+				else	if(ctrl_s_axi_awaddr == 32'h0000_0001)
+					CTRL_Next_State = CTRL_SND_BUFFER ;
+				else	if(ctrl_s_axi_awaddr == 32'h0000_0002)
+					CTRL_Next_State = CTRL_REV_BUFFER ;
+				else	if(ctrl_s_axi_awaddr == 32'h0000_0003)
+					CTRL_Next_State = CTRL_FLIGHT_SIZE ;
+				else	if(ctrl_s_axi_awaddr == 32'h0000_0004)
+					CTRL_Next_State = CTRL_MSSIZE:
+				else	if(ctrl_s_axi_awaddr == 32'h0000_0005)
+					CTRL_Next_State = CTRL_INIT_SEQ ;
+				else	if(ctrl_s_axi_awaddr == 32'h0000_0006)
+					CTRL_Next_State = CTRL_CLOSE ;
+				else	if(ctrl_s_axi_awaddr == 32'h0000_0007)
+					CTRL_Next_State = READ_REG	;	
+				else
+					CTRL_Next_State =   CTRL_INIT ;
+			end
+			else
+					CTRL_Next_State =   CTRL_INIT ;
+		end
+		
+		CTRL_CONNECT:
+		begin
+			if(Res_Connect == 1)  //  ||  valid connect 
+				CTRL_Next_State =   CTRL_INIT ;
+			else
+				CTRL_Next_State = CTRL_CONNECT ;		
+		end
+		CTRL_SND_BUFFER:
+		begin
+			CTRL_Next_State <=  CTRL_INIT ;
+		end
+		CTRL_REV_BUFFER:
+		begin
+			CTRL_Next_State <=  CTRL_INIT ;
+		end
+		CTRL_FLIGHT_SIZE:
+		begin
+			CTRL_Next_State <=  CTRL_INIT ;
+		end
+		CTRL_MSSIZE:
+		begin
+			CTRL_Next_State <=  CTRL_INIT ;
+		end
+		CTRL_INIT_SEQ:
+		begin
+			CTRL_Next_State <=  CTRL_INIT ;
+		end
+		CTRL_CLOSE:
+		begin
+			if(Res_Close) //   ||  valid close
+				CTRL_Next_State <= CTRL_INIT ;
+			else
+				CTRL_Next_State <=	CTRL_CLOSE ;
+		end
+		READ_REG:
+		begin
+			CTRL_Next_State <=  CTRL_INIT ;
+		end
+		LOAD_STATE:
+		begin
+			CTRL_Next_State <=  CTRL_INIT ;
+		end
+
+	default:
+	begin
+		CTRL_Next_State = 'bx ;
+	end
+end
+
+
+
+
+
+always@(posedge ctrl_s_axi_aclk or negedge ctrl_s_axi_aresetn)
+begin
+	if(!ctrl_s_axi_aresetn)	begin
+		
+		Snd_Buffer_Size <=  DEFAULT_SND_BUFFER_SIZE ;
+		Rev_Buffer_Size <=  DEFAULT_REV_BUFFER_SIZE ;
+		FlightFlagSize  <=  DEFAULT_FLIGHT_FLAG_SIZE ;
+		MSSize	<=   MAX_MSSize ;
+		INIT_SEQ <= DEFAULT_INIT_SEQ  ;
+		CTRL_state_reg <= RIGHT_INIT ;
+	end
+	else
+		case(CTRL_Next_State)
+		begin
+			
+		end
+		
+		
+		
+		endcase
+	end
+	
+
+end
 
 endmodule

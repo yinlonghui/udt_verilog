@@ -85,10 +85,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="title">ProcessNAK.v</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_process_n_a_k_8v.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div><!-- fragment --></div><!-- contents -->
+<a href="_process_n_a_k_8v.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="code" href="enum_process_n_a_k.html">   11</a></span>&#160;<span class="vhdlkeyword">module</span>  <a class="code" href="enum_process_n_a_k.html">ProcessNAK</a>(</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="enum_process_n_a_k.html#abc9602bdfc673095fdf85eb9d65979ac">   12</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enum_process_n_a_k.html#abc9602bdfc673095fdf85eb9d65979ac">core_clk</a>,                                                       </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="code" href="enum_process_n_a_k.html#a71e0ddb578723126a3fbb07e8f29d2f5">   13</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enum_process_n_a_k.html#a71e0ddb578723126a3fbb07e8f29d2f5">core_rst_n</a>,                                                     </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="code" href="enum_process_n_a_k.html#a18127d50979153328093dc28717fb6af">   14</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">63</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enum_process_n_a_k.html#a18127d50979153328093dc28717fb6af">NAK_tdata</a> ,                                     </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="enum_process_n_a_k.html#aca20dead84c929db4f441f3e7b0fb01c">   15</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">7</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enum_process_n_a_k.html#aca20dead84c929db4f441f3e7b0fb01c">NAK_tkeep</a> ,                                     </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="enum_process_n_a_k.html#a0602e441909d9bfe07ec1858ee796e2f">   16</a></span>&#160;        <span class="vhdlkeyword">input</span>                   <a class="code" href="enum_process_n_a_k.html#a0602e441909d9bfe07ec1858ee796e2f">NAK_tvalid</a>,                                     </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="enum_process_n_a_k.html#a46d66862f1bb7c9f4fd385b08b054bd5">   17</a></span>&#160;        <span class="vhdlkeyword">output</span>                  <a class="code" href="enum_process_n_a_k.html#a46d66862f1bb7c9f4fd385b08b054bd5">NAK_tready</a>,                                     </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="enum_process_n_a_k.html#adf2cb365501d001cceb9100a6db75e79">   18</a></span>&#160;        <span class="vhdlkeyword">input</span>                   <a class="code" href="enum_process_n_a_k.html#adf2cb365501d001cceb9100a6db75e79">NAK_tlast</a>                                       </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="vhdlkeyword">endmodule</span></div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 8日 星期三 14:04:52 , 为 UDT project使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 30日 星期四 16:10:00 , 为 UDT project使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1
 </small></address>

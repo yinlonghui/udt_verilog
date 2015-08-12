@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>UDT project: src/connect.v 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">UDT project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="annotated.html"><span>Design&#160;Unit&#160;List</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">connect.v</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="connect_8v.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="enumconnect.html">   51</a></span>&#160;<span class="vhdlkeyword">module</span>  <a class="code" href="enumconnect.html">connect</a>(</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="enumconnect.html#af9e85b570b0855292428a6d84c5703ce">   52</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconnect.html#af9e85b570b0855292428a6d84c5703ce">core_clk</a>,                                                                       </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="enumconnect.html#a93ddf594c2ba7ecb47800891baaaaca0">   53</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconnect.html#a93ddf594c2ba7ecb47800891baaaaca0">core_rst_n</a>,                                                                     </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="enumconnect.html#a597927f5f873f5075b82c1e618dce353">   54</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">63</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a597927f5f873f5075b82c1e618dce353">handshake_tdata</a> ,                                       </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="enumconnect.html#ab0d70d978263b5a00358a7c722947348">   55</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">7</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enumconnect.html#ab0d70d978263b5a00358a7c722947348">handshake_tkeep</a> ,                                       </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="code" href="enumconnect.html#a0efd46dbd55cb97e96df8b53421026b1">   56</a></span>&#160;        <span class="vhdlkeyword">input</span>                   <a class="code" href="enumconnect.html#a0efd46dbd55cb97e96df8b53421026b1">handshake_tvalid</a>,                                       </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="enumconnect.html#a79ea74fc66978b932a6c45c63f8ce45c">   57</a></span>&#160;        <span class="vhdlkeyword">output</span>                  <a class="code" href="enumconnect.html#a79ea74fc66978b932a6c45c63f8ce45c">handshake_tready</a>,                                       </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="code" href="enumconnect.html#ac71dc507d00417dc82f289fdfdf62fd2">   58</a></span>&#160;        <span class="vhdlkeyword">input</span>                   <a class="code" href="enumconnect.html#ac71dc507d00417dc82f289fdfdf62fd2">handshake_tlast</a> ,                                       </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="enumconnect.html#aa3580e935f00d7021610d15f2abbaca0">   59</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconnect.html#aa3580e935f00d7021610d15f2abbaca0">Req_Connect</a> ,                                                           </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="enumconnect.html#a99fc09137434a2ff283aa31cd983a247">   60</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconnect.html#a99fc09137434a2ff283aa31cd983a247">Res_Connect</a> ,                                                           </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="enumconnect.html#a6c1302038a9344083ac1f045f67ae57a">   61</a></span>&#160;        <span class="vhdlkeyword">input</span>   <a class="code" href="enumconnect.html#a6c1302038a9344083ac1f045f67ae57a">Req_Close</a>       ,                                                               </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="enumconnect.html#a58c6c726e55d47d9f3278bfd242d5581">   62</a></span>&#160;        <span class="vhdlkeyword">output</span>  <a class="code" href="enumconnect.html#a58c6c726e55d47d9f3278bfd242d5581">Res_Close</a>       ,                                                               </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="enumconnect.html#a21354abb34a9573cd4965771d54fce5a">   63</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a21354abb34a9573cd4965771d54fce5a">Snd_Buffer_Size</a> ,                                       </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="enumconnect.html#ab708c056662e290052ddfe42cb56bac8">   64</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#ab708c056662e290052ddfe42cb56bac8">Rev_Buffer_Size</a> ,                                       </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="enumconnect.html#a148f016155faa33eab203136b6b63f97">   65</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a148f016155faa33eab203136b6b63f97">FlightFlagSize</a> ,                                        </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="enumconnect.html#ae8ed59c0dcb0fa748ad56719cae374c9">   66</a></span>&#160;        <span class="vhdlkeyword">input</span>   [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#ae8ed59c0dcb0fa748ad56719cae374c9">MSSize</a>,                                                         </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="code" href="enumconnect.html#a8708807f4ee6712009fb6844572b8e49">   67</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a8708807f4ee6712009fb6844572b8e49">Max_PktSize</a> ,                                           </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="enumconnect.html#ab78287d5953de7b39306d361ecc904da">   68</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#ab78287d5953de7b39306d361ecc904da">Max_PayloadSize</a> ,                                       </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="code" href="enumconnect.html#a61fe55b341b405578db2a95e262dab89">   69</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a61fe55b341b405578db2a95e262dab89">Expiration_counter</a> ,                            </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="code" href="enumconnect.html#a58fdf8560d60b02e35b8a7fbc23c2227">   70</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a58fdf8560d60b02e35b8a7fbc23c2227">Bandwidth</a> ,                                                     </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="code" href="enumconnect.html#a21894625a980c86b39e83d52265d5a38">   71</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a21894625a980c86b39e83d52265d5a38">DeliveryRate</a> ,                                          </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="code" href="enumconnect.html#a306e1e4058f30c7c4f56050b527e8a0d">   72</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a306e1e4058f30c7c4f56050b527e8a0d">AckSeqNo</a> ,                                                      </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="code" href="enumconnect.html#a41a610e48c9c3f8bd3e4668c1e075a90">   73</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a41a610e48c9c3f8bd3e4668c1e075a90">LastAckTime</a> ,                                           </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="code" href="enumconnect.html#abf7038f841874d68bb9bf2ddc34e353e">   74</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#abf7038f841874d68bb9bf2ddc34e353e">SYNInterval</a> ,                                           </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="code" href="enumconnect.html#adf8340a0309cf6036bf03c3b3b0d1288">   75</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#adf8340a0309cf6036bf03c3b3b0d1288">RRT</a> ,                                                           </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="enumconnect.html#a45bb0cd5948aa809e65265d54fd52c42">   76</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a45bb0cd5948aa809e65265d54fd52c42">RTTVar</a> ,                                                        </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="code" href="enumconnect.html#a59a9102db51cd2d301699474216a9c2f">   77</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a59a9102db51cd2d301699474216a9c2f">MinNakInt</a>,                                                      </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="code" href="enumconnect.html#aab97c9a65cdbb20b72f4dc4dd45db78e">   78</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#aab97c9a65cdbb20b72f4dc4dd45db78e">MinExpInt</a>,                                                      </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="code" href="enumconnect.html#a96a1220c128b630e281a9f3db0628cce">   79</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a96a1220c128b630e281a9f3db0628cce">ACKInt</a>,                                                         </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="code" href="enumconnect.html#a85cca78fcecdd703d25ec9d523ddd16c">   80</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a85cca78fcecdd703d25ec9d523ddd16c">NAKInt</a>,                                                         </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="code" href="enumconnect.html#a7291b2a730c22ab1f770fb3405ada5bf">   81</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a7291b2a730c22ab1f770fb3405ada5bf">PktCount</a>,                                                       </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="code" href="enumconnect.html#ad3f3853641e22f3fa15237fcb8729c7c">   82</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#ad3f3853641e22f3fa15237fcb8729c7c">LightACKCount</a> ,                                         </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="code" href="enumconnect.html#a3d7f095328dd15ad3381478ed45101c9">   83</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a3d7f095328dd15ad3381478ed45101c9">TargetTime</a> ,                                            </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="code" href="enumconnect.html#acecf0ce344c67f749396d9298a3d14ae">   84</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#acecf0ce344c67f749396d9298a3d14ae">TimeDiff</a>,                                                       </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="code" href="enumconnect.html#a56c033146a1809d1a887cb4b6511757d">   86</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a56c033146a1809d1a887cb4b6511757d">PeerISN</a> ,                                                       </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="code" href="enumconnect.html#afe27a19ff9757b113c7554c9cb53a4b6">   87</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#afe27a19ff9757b113c7554c9cb53a4b6">RcvLastAck</a> ,                                            </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="code" href="enumconnect.html#af5478b5e75307a635d05bdf133f6e898">   88</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#af5478b5e75307a635d05bdf133f6e898">RcvLastAckAck</a> ,                                         </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="code" href="enumconnect.html#acd2e6f00406415f5b35616e419722cd8">   89</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#acd2e6f00406415f5b35616e419722cd8">RcvCurrSeqNo</a> ,                                          </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="code" href="enumconnect.html#ab1694c50359c9b3d96548cff59f6a278">   90</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#ab1694c50359c9b3d96548cff59f6a278">LastDecSeq</a>  ,                                           </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="code" href="enumconnect.html#acd6d7512f6b099e4299eb67d7bf1f9b9">   91</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#acd6d7512f6b099e4299eb67d7bf1f9b9">SndLastAck</a>  ,                                           </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="code" href="enumconnect.html#a5fdef76c5e7cc9ea5845fdbe4524c620">   92</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a5fdef76c5e7cc9ea5845fdbe4524c620">SndLastDataAck</a> ,                                        </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="code" href="enumconnect.html#af6d87c143de1037fddf19a4046a73f2d">   93</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#af6d87c143de1037fddf19a4046a73f2d">SndCurrSeqNo</a> ,                                          </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="code" href="enumconnect.html#a05829e31181bad058798066397245481">   94</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a05829e31181bad058798066397245481">SndLastAck2</a>  ,                                          </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="code" href="enumconnect.html#a2699a7aaf5a0e5876648677b2e661636">   95</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a2699a7aaf5a0e5876648677b2e661636">SndLastAck2Time</a> ,                                       </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="code" href="enumconnect.html#a8e0c1cf836cc64f73a12e7d85d0a9402">   96</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a8e0c1cf836cc64f73a12e7d85d0a9402">FlowWindowSize</a> ,                                                </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        </div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="code" href="enumconnect.html#afa3787e3ca24831bd5845df60d606216">   98</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#afa3787e3ca24831bd5845df60d606216">LastRspTime</a>,                                            </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="code" href="enumconnect.html#a094b28d30c05420a70c3b7bec4f43ceb">   99</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a094b28d30c05420a70c3b7bec4f43ceb">NextACKTime</a>,                                            </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="code" href="enumconnect.html#a61b1577807225cf43a91a673cad954bb">  100</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">31</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a61b1577807225cf43a91a673cad954bb">NextNACKtime</a>,                                           </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="code" href="enumconnect.html#a79f712e4f4190e8c64dcb041b1976673">  102</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">63</span>:<span class="vhdllogic">0</span>]  <a class="code" href="enumconnect.html#a79f712e4f4190e8c64dcb041b1976673">req_tdata</a>       ,                                               </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="code" href="enumconnect.html#a72346230765fb9e2548c277b93b3b999">  103</a></span>&#160;        <span class="vhdlkeyword">output</span>  [<span class="vhdllogic">7</span>:<span class="vhdllogic">0</span>]   <a class="code" href="enumconnect.html#a72346230765fb9e2548c277b93b3b999">req_tkeep</a>       ,                                               </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="code" href="enumconnect.html#ab6537c08637e742fe59782e2088a291a">  104</a></span>&#160;        <span class="vhdlkeyword">output</span>                  <a class="code" href="enumconnect.html#ab6537c08637e742fe59782e2088a291a">req_tvalid</a>      ,                                               </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="code" href="enumconnect.html#af38239efd24413fc245d0c43f47c0b07">  105</a></span>&#160;        <span class="vhdlkeyword">input</span>                   <a class="code" href="enumconnect.html#af38239efd24413fc245d0c43f47c0b07">req_tready</a>      ,                                               </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="code" href="enumconnect.html#a7416fe8d606860bbdfb7efdbe46eb015">  106</a></span>&#160;        <span class="vhdlkeyword">input</span>                   <a class="code" href="enumconnect.html#a7416fe8d606860bbdfb7efdbe46eb015">req_tlast</a>                                                       </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="vhdlkeyword">endmodule</span></div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 30日 星期四 16:10:00 , 为 UDT project使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1
+</small></address>
+</body>
+</html>
