@@ -6,12 +6,12 @@
 
 
 module	SocketManager #(
-	parameter   LISTENING  =  8'b0000_0001 ,                 
-	parameter	CONNECTING =  8'b0000_0010 ,			
-	parameter   CONNECTED  =  8'b0000_0100 ,                  
-    parameter	CLOSING    =  8'b0000_1000 ,                    
-	parameter	SHUTDOWN   =  8'b0001_0000 ,                   
-	parameter	BROCKEN    =  8'b0010_0000 ,                                  
+	parameter	INIT_STATE	=	32'h0000_0000 ,
+	parameter	CONNECTING	=	32'h0000_0001 ,
+	parameter	CONNECTED	=	32'h0000_0010 ,
+	parameter	CLOSING		=	32'h0000_0100	,
+	parameter	CLOSED		=	32'h0000_1000	
+                                
 	parameter	TPYE	=	"SERVER"  // SOCK管理器类型
 )
 (
