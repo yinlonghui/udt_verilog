@@ -2,14 +2,15 @@
 
 module	test_top;
 parameter   TEST_NUM    =   32'd3 ;
-wire    [2:0]	finish ;
-wire    [2:0]     err ;
+wire    [3:0]	finish ;
+wire    [3:0]     err ;
 logic	clk ;
 logic	clk_156 ;
 
 configure_top	dut1(clk ,finish[0],err[0]);
 udt_top_test	dut2(clk , clk_156 ,finish[1],err[1]);
 decode_top      dut3(clk,  finish[2]    ,   err[2]);
+listen_top		dut4(clk,  finish[3]    ,   err[3]);
 
 localparam  ONE_NS      = 1000;
 localparam  PER = 5*ONE_NS; 
@@ -28,7 +29,7 @@ end
 initial
 begin
 #(PER*1000) ;
-while( finish != 3'b111 &&  err == 3'b000) begin
+while( finish != 4'b1111 &&  err == 4'b0000) begin
 	@(posedge   clk);
 end
 $finish ; 

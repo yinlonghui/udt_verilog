@@ -1,21 +1,21 @@
-ï»¿//%	@file	listen.v
-//%	@brief	æœ¬æ–‡ä»¶å®šä¹‰listenæ¨¡å—
+//%	@file	listen.v
+//%	@brief	±¾ÎÄ¼ş¶¨ÒålistenÄ£¿é
 
 
 
-//%	æœ¬æ¨¡å—æ˜¯ç®¡ç†SERVERç«¯çš„SOCKETçš„é“¾æ¥å’Œå‚æ•°åˆå§‹åŒ–çš„æ¨¡å—
+//%	±¾Ä£¿éÊÇ¹ÜÀíSERVER¶ËµÄSOCKETµÄÁ´½ÓºÍ²ÎÊı³õÊ¼»¯µÄÄ£¿é
 //%	@details
-//%		ServerManageråŠŸèƒ½å¦‚ä¸‹ï¼š
-//%		1ã€è¿æ¥CLIENTç«¯ï¼Œè¿›è¡Œé€šä¿¡ï¼Œé€šè¿‡configureæ¨¡å—åˆ›å»ºå¥—æ¥å­—,ç›‘å¬CLIENTç«¯ï¼Œä¸‰æ¬¡æ¡æ‰‹é€šä¿¡åå»ºç«‹è¿æ¥ã€‚
-//%		2ã€å…³é—­è¿æ¥
-//%		step1: configureæ¨¡å—é…ç½®å®Œå‚æ•°åï¼Œå‘é€listenè¯·æ±‚ï¼Œå°±å¼€å§‹åˆå§‹åŒ–éƒ¨åˆ†å‚æ•°ï¼š
-//%				Max_PktSize	= MSSize â€“ 28  
-//%				Max_PayloadSize = Max_PktSize â€“ UDTå¤´ 
-//%				Expiration_counter = 1 ; //  ç”¨äºEXP-timer
+//%		ServerManager¹¦ÄÜÈçÏÂ£º
+//%		1¡¢Á¬½ÓCLIENT¶Ë£¬½øĞĞÍ¨ĞÅ£¬Í¨¹ıconfigureÄ£¿é´´½¨Ì×½Ó×Ö,¼àÌıCLIENT¶Ë£¬Èı´ÎÎÕÊÖÍ¨ĞÅºó½¨Á¢Á¬½Ó¡£
+//%		2¡¢¹Ø±ÕÁ¬½Ó
+//%		step1: configureÄ£¿éÅäÖÃÍê²ÎÊıºó£¬·¢ËÍlistenÇëÇó£¬¾Í¿ªÊ¼³õÊ¼»¯²¿·Ö²ÎÊı£º
+//%				Max_PktSize	= MSSize ¨C 28  
+//%				Max_PayloadSize = Max_PktSize ¨C UDTÍ· 
+//%				Expiration_counter = 1 ; //  ÓÃÓÚEXP-timer
 //%				Bandwidth = 1 ;
 //%				DeliveryRate = 16 ;
-//%				AckSeqNo =  0 ï¼› 
-//%				LastAckTime  = 0 ï¼› 
+//%				AckSeqNo =  0 £» 
+//%				LastAckTime  = 0 £» 
 //%				SYNInterval =  10000  us(10ms)  
 //%				RRT	=	SYNInterval * 10;  
 //%				RTTVar =  SYNInterval/2;  
@@ -27,28 +27,28 @@
 //%				LightACKCount  =  1 ; 
 //%				TargetTime	=	0;
 //%				TimeDiff     =    0; 
-//%		step2:	ç­‰å¾…Clientç«¯å‘å‡ºè¯·æ±‚ï¼Œå¾—åˆ°Clientå‘åˆ°çš„æ¡æ‰‹ä¿¡å·åï¼Œæ ¹æ®æœåŠ¡å™¨çš„åœ°å€äº§ç”Ÿä¸€ä¸ªcookieï¼ŒæŠŠpacketçš„destination Socket ID æ”¹ä¸€ä¸‹ï¼Œå‘é€ç»™Serveç«¯ã€‚è¿›å…¥step3
-//%		step3:	ç­‰å¾…Clientç«¯ç»§ç»­å‘å‡ºç¡®è®¤è¯·æ±‚ï¼Œç¡®å®šClientçš„cookieæ˜¯æ ¡éªŒæ­£ç¡®çš„è¿›å…¥step4ï¼Œå¦åˆ™ç»§ç»­è¿›è¡Œstep3ã€‚
-//%		step4:	åˆå§‹åŒ–å…¨å±€å˜é‡
-//%				PeerISN =  res-> INIT_PACKET_SEQ_NUM ;     /*å¯¹ç«¯åˆå§‹åŒ–çš„æ•°æ®åŒ…åºåˆ—å·*/
-//%				RcvLastAck =  res-> INIT_PACKET_SEQ_NUM ;  /*æ¥æ”¶ç«¯ æœ€åå‘é€ACKï¼ˆæ•°æ®åŒ…åºåˆ—å·ï¼‰*/
-//%				RcvLastAckAck = res-> INIT_PACKET_SEQ_NUM ; /*æ¥æ”¶ç«¯ æœ€åå‘é€ACK è¢«ACKçš„ï¼ˆæ•°æ®ï¼‰åºåˆ—å· */
-//%				RcvCurrSeqNo = res-> INIT_PACKET_SEQ_NUM - 1;  /*æœ€å¤§çš„æ¥æ”¶çš„åºåˆ—å·*/
+//%		step2:	µÈ´ıClient¶Ë·¢³öÇëÇó£¬µÃµ½Client·¢µ½µÄÎÕÊÖĞÅºÅºó£¬¸ù¾İ·şÎñÆ÷µÄµØÖ·²úÉúÒ»¸öcookie£¬°ÑpacketµÄdestination Socket ID ¸ÄÒ»ÏÂ£¬·¢ËÍ¸øServe¶Ë¡£½øÈëstep3
+//%		step3:	µÈ´ıClient¶Ë¼ÌĞø·¢³öÈ·ÈÏÇëÇó£¬È·¶¨ClientµÄcookieÊÇĞ£ÑéÕıÈ·µÄ½øÈëstep4£¬·ñÔò¼ÌĞø½øĞĞstep3¡£
+//%		step4:	³õÊ¼»¯È«¾Ö±äÁ¿
+//%				PeerISN =  res-> INIT_PACKET_SEQ_NUM ;     /*¶Ô¶Ë³õÊ¼»¯µÄÊı¾İ°üĞòÁĞºÅ*/
+//%				RcvLastAck =  res-> INIT_PACKET_SEQ_NUM ;  /*½ÓÊÕ¶Ë ×îºó·¢ËÍACK£¨Êı¾İ°üĞòÁĞºÅ£©*/
+//%				RcvLastAckAck = res-> INIT_PACKET_SEQ_NUM ; /*½ÓÊÕ¶Ë ×îºó·¢ËÍACK ±»ACKµÄ£¨Êı¾İ£©ĞòÁĞºÅ */
+//%				RcvCurrSeqNo = res-> INIT_PACKET_SEQ_NUM - 1;  /*×î´óµÄ½ÓÊÕµÄĞòÁĞºÅ*/
 //%				LastDecSeq  =  res-> INIT_PACKET_SEQ_NUM - 1; /* Sequence number sent last decrease occurs */
 //%				SndLastAck  = res-> INIT_PACKET_SEQ_NUM;  /* Last ACK received */
 //%				SndLastDataAck = res-> INIT_PACKET_SEQ_NUM; /* The real last ACK that updates the sender buffer and loss list*/
-//%				SndCurrSeqNo = res-> INIT_PACKET_SEQ_NUM â€“ 1 // The largest sequence number that has been sent
+//%				SndCurrSeqNo = res-> INIT_PACKET_SEQ_NUM ¨C 1 // The largest sequence number that has been sent
 //%				SndLastAck2  =  res-> INIT_PACKET_SEQ_NUM 
 //%				SndLastAck2Time =  curr_time 
 //%				SOCKET_ID  =  socket_id 
 //%				PACKET-> SOCKET_ID =  Res->socket_id 
 //%				m_iReqType  =  -1 
-//%				FlowWindowSize =  res-> MAX_FLOW_WINDOWS_SIZE  [æ­¤ä¸ºSND_LIST_SIZE]
+//%				FlowWindowSize =  res-> MAX_FLOW_WINDOWS_SIZE  [´ËÎªSND_LIST_SIZE]
 //%				MSSize =  res-> MSSize <  MSSize ? res-> MSSize: MSSize ;
-//%				Max_PktSize	= MSSize â€“ 28  				
-//%				Max_PayloadSize = Max_PktSize â€“ UDTå¤´
-//%				åŠä¸€ç³»åˆ—æ‹¥å¡æ§åˆ¶çš„å‚æ•°
-//%		step5:   è‹¥Clientç«¯ç»§ç»­å‘é€è¯·æ±‚æ¡æ‰‹åŒ…ï¼Œåˆ™SERVERç«¯å‘é€ä¸step4ç›¸åŒçš„è¿æ¥æ¡æ‰‹åŒ…ã€‚è‹¥Clientç«¯å‘è¿‡æ¥çš„æ•°æ®ï¼Œåˆ™æ¬¡è¿æ¥å·²ç»å»ºç«‹ï¼Œå¯ä»¥æ­£å¸¸çš„å‘é€å’Œæ¥æ”¶æ•°æ®ã€‚
+//%				Max_PktSize	= MSSize ¨C 28  				
+//%				Max_PayloadSize = Max_PktSize ¨C UDTÍ·
+//%				¼°Ò»ÏµÁĞÓµÈû¿ØÖÆµÄ²ÎÊı
+//%		step5:   ÈôClient¶Ë¼ÌĞø·¢ËÍÇëÇóÎÕÊÖ°ü£¬ÔòSERVER¶Ë·¢ËÍÓëstep4ÏàÍ¬µÄÁ¬½ÓÎÕÊÖ°ü¡£ÈôClient¶Ë·¢¹ıÀ´µÄÊı¾İ£¬Ôò´ÎÁ¬½ÓÒÑ¾­½¨Á¢£¬¿ÉÒÔÕı³£µÄ·¢ËÍºÍ½ÓÊÕÊı¾İ¡£
 
 
 
@@ -56,65 +56,672 @@
 
 
 module	listen(
-	input	core_clk,									//%	æ ¸å¿ƒæ¨¡å—æ—¶é’Ÿ
-	input	core_rst_n,									//%	æ ¸å¿ƒæ¨¡å—å¤ä½(ä½ä¿¡å·å¤ä½)
-	input	[63:0]	handshake_tdata ,					//%	æ¡æ‰‹æ•°æ®åŒ…
-	input	[7:0]	handshake_tkeep ,					//%	æ¡æ‰‹åŒ…å­—èŠ‚ä½¿èƒ½
-	input			handshake_tvalid,					//%	æ¡æ‰‹åŒ…æœ‰æ•ˆä¿¡å·
-	output			handshake_tready,					//%	æ¡æ‰‹åŒ…å°±ç»ªä¿¡å·
-	input			handshake_tlast	,					//%	æ¡æ‰‹åŒ…ç»“æŸä¿¡å·
+	input	core_clk,									//%	ºËĞÄÄ£¿éÊ±ÖÓ
+	input	core_rst_n,									//%	ºËĞÄÄ£¿é¸´Î»(µÍĞÅºÅ¸´Î»)
+	input	[63:0]	handshake_tdata ,					//%	ÎÕÊÖÊı¾İ°ü
+	input	[7:0]	handshake_tkeep ,					//%	ÎÕÊÖ°ü×Ö½ÚÊ¹ÄÜ
+	input			handshake_tvalid,					//%	ÎÕÊÖ°üÓĞĞ§ĞÅºÅ
+	output	reg		handshake_tready,					//%	ÎÕÊÖ°ü¾ÍĞ÷ĞÅºÅ
+	input			handshake_tlast	,					//%	ÎÕÊÖ°ü½áÊøĞÅºÅ
 
 	
-	input	Req_Connect ,								//%	è¿æ¥è¯·æ±‚
-	output	Res_Connect ,								//% è¿æ¥å›åº”
-	input	Req_Close	,								//%	å…³é—­è¯·æ±‚
-	output	Res_Close	,								//%	å…³é—­å›åº”
-	input	[31:0]	Snd_Buffer_Size ,					//%	å‘é€bufferå¤§å°
-	input	[31:0]	Rev_Buffer_Size	,					//%	æ¥æ”¶bufferå¤§å°
-	input	[31:0]	FlightFlagSize ,					//%	æœ€å¤§æµé‡çª—å£å¤§å°
-	input	[31:0]	MSSize,								//%	æœ€å¤§åŒ…å¤§å°
-	output	[31:0]	Max_PktSize ,						//%	æœ€å¤§åŒ…å¤§å°
-	output	[31:0]	Max_PayloadSize ,					//% æœ€å¤§è´Ÿè½½æ•°æ®å¤§å°
-	output	[31:0]	Expiration_counter ,				//%	EXP-timerè®¡æ•°å™¨
-	output	[31:0]	Bandwidth ,							//%	å¸¦å®½çš„é¢„ä¼°å€¼ï¼Œ1ç§’1ä¸ªåŒ…
-	output	[31:0]	DeliveryRate ,						//%	åŒ…åˆ°è¾¾çš„é€Ÿç‡ï¼ˆæ¥æ”¶ç«¯ï¼‰
-	output	[31:0]	AckSeqNo ,							//%	æœ€åACKçš„åºåˆ—å·
-	output	[31:0]	LastAckTime ,						//%	æœ€åLASTçš„ACKæ—¶é—´æˆ³
-	output	[31:0]	SYNInterval ,						//%	åŒæ­¥ï¼ˆSYNï¼‰å‘¨æœŸ
-	output	[31:0]	RRT ,								//%	å¾€è¿”æ—¶å»¶çš„å‡å€¼
-	output	[31:0]	RTTVar ,							//%	å¾€è¿”æ—¶å»¶çš„æ–¹å·®
-	output	[31:0]	MinNakInt,							//%	æœ€å°NAKå‘¨æœŸ
-	output	[31:0]	MinExpInt,							//%	æœ€å°EXPå‘¨æœŸ
-	output	[31:0]	ACKInt,								//%	ACK å‘é€å‘¨æœŸ
-	output	[31:0]	NAKInt,								//%	NAK å‘é€å‘¨æœŸ
-	output	[31:0]	PktCount,							//%	packet counter for ACK
-	output	[31:0]	LightACKCount ,						//%	light ACK è®¡æ•°å™¨
-	output	[31:0]	TargetTime ,						//%	ä¸‹ä¸ªPacketå‘é€æ—¶é—´				
-	output	[31:0]	TimeDiff,							//%	aggregate difference in inter-packet time   
+	input	Req_Connect ,								//%	Á¬½ÓÇëÇó
+	output	reg	Res_Connect ,								//% Á¬½Ó»ØÓ¦
+	input	Req_Close	,								//%	¹Ø±ÕÇëÇó-£¨CloseÄ£¿éÌá¹©£©
+	output	reg	Res_Close	,								//%	¹Ø±Õ»ØÓ¦
+	input	[31:0]	Snd_Buffer_Size ,					//%	·¢ËÍbuffer´óĞ¡
+	input	[31:0]	Rev_Buffer_Size	,					//%	½ÓÊÕbuffer´óĞ¡
+	input	[31:0]	FlightFlagSize ,					//%	×î´óÁ÷Á¿´°¿Ú´óĞ¡
+	input	[31:0]	MSSize,								//%	×î´ó°ü´óĞ¡
+	input	[31:0]	INIT_SEQ,							//%	³õÊ¼»¯ĞòÁĞºÅ
+	output	reg	[31:0]	Max_PktSize ,						//%	×î´ó°ü´óĞ¡
+	output	reg	[31:0]	Max_PayloadSize ,					//% ×î´ó¸ºÔØÊı¾İ´óĞ¡
+	output	reg	[31:0]	Expiration_counter ,				//%	EXP-timer¼ÆÊıÆ÷
+	output	reg	[31:0]	Bandwidth ,							//%	´ø¿íµÄÔ¤¹ÀÖµ£¬1Ãë1¸ö°ü
+	output	reg	[31:0]	DeliveryRate ,						//%	°üµ½´ïµÄËÙÂÊ£¨½ÓÊÕ¶Ë£©
+	output	reg	[31:0]	AckSeqNo ,							//%	×îºóACKµÄĞòÁĞºÅ
+	output	reg	[31:0]	LastAckTime ,						//%	×îºóLASTµÄACKÊ±¼ä´Á
+	output	reg	[31:0]	SYNInterval ,						//%	Í¬²½£¨SYN£©ÖÜÆÚ
+	output	reg	[31:0]	RRT ,								//%	Íù·µÊ±ÑÓµÄ¾ùÖµ
+	output	reg	[31:0]	RTTVar ,							//%	Íù·µÊ±ÑÓµÄ·½²î
+	output	reg	[31:0]	MinNakInt,							//%	×îĞ¡NAKÖÜÆÚ
+	output	reg	[31:0]	MinExpInt,							//%	×îĞ¡EXPÖÜÆÚ
+	output	reg	[31:0]	ACKInt,								//%	ACK ·¢ËÍÖÜÆÚ
+	output	reg	[31:0]	NAKInt,								//%	NAK ·¢ËÍÖÜÆÚ
+	output	reg	[31:0]	PktCount,							//%	packet counter for ACK
+	output	reg	[31:0]	LightACKCount ,						//%	light ACK ¼ÆÊıÆ÷
+	output	reg	[31:0]	TargetTime ,						//%	ÏÂ¸öPacket·¢ËÍÊ±¼ä				
+	output	reg	[31:0]	TimeDiff,							//%	aggregate difference in inter-packet time   
 	
-	output	[31:0]	PeerISN ,							//%	å¯¹ç«¯åˆå§‹åŒ–çš„æ•°æ®åŒ…åºåˆ—å·
-	output	[31:0]	RcvLastAck ,						//%	æ¥æ”¶ç«¯ æœ€åå‘é€ACKï¼ˆæ•°æ®åŒ…åºåˆ—å·ï¼‰
-	output	[31:0]	RcvLastAckAck ,						//%	æ¥æ”¶ç«¯ æœ€åå‘é€ACK è¢«ACKçš„ï¼ˆæ•°æ®ï¼‰åºåˆ—å·
-	output	[31:0]	RcvCurrSeqNo ,						//%	æœ€å¤§çš„æ¥æ”¶çš„åºåˆ—å·
-	output	[31:0]	LastDecSeq  ,						//%	Sequence number sent last decrease occurs 
-	output	[31:0]	SndLastAck  ,						//%	Last ACK received
-	output	[31:0]	SndLastDataAck ,					//%	The real last ACK that updates the sender buffer and loss list		
-	output	[31:0]	SndCurrSeqNo ,						//%	The largest sequence number that has been sent
-	output	[31:0]	SndLastAck2  ,						//%	Last ACK2 sent back 
-	output	[31:0]	SndLastAck2Time ,					//%	Last time of ACK2 sent back
-	output	[31:0]	FlowWindowSize ,						//%	SND list  size
+	output	reg	[31:0]	PeerISN ,							//%	¶Ô¶Ë³õÊ¼»¯µÄÊı¾İ°üĞòÁĞºÅ
+	output	reg	[31:0]	RcvLastAck ,						//%	½ÓÊÕ¶Ë ×îºó·¢ËÍACK£¨Êı¾İ°üĞòÁĞºÅ£©
+	output	reg	[31:0]	RcvLastAckAck ,						//%	½ÓÊÕ¶Ë ×îºó·¢ËÍACK ±»ACKµÄ£¨Êı¾İ£©ĞòÁĞºÅ
+	output	reg	[31:0]	RcvCurrSeqNo ,						//%	×î´óµÄ½ÓÊÕµÄĞòÁĞºÅ
+	output	reg	[31:0]	LastDecSeq  ,						//%	Sequence number sent last decrease occurs 
+	output	reg	[31:0]	SndLastAck  ,						//%	Last ACK received
+	output	reg	[31:0]	SndLastDataAck ,					//%	The real last ACK that updates the sender buffer and loss list		
+	output	reg	[31:0]	SndCurrSeqNo ,						//%	The largest sequence number that has been sent
+	output	reg	[31:0]	SndLastAck2  ,						//%	Last ACK2 sent back 
+	output	reg	[31:0]	SndLastAck2Time ,					//%	Last time of ACK2 sent back
+	output	reg	[31:0]	FlowWindowSize ,						//%	SND list  size
 	
-	output	[31:0]	LastRspTime,						//%	æœ€åä¸€æ¬¡å¯¹ç«¯å“åº”çš„æ—¶é—´æˆ³ã€‚ç”¨äºEXP Timers , åŒæ—¶åªè¦æœ‰udpæ•°æ®åˆ°æ¥å°±ä¿®æ”¹è¯¥å˜é‡
-	output	[31:0]	NextACKTime,						//%	ç”¨äºACK Timers
-	output	[31:0]	NextNACKtime,						//%	ç”¨äºNACK Timers
+	output	reg	[31:0]	LastRspTime,						//%	×îºóÒ»´Î¶Ô¶ËÏìÓ¦µÄÊ±¼ä´Á¡£ÓÃÓÚEXP Timers , Í¬Ê±Ö»ÒªÓĞudpÊı¾İµ½À´¾ÍĞŞ¸Ä¸Ã±äÁ¿
+	output	reg	[31:0]	NextACKTime,						//%	ÓÃÓÚACK Timers
+	output	reg	[31:0]	NextNACKtime,						//%	ÓÃÓÚNACK Timers
 	
-	output	[63:0]	req_tdata	,						//%	è¯·æ±‚æ¡æ‰‹æ•°æ®åŒ…
-	output	[7:0]	req_tkeep	,						//%	è¯·æ±‚æ¡æ‰‹æ•°æ®ä½¿èƒ½ä¿¡å·
-	output			req_tvalid	,						//%	è¯·æ±‚æ¡æ‰‹æ•°æ®æœ‰æ•ˆä¿¡å·
-	input			req_tready	,						//%	è¯·æ±‚æ¡æ‰‹æ•°æ®å°±ç»ªä¿¡å·
-	input			req_tlast							//%	è¯·æ±‚æ¡æ‰‹æ•°æ®ç»“æŸä¿¡å·
+	output	reg	[63:0]	req_tdata	,						//%	ÇëÇóÎÕÊÖÊı¾İ°ü
+	output	reg	[7:0]	req_tkeep	,						//%	ÇëÇóÎÕÊÖÊı¾İÊ¹ÄÜĞÅºÅ
+	output			req_tvalid	,						//%	ÇëÇóÎÕÊÖÊı¾İÓĞĞ§ĞÅºÅ
+	input			req_tready	,						//%	ÇëÇóÎÕÊÖÊı¾İ¾ÍĞ÷ĞÅºÅ
+	output	reg			req_tlast							//%	ÇëÇóÎÕÊÖÊı¾İ½áÊøĞÅºÅ
 );
 
+integer	State	,	Next_State	;
+
+/*
+*	analyzing	the handshake packet.
+*/
+
+reg	[31:0]	Peer_type	;
+reg	[31:0]	Peer_AddInfo	;
+
+reg	[31:0]	Peer_TimeStamp ;
+reg	[31:0]	Peer_Des_ID	;
+
+reg	[31:0]	Peer_UDT_Version ;
+reg	[31:0]	Peer_Socket_type ;
+
+reg	[31:0]	Peer_INIT_SEQ_NUM ;
+reg	[31:0]	Peer_MSS	;
+
+reg	[31:0]	Peer_MAX_FLOW_WINDOWS_SIZE ;
+reg	[31:0]	Peer_CONNECT_Type ;
+
+reg	[31:0]	Peer_Self_ID	;
+reg	[31:0]	Peer_SYN_cookie	;
+
+reg	[63:0]	Peer_IP_ADDRESS1 ;
+reg	[63:0]	Peer_IP_ADDRESS2 ;
+reg	conditon	;
 
 
+localparam	S_IDLE	=	1  ,
+			S_INIT	=	2  ,
+			S_START	=	3  ,
+			S_PARSE_HAND_1	=	4	,
+			S_PARSE_HAND_1_WAIT	=	5	,
+			S_PARSE_HAND_2	=	6	,
+			S_PARSE_HAND_2_WAIT		=	7	,
+			S_PARSE_HAND_3	=	8	,
+			S_PARSE_HAND_3_WAIT		=	9	,
+			S_PARSE_HAND_4	=	10	,
+			S_PARSE_HAND_4_WAIT	=	11	,
+			S_PARSE_HAND_5	=	12	,
+			S_PARSE_HAND_5_WAIT	=	13	,
+			S_PARSE_HAND_6	=	14	,
+			S_PARSE_HAND_6_WAIT	=	15	,
+			S_PARSE_HAND_7	=	16	,
+			S_PARSE_HAND_7_WAIT	=	17	,
+			S_PARSE_HAND_8	=	18	,
+			S_PARSE_HAND_8_WAIT	=	19	,
+			S_WAIT_1		=		20  ,
+			S_RES_HAND_1	=		21	,
+			S_RES_HAND_2	=		22	,
+			S_RES_HAND_3	=		23	,
+			S_RES_HAND_4	=		24	,
+			S_RES_HAND_5	=		25	,
+			S_RES_HAND_6	=		26	,
+			S_RES_HAND_7	=		27	,
+			S_RES_HAND_8	=		28	,
+			S_WAIT_2		=		29	,
+			S_FIRST_RES		=		30	,
+			S_SECOND_RES		=		31	,
+			S_CONNECTED		=		32	,
+			S_CLOSE			=		33	;
+			
+
+always@(posedge	core_clk	or	negedge	core_rst_n)
+begin
+
+	if(!core_rst_n)
+		State	<=	S_IDLE	;
+	else
+		State	<=	Next_State	;
+end
+
+
+always@(*)
+begin
+	case(State)
+		S_IDLE:
+			if(Req_Connect)
+				Next_State	=	S_INIT	;
+			else
+				Next_State	=	S_IDLE	;
+		S_INIT:
+			Next_State	=	S_START	;
+		S_START:
+			if( Req_Close )
+				Next_State	=	S_CLOSE ;
+			else	if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_1	;
+			else
+				Next_State	=	S_START ;
+		S_PARSE_HAND_1:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_2	;
+			else
+				Next_State	=	S_PARSE_HAND_1_WAIT	;
+		S_PARSE_HAND_1_WAIT:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_2	;
+			else
+				Next_State	=	S_PARSE_HAND_1_WAIT	;
+		S_PARSE_HAND_2:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_3	;
+			else
+				Next_State	=	S_PARSE_HAND_2_WAIT ;
+		S_PARSE_HAND_2_WAIT:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_3	;
+			else
+				Next_State	=	S_PARSE_HAND_2_WAIT ;
+		S_PARSE_HAND_3:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_4	;
+			else
+				Next_State	=	S_PARSE_HAND_3_WAIT ;
+		S_PARSE_HAND_3_WAIT:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_4	;
+			else
+				Next_State	=	S_PARSE_HAND_3_WAIT ;
+		S_PARSE_HAND_4:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_5	;
+			else
+				Next_State	=	S_PARSE_HAND_4_WAIT ;
+		S_PARSE_HAND_4_WAIT:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_5	;
+			else
+				Next_State	=	S_PARSE_HAND_4_WAIT ;
+		S_PARSE_HAND_5:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_6	;
+			else
+				Next_State	=	S_PARSE_HAND_5_WAIT ;
+		S_PARSE_HAND_5_WAIT:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_6	;
+			else
+				Next_State	=	S_PARSE_HAND_5_WAIT ;
+		
+		S_PARSE_HAND_6:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_7	;
+			else
+				Next_State	=	S_PARSE_HAND_6_WAIT ;
+		S_PARSE_HAND_6_WAIT:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_7	;
+			else
+				Next_State	=	S_PARSE_HAND_6_WAIT ;
+		S_PARSE_HAND_7:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_8	;
+			else
+				Next_State	=	S_PARSE_HAND_7_WAIT ;
+		S_PARSE_HAND_7_WAIT:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_8	;
+			else
+				Next_State	=	S_PARSE_HAND_7_WAIT ;
+		S_PARSE_HAND_8:
+			if(handshake_tvalid && !conditon) 
+				Next_State	=	S_WAIT_1 ;
+			else	if(handshake_tvalid)
+				Next_State	=	S_WAIT_2 ;
+			else
+				Next_State	=	S_PARSE_HAND_8_WAIT ;
+		S_PARSE_HAND_8_WAIT:
+			if(handshake_tvalid && !conditon) 
+				Next_State	=	S_WAIT_1 ;
+			else	if(handshake_tvalid)
+				Next_State	=	S_WAIT_2 ;
+			else
+				Next_State	=	S_PARSE_HAND_8_WAIT ;
+		S_RES_HAND_1:
+			if(req_tready)
+				Next_State	=	S_RES_HAND_2	;
+			else
+				Next_State	=	S_RES_HAND_1	;
+		S_RES_HAND_2:
+			if(req_tready)
+				Next_State	=	S_RES_HAND_3	;
+			else
+				Next_State	=	S_RES_HAND_2	;
+		S_RES_HAND_3:
+			if(req_tready)
+				Next_State	=	S_RES_HAND_4	;
+			else
+				Next_State	=	S_RES_HAND_3	;
+		S_RES_HAND_4:
+			if(req_tready)
+				Next_State	=	S_RES_HAND_5	;
+			else
+				Next_State	=	S_RES_HAND_4	;
+		S_RES_HAND_5:
+			if(req_tready)
+				Next_State	=	S_RES_HAND_6	;
+			else
+				Next_State	=	S_RES_HAND_5_WAIT	;
+		S_RES_HAND_6:
+			if(req_tready)
+				Next_State	=	S_RES_HAND_7	;
+			else
+				Next_State	=	S_RES_HAND_6_WAIT	;
+		S_RES_HAND_7:
+			if(req_tready)
+				Next_State	=	S_RES_HAND_8	;
+			else
+				Next_State	=	S_RES_HAND_7_WAIT	;
+		S_RES_HAND_8:
+			if(req_tready)
+				Next_State	=	S_START	;
+			else
+				Next_State	=	S_RES_HAND_8_WAIT	;
+
+		S_WAIT_1:	Next_State	=	S_FIRST_RES	;
+		S_WAIT_2:
+			if(Peer_CONNECT_Typ == 1)
+				Next_State	=	S_FIRST_RES	;
+			else
+				Next_State	=	S_SECOND_RES	;
+		S_FIRST_RES:	Next_State	=	S_RES_HAND_1	;
+		S_SECOND_RES:	Next_State	=	S_CONNECTED	;
+		S_CONNECTED:	Next_State	=	S_RES_HAND_1	;
+		S_CLOSE:	Next_State	=	S_IDLE		;
+		default:
+				NextState	=	'bx	;
+	endcase
+
+end
+
+always@(posedge	core_clk	or	negedge	core_rst_n)
+begin
+	if(!core_rst_n)
+	begin
+		/*	all  output	reg  */
+		handshake_tready	<=	0	;
+		Res_Connect			<=	0	;
+		Res_Close			<=	0	;
+		Max_PktSize			<=	32'h0	;
+		Max_PayloadSize		<=	32'h0	;
+		Expiration_counter	<=	32'h0	;
+		Bandwidth			<=	32'h0	;
+		DeliveryRate		<=	32'h0	;
+		AckSeqNo			<=	32'h0	;
+		LastAckTime			<=	32'h0	;
+		SYNInterval			<=	32'h0	;
+		RRT					<=	32'h0	;
+		RTTVar				<=	32'h0	;
+		MinNakInt			<=	32'h0	;
+		MinExpInt			<=	32'h0	;
+		ACKInt				<=	32'h0	;
+		NAKInt				<=	32'h0	;
+		PktCount			<=	32'h0	;
+		LightACKCount		<=	32'h0	;
+		TargetTime			<=	32'h0	;
+		TimeDiff			<=	32'h0	;
+		PeerISN				<=	32'h0	;
+		RcvLastAck			<=	32'h0	;
+		RcvLastAckAck		<=	32'h0	;
+		RcvCurrSeqNo		<=	32'h0	;
+		LastDecSeq			<=	32'h0	;
+		SndLastAck			<=	32'h0	;
+		SndLastDataAck		<=	32'h0	;
+		SndCurrSeqNo		<=	32'h0	;
+		SndLastAck2			<=	32'h0	;
+		SndLastAck2Time		<=	32'h0	;
+		FlowWindowSize		<=	32'h0	;
+		LastRspTime			<=	32'h0	;
+		NextACKTime			<=	32'h0	;
+		NextNACKtime		<=	32'h0	;
+		req_tdata			<=	64'h0	;
+		req_tkeep			<=	8'h0;
+		req_tvalid			<=	0		;
+		req_tlast			<=	0		;
+		/*	temp	reg  */
+		Peer_type		<=	32'h0 ;
+		Peer_AddInfo		<=	32'h0 ;
+		Peer_TimeStamp		<=	32'h0 ;
+		Peer_Des_ID		<=	32'h0 ;
+		Peer_UDT_Version	<=	32'h0 ;
+		Peer_Socket_type	<=	32'h0 ;
+		Peer_INIT_SEQ_NUM	<=	32'h0 ;
+		Peer_MSS		<=	32'h0 ;
+		Peer_MAX_FLOW_WINDOWS_SIZE	<=	32'h0;
+		Peer_CONNECT_Type	<=	32'h0;
+		Peer_Self_ID		<=	32'h0;
+		Peer_SYN_cookie		<=	32'h0;
+		Peer_IP_ADDRESS1	<=	32'h0;
+		Peer_IP_ADDRESS2	<=	32'h0;
+		conditon		<=	    0;
+
+	end
+	else	begin
+		case	(Next_State)
+			S_IDLE:	begin
+			/*	all  output	reg */
+				handshake_tready	<=	0	;
+				Res_Connect			<=	0	;
+				Res_Close			<=	0	;
+				Max_PktSize			<=	32'h0	;
+				Max_PayloadSize		<=	32'h0	;
+				Expiration_counter	<=	32'h0	;
+				Bandwidth			<=	32'h0	;
+				DeliveryRate		<=	32'h0	;
+				AckSeqNo			<=	32'h0	;
+				LastAckTime			<=	32'h0	;
+				SYNInterval			<=	32'h0	;
+				RRT					<=	32'h0	;
+				RTTVar				<=	32'h0	;
+				MinNakInt			<=	32'h0	;
+				MinExpInt			<=	32'h0	;
+				ACKInt				<=	32'h0	;
+				NAKInt				<=	32'h0	;
+				PktCount			<=	32'h0	;
+				LightACKCount		<=	32'h0	;
+				TargetTime			<=	32'h0	;
+				TimeDiff			<=	32'h0	;
+				PeerISN				<=	32'h0	;
+				RcvLastAck			<=	32'h0	;
+				RcvLastAckAck		<=	32'h0	;
+				RcvCurrSeqNo		<=	32'h0	;
+				LastDecSeq			<=	32'h0	;
+				SndLastAck			<=	32'h0	;
+				SndLastDataAck		<=	32'h0	;
+				SndCurrSeqNo		<=	32'h0	;
+				SndLastAck2			<=	32'h0	;
+				SndLastAck2Time		<=	32'h0	;
+				FlowWindowSize		<=	32'h0	;
+				LastRspTime			<=	32'h0	;
+				NextACKTime			<=	32'h0	;
+				NextNACKtime		<=	32'h0	;
+				req_tdata			<=	64'h0	;
+				req_tkeep			<=	8'hff	;
+				req_tvalid			<=	0		;
+				req_tlast			<=	0		;
+			/*	temp	reg  */
+				Peer_type		<=	32'h0 ;
+				Peer_AddInfo		<=	32'h0 ;
+				Peer_TimeStamp		<=	32'h0 ;
+				Peer_Des_ID		<=	32'h0 ;
+				Peer_UDT_Version	<=	32'h0 ;
+				Peer_Socket_type	<=	32'h0 ;
+				Peer_INIT_SEQ_NUM	<=	32'h0 ;
+				Peer_MSS		<=	32'h0 ;
+				Peer_MAX_FLOW_WINDOWS_SIZE	<=	32'h0;
+				Peer_CONNECT_Type	<=	32'h0;
+				Peer_Self_ID		<=	32'h0;
+				Peer_SYN_cookie		<=	32'h0;
+				Peer_IP_ADDRESS1	<=	32'h0;
+				Peer_IP_ADDRESS2	<=	32'h0;
+				conditon		<=	0    ;
+				
+			end
+			S_INIT:	begin
+				Max_PktSize	<=	MSSize	-	32'd28	;
+				Max_PayloadSize	<=	MSSize	-	32'd44	;
+				Expiration_counter	<=	32'h1;
+				Bandwidth		<=	32'h1;
+				DeliveryRate		<=	32'h16	;
+				AckSeqNo		<=	32'h0	;
+				LastAckTime		<=	32'h0	;
+				SYNInterval		<=	32'd 200_000_0 ;
+				RRT			<=	32'd 2000_000_0 ;
+				RTTVar			<=	32'd 1000_000_0 ;
+				MinExpInt		<=	32'd 6000_000_0 ;
+				MinNakInt		<=	32'd 6000_000_0 ;
+				ACKInt			<=	32'd 200_000_0  ;
+				NAKInt			<=	32'd 6000_000_0 ;
+				PktCount		<=	32'h0	;
+				LightACKCount		<=	32'h1	;
+				TargetTime		<=	32'h0	;
+				TimeDiff		<=	32'h0	;
+			/*	temp	reg  */
+				Peer_type		<=	32'h0 ;
+				Peer_AddInfo		<=	32'h0 ;
+				Peer_TimeStamp		<=	32'h0 ;
+				Peer_Des_ID		<=	32'h0 ;
+				Peer_UDT_Version	<=	32'h0 ;
+				Peer_Socket_type	<=	32'h0 ;
+				Peer_INIT_SEQ_NUM	<=	32'h0 ;
+				Peer_MSS		<=	32'h0 ;
+				Peer_MAX_FLOW_WINDOWS_SIZE	<=	32'h0;
+				Peer_CONNECT_Type	<=	32'h0;
+				Peer_Self_ID		<=	32'h0;
+				Peer_SYN_cookie		<=	32'h0;
+				Peer_IP_ADDRESS1	<=	32'h0;
+				Peer_IP_ADDRESS2	<=	32'h0;
+			end
+			S_START:
+			begin
+			end
+			S_PARSE_HAND_1:
+			begin  //  NULL valid  
+				handshake_tready	<=	1 ;
+				Peer_type		<=	handshake_tdata[63:32] ;
+				Peer_AddInfo		<=	handshake_tdata[31:0 ] ;
+
+			end
+			S_PARSE_HAND_1_WAIT:
+			begin
+				handshake_tready	<=	0 ;
+			end
+			S_PARSE_HAND_2:
+			begin	
+				handshake_tready	<=	1 ;
+				Peer_TimeStamp		<=	handshake_tdata[63:32] ;
+				Peer_Des_ID		<=	handshake_tdata[31:0 ] ;
+			end
+			S_PARSE_HAND_2_WAIT:
+			begin
+				handshake_tready	<=	0 ;
+			end
+			/*
+			* 	32bit	load Verison..
+			*	32bit	load Type... DGRAM or ...
+			*/
+			S_PARSE_HAND_3:
+			begin
+				handshake_tready	<=	1 ;
+				Peer_UDT_Version	<=	handshake_tdata[63:32] ;
+				Peer_Socket_type	<=	handshake_tdata[31:0 ] ;
+			end
+			S_PARSE_HAND_3_WAIT:
+			begin
+				handshake_tready	<=	0 ;
+			end
+			/*
+			* 	32bit	init_packet_num
+			* 	32bit	maximum	packet size
+			*/
+			S_PARSE_HAND_4:
+			begin
+				handshake_tready	<=	1;
+				Peer_INIT_SEQ_NUM	<=	handshake_tdata[63:32] ;
+				Peer_MSS		<=	handshake_tdata[31:0 ] ;
+			end
+			S_PARSE_HAND_4_WAIT:
+			begin
+				handshake_tready	<=	0;
+			end
+			/*
+			*	32bit maximum	flow windows size
+			*	32bit connect	type	
+			*/
+			S_PARSE_HAND_5:
+			begin
+				handshake_tready	<=	1;
+				Peer_MAX_FLOW_WINDOWS_SIZE	<=	handshake_tdata[63:32] ;
+				Peer_CONNECT_Type		<=	handshake_tdata[31:0 ] ;
+			end
+			S_PARSE_HAND_5_WAIT:
+			begin
+				handshake_tready	<=	0;
+			end
+			/*
+			* 	32bit	socket	ID
+			* 	32bit	SYN	cookie
+			*/
+			S_PARSE_HAND_6:
+			begin
+				handshake_tready	<=	1;
+				Peer_Self_ID		<=	handshake_tdata[63:32]	;
+				Peer_SYN_cookie		<=	handshake_tdata[31:0]	;
+			end
+			S_PARSE_HAND_6_WAIT:
+			begin
+				handshake_tready	<=	0;
+			end
+			/*
+			*	first 64bit of peer	IP	ADDRESS	 
+			*/
+			S_PARSE_HAND_7:
+			begin
+				handshake_tready	<=	1;
+				Peer_IP_ADDRESS1	<=	handshake_tdata	;
+			end
+			S_PARSE_HAND_7_WAIT:
+			begin
+				handshake_tready	<=	0;
+			end
+			/*
+			*	last 64bit of  peer	IP	ADDRESS	 
+			*/
+			S_PARSE_HAND_8:
+			begin
+				handshake_tready	<=	1;
+				Peer_IP_ADDRESS2	<=	handshake_tdata ;
+			end
+			S_PARSE_HAND_8_WAIT:
+			begin
+				handshake_tready	<=	0;
+			end
+
+			S_RES_HAND_1:
+			begin
+				req_tdata		<= { Peer_type , Peer_AddInfo  } ;
+				req_tkeep		<= 8'hff;
+				req_tvalid		<=	1;
+				handshake_tready	<=     0;
+
+			end
+			S_RES_HAND_2:
+			begin
+				req_tdata		<= { Peer_TimeStamp , Peer_Des_ID } ;
+				req_tkeep		<= 8'hff ;
+				req_tvalid		<=     1;
+			end
+			S_RES_HAND_3:
+			begin
+				req_tdata		<= {Peer_UDT_Version , Peer_Socket_type } ;
+				req_tkeep		<= 8'hff  ;
+				req_tvalid		<=	1 ;
+			end
+			S_RES_HAND_4:
+			begin
+				req_tdata		<= {Peer_INIT_SEQ_NUM , Peer_MSS	};
+				req_tkeep		<= 8'hff  ;
+				req_tvalid		<=	1 ; 
+			end
+			S_RES_HAND_5:
+			begin
+				req_tdata		<= {Peer_MAX_FLOW_WINDOWS_SIZE , Peer_CONNECT_Type } ;
+				req_tkeep		<= 8'hff ;
+				req_tvalid		<=	1 ;
+			end
+			S_RES_HAND_6:
+			begin
+				req_tdata		<= {Peer_Self_ID ,	Peer_SYN_cookie } ;
+				req_tkeep		<= 8'hff ;
+				req_tvalid		<=	1 ;
+			end
+			S_RES_HAND_7:
+			begin
+				req_tdata		<=	Peer_IP_ADDRESS1 ;
+				req_tkeep		<=	8'hff ;
+				req_tvalid		<=	1	;
+			end
+			S_RES_HAND_8:
+			begin
+				req_tdata		<=	Peer_IP_ADDRESS2 ;
+				req_tkeep		<=	8'hff ;
+				req_tvalid		<=	1	;
+			end
+			S_WAIT_1:
+			begin
+				req_tvalid		<=	0	;
+				handshake_tready	<=	0	;
+			end
+			S_WAIT_2:
+			begin
+				req_tvalid		<=	0	;
+				handshake_tready	<=	0	;
+			end
+			S_FIRST_RES:
+			begin
+				Peer_Des_ID		<=	Peer_Self_ID	;
+				Peer_SYN_cookie		<=	32'h0		;
+			end
+			S_SECOND_RES:
+			begin
+				FlowWindowSize		<=	Peer_MAX_FLOW_WINDOWS_SIZE ;
+				Peer_Self_ID		<=	32'h10			   ;
+				Peer_Des_ID		<=	Peer_Self_ID	;
+
+				if( Peer_MSS	> MSSize)
+					Peer_MSS	<=	MSSize ;
+				else
+					MSSize		<=	Peer_MSS ;
+
+
+				Peer_CONNECT_Type	<=	32'hffff_ffff			;
+				Peer_MAX_FLOW_WINDOWS_SIZE	<=	( Rev_Buffer_Size < FlightFlagSize ) ?  Rev_Buffer_Size :  FlightFlagSize ;
+				/*Peer_IP must be changed */
+
+
+			end
+			S_CONNECTED:
+			begin
+			/*
+			*	Peer_ID  output
+			*/
+		       		Peer_ISN	<=	Peer_INIT_SEQ_NUM	;
+				Max_PktSize	<=	MSSize	-	32'd28	;
+				Max_PayloadSize	<=	MSSize	-	32'd44	;
+				LastDecSeq	<=	Peer_INIT_SEQ_NUM	-	32'h1	;
+				SndLastAck	<=	Peer_INIT_SEQ_NUM	-	32'h1	;
+				SndLastDataAck	<=	Peer_INIT_SEQ_NUM	;
+				SndCurrSeqNo	<=	Peer_INIT_SEQ_NUM	;
+				SndLastAck2	<=	Peer_INIT_SEQ_NUM	;
+				SndLastAck2Time	<=	32'h0			;
+
+				RcvLastAck	<=	Peer_INIT_SEQ_NUM	;
+				RcvLastAckAck	<=	Peer_INIT_SEQ_NUM	-	32'h1	;
+				RcvCurrSeqNo	<=	Peer_INIT_SEQ_NUM	;
+			end
+			S_CLOSE:
+			begin
+				Res_Close	<=			1	;
+
+			end
+
+		endcase
+	end
+
+end
 endmodule

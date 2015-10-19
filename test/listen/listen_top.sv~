@@ -1,7 +1,6 @@
-module	listen_top(input	clk	,	output	finish	,output	assert_err );
+﻿module	listen_top(input	clk	,	output	finish	,output	assert_err );
 
 listen_if	lis_if(clk,finish,assert_err);
-
 listen_sva	sva_inst(lis_if.AS);
 
 tb_listen	tb_unite(lis_if.TB_UNIT_ST);
@@ -23,8 +22,7 @@ listen		dut_inst(
 	lis_if.Snd_Buffer_Size ,	
 	lis_if.Rev_Buffer_Size	,	
 	lis_if.FlightFlagSize ,	
-	lis_if.MSSize,
-	lis_if.INIT_SEQ ,
+	lis_if.MSSize,			
 	lis_if.Max_PktSize ,		
 	lis_if.Max_PayloadSize ,	
 	lis_if.Expiration_counter ,	
