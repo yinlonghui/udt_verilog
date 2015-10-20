@@ -35,6 +35,14 @@ task	RST_OUT();
 	end
 endtask
 
+task	loss_handshake();
+	tb.req_tready  =  1  ;
+	@(posedge	tb.clk);
+	while(!tb.req_tvalid  ||  !tb.req_tlast)	@(posedge	tb.clk);
+	tb.req_tready	=	0	;
+	@(posedge	tb.clk);
+endtask
+
 task handshake_stream(
 	input	[63:0]	value ,
 	input	[3:0]	keep  ,
@@ -100,7 +108,7 @@ task	process_handshake0();
 	/*	second	handshake:	*/
 	second_handshake();
 	/*	check	it	peer	second	handshake	*/
-	check_second_handshake();
+//	check_second_handshake();
 	
 	tb.Req_Close	=	1	;
 	@(posedge	tb.clk);
@@ -112,7 +120,39 @@ endtask
 *
 */
 task	process_handshake1();
-
+	tb.Req_Connect	=	1	;
+	@(posedge	tb.clk);
+	while(!tb.Res_Connect)	@(posedge	tb.clk);
+	tb.Req_Connect	=	0	;
+	@(posedge	tb.clk);
+	/*	first  handshake:	*/
+	first_handshake();
+	loss_handshake();
+	first_handshake();
+	loss_handshake();
+	first_handshake();
+	loss_handshake();
+	first_handshake();
+	/*	check	it	peer	handshake	*/
+	check_first_handshake();
+	
+	
+	/*	second	handshake:	*/
+	second_handshake();
+	loss_handshake();
+	second_handshake();
+	loss_handshake();
+	second_handshake();
+	loss_handshake();
+	second_handshake();
+	/*	check	it	peer	second	handshake	*/
+	check_second_handshake();
+	
+	tb.Req_Close	=	1	;
+	@(posedge	tb.clk);
+	while(!tb.Res_Close)	@(posedge	tb.clk);
+	tb.Req_Close	=	0	;
+	@(posedge	tb.clk);
 
 endtask
 
