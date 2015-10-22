@@ -7,10 +7,10 @@ logic 	handshake_tvalid;
 logic 	handshake_tready;	
 logic 	handshake_tlast	;	
 
-logic [31:0]	Req_Connect ;		
-logic [31:0]	Res_Connect ;		
-logic [31:0]	Req_Close	;	
-logic [31:0]	Res_Close	;	
+logic 	Req_Connect ;		
+logic 	Res_Connect ;		
+logic 	Req_Close	;	
+logic 	Res_Close	;	
 logic [31:0]	Snd_Buffer_Size ;	
 logic [31:0]	Rev_Buffer_Size	;	
 logic [31:0]	FlightFlagSize ;	
@@ -53,13 +53,18 @@ logic [63:0]	req_tdata	;
 logic [7:0]	req_tkeep	;	
 logic 	req_tvalid	;	
 logic 	req_tready	;	
-logic 	req_tlast	;	
-
+logic 	req_tlast	;
+logic [31:0]	NEG_MSSize  ;
+logic	[31:0]	client_type ;
+logic	client_type_en	;
+logic	[31:0]	serve_type	;
+logic	serve_type_en	;
 
 
 modport	TB_UNIT_ST(
 	input	clk	,
 	handshake_tready	,
+	NEG_MSSize			,
 	Res_Connect	,
 	Res_Close	,
 	Max_PktSize	,	Max_PayloadSize	,	Expiration_counter	,	Bandwidth		,	DeliveryRate		,	AckSeqNo		,
@@ -74,7 +79,9 @@ modport	TB_UNIT_ST(
 	Req_Close	,
 	Req_Connect	,
 	Snd_Buffer_Size	,	Rev_Buffer_Size	,	FlightFlagSize		,	MSSize	,	INIT_SEQ ,
-	req_tready
+	client_type	,	client_type_en	,	serve_type	,	serve_type_en	,
+	req_tready	,
+	finish
 
 );
 
@@ -93,7 +100,7 @@ modport	DUT(
 	ACKInt		,	NAKInt		,	PktCount		,	LightACKCount		,	TargetTime		,	TimeDiff		,
 	PeerISN		,	RcvLastAck	,	RcvLastAckAck		,	RcvCurrSeqNo		,	LastDecSeq		,	SndLastAck		,
 	SndLastDataAck 	,	SndCurrSeqNo 	,	SndLastAck2  		,	SndLastAck2Time 	,	FlowWindowSize		,	LastRspTime		,		
-	NextACKTime	,	NextNACKtime	,		
+	NextACKTime	,	NextNACKtime	,		NEG_MSSize	,
 	req_tdata	,	req_tkeep	,	req_tvalid		,	req_tlast		
 );
 
@@ -112,8 +119,9 @@ modport	AS(
 	ACKInt		,	NAKInt		,	PktCount		,	LightACKCount		,	TargetTime		,	TimeDiff		,
 	PeerISN		,	RcvLastAck	,	RcvLastAckAck		,	RcvCurrSeqNo		,	LastDecSeq		,	SndLastAck		,
 	SndLastDataAck 	,	SndCurrSeqNo 	,	SndLastAck2  		,	SndLastAck2Time 	,	FlowWindowSize		,	LastRspTime		,		
-	NextACKTime	,	NextNACKtime	,		
+	NextACKTime	,	NextNACKtime	,		NEG_MSSize			,
 	req_tdata	,	req_tkeep	,	req_tvalid		,	req_tlast		,
+	client_type	,	client_type_en	,	serve_type	,	serve_type_en	,
 	output	err
 );
 

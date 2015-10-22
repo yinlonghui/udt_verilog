@@ -108,10 +108,11 @@ module	listen(
 	output	reg	[31:0]	LastRspTime,						//%	最后一次对端响应的时间戳。用于EXP Timers , 同时只要有udp数据到来就修改该变量
 	output	reg	[31:0]	NextACKTime,						//%	用于ACK Timers
 	output	reg	[31:0]	NextNACKtime,						//%	用于NACK Timers
+	output	reg	[31:0]	NEG_MSSize	,
 	
 	output	reg	[63:0]	req_tdata	,						//%	请求握手数据包
 	output	reg	[7:0]	req_tkeep	,						//%	请求握手数据使能信号
-	output			req_tvalid	,						//%	请求握手数据有效信号
+	output	reg		req_tvalid	,						//%	请求握手数据有效信号
 	input			req_tready	,						//%	请求握手数据就绪信号
 	output	reg			req_tlast							//%	请求握手数据结束信号
 );
@@ -142,28 +143,30 @@ reg	[31:0]	Peer_SYN_cookie	;
 
 reg	[63:0]	Peer_IP_ADDRESS1 ;
 reg	[63:0]	Peer_IP_ADDRESS2 ;
+
+
 reg	conditon	;
 
 
 localparam	S_IDLE	=	1  ,
 			S_INIT	=	2  ,
 			S_START	=	3  ,
-			S_PARSE_HAND_1	=	4	,
-			S_PARSE_HAND_1_WAIT	=	5	,
-			S_PARSE_HAND_2	=	6	,
-			S_PARSE_HAND_2_WAIT		=	7	,
-			S_PARSE_HAND_3	=	8	,
-			S_PARSE_HAND_3_WAIT		=	9	,
-			S_PARSE_HAND_4	=	10	,
-			S_PARSE_HAND_4_WAIT	=	11	,
-			S_PARSE_HAND_5	=	12	,
-			S_PARSE_HAND_5_WAIT	=	13	,
-			S_PARSE_HAND_6	=	14	,
-			S_PARSE_HAND_6_WAIT	=	15	,
-			S_PARSE_HAND_7	=	16	,
-			S_PARSE_HAND_7_WAIT	=	17	,
-			S_PARSE_HAND_8	=	18	,
-			S_PARSE_HAND_8_WAIT	=	19	,
+			S_PARSE_HAND_1_IDLE	=	4	,
+			S_PARSE_HAND_1	=	5	,
+			S_PARSE_HAND_2_IDLE	=	6	,
+			S_PARSE_HAND_2		=	7	,
+			S_PARSE_HAND_3_IDLE	=	8	,
+			S_PARSE_HAND_3		=	9	,
+			S_PARSE_HAND_4_IDLE	=	10	,
+			S_PARSE_HAND_4		=	11	,
+			S_PARSE_HAND_5_IDLE	=	12	,
+			S_PARSE_HAND_5		=	13	,
+			S_PARSE_HAND_6_IDLE	=	14	,
+			S_PARSE_HAND_6		=	15	,
+			S_PARSE_HAND_7_IDLE	=	16	,
+			S_PARSE_HAND_7		=	17	,
+			S_PARSE_HAND_8_IDLE	=	18	,
+			S_PARSE_HAND_8		=	19	,
 			S_WAIT_1		=		20  ,
 			S_RES_HAND_1	=		21	,
 			S_RES_HAND_2	=		22	,
@@ -177,7 +180,8 @@ localparam	S_IDLE	=	1  ,
 			S_FIRST_RES		=		30	,
 			S_SECOND_RES		=		31	,
 			S_CONNECTED		=		32	,
-			S_CLOSE			=		33	;
+			S_CLOSE			=		33	,
+			S_ERR			=		34	;
 			
 
 always@(posedge	core_clk	or	negedge	core_rst_n)
@@ -207,91 +211,92 @@ begin
 				Next_State	=	S_PARSE_HAND_1	;
 			else
 				Next_State	=	S_START ;
+		/*
+		S_PARSE_HAND_1_IDLE:
+			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_1_WAIT	;
+			else
+				Next_State	=	S_PARSE_HAND_1_IDLE	;
+		*/
 		S_PARSE_HAND_1:
 			if(handshake_tvalid)
 				Next_State	=	S_PARSE_HAND_2	;
 			else
-				Next_State	=	S_PARSE_HAND_1_WAIT	;
-		S_PARSE_HAND_1_WAIT:
+				Next_State	=	S_PARSE_HAND_2_IDLE ;
+		S_PARSE_HAND_2_IDLE:
 			if(handshake_tvalid)
 				Next_State	=	S_PARSE_HAND_2	;
 			else
-				Next_State	=	S_PARSE_HAND_1_WAIT	;
+				Next_State	=	S_PARSE_HAND_2_IDLE ;
 		S_PARSE_HAND_2:
 			if(handshake_tvalid)
 				Next_State	=	S_PARSE_HAND_3	;
 			else
-				Next_State	=	S_PARSE_HAND_2_WAIT ;
-		S_PARSE_HAND_2_WAIT:
-			if(handshake_tvalid)
-				Next_State	=	S_PARSE_HAND_3	;
-			else
-				Next_State	=	S_PARSE_HAND_2_WAIT ;
+				Next_State	=	S_PARSE_HAND_3_IDLE	;
+		S_PARSE_HAND_3_IDLE:
+				if(handshake_tvalid)
+					Next_State	=	S_PARSE_HAND_3	;
+				else
+					Next_State	=	S_PARSE_HAND_3  ;
 		S_PARSE_HAND_3:
 			if(handshake_tvalid)
 				Next_State	=	S_PARSE_HAND_4	;
 			else
-				Next_State	=	S_PARSE_HAND_3_WAIT ;
-		S_PARSE_HAND_3_WAIT:
+				Next_State	=	S_PARSE_HAND_4_IDLE ;
+		S_PARSE_HAND_4_IDLE:
 			if(handshake_tvalid)
 				Next_State	=	S_PARSE_HAND_4	;
 			else
-				Next_State	=	S_PARSE_HAND_3_WAIT ;
+				Next_State	=	S_PARSE_HAND_4_IDLE	;
 		S_PARSE_HAND_4:
 			if(handshake_tvalid)
 				Next_State	=	S_PARSE_HAND_5	;
 			else
-				Next_State	=	S_PARSE_HAND_4_WAIT ;
-		S_PARSE_HAND_4_WAIT:
+				Next_State	=	S_PARSE_HAND_5_IDLE ;
+		S_PARSE_HAND_5_IDLE:
 			if(handshake_tvalid)
 				Next_State	=	S_PARSE_HAND_5	;
 			else
-				Next_State	=	S_PARSE_HAND_4_WAIT ;
+				Next_State	=	S_PARSE_HAND_5_IDLE ;
 		S_PARSE_HAND_5:
 			if(handshake_tvalid)
 				Next_State	=	S_PARSE_HAND_6	;
 			else
-				Next_State	=	S_PARSE_HAND_5_WAIT ;
-		S_PARSE_HAND_5_WAIT:
+				Next_State	=	S_PARSE_HAND_6_IDLE	;
+		S_PARSE_HAND_6_IDLE:
 			if(handshake_tvalid)
 				Next_State	=	S_PARSE_HAND_6	;
 			else
-				Next_State	=	S_PARSE_HAND_5_WAIT ;
-		
+				Next_State	=	S_PARSE_HAND_6_IDLE ;
 		S_PARSE_HAND_6:
 			if(handshake_tvalid)
 				Next_State	=	S_PARSE_HAND_7	;
 			else
-				Next_State	=	S_PARSE_HAND_6_WAIT ;
-		S_PARSE_HAND_6_WAIT:
+				Next_State	=	S_PARSE_HAND_7_IDLE	;
+		S_PARSE_HAND_7_IDLE:
 			if(handshake_tvalid)
 				Next_State	=	S_PARSE_HAND_7	;
 			else
-				Next_State	=	S_PARSE_HAND_6_WAIT ;
+				Next_State	=	S_PARSE_HAND_7_IDLE	;
 		S_PARSE_HAND_7:
 			if(handshake_tvalid)
 				Next_State	=	S_PARSE_HAND_8	;
 			else
-				Next_State	=	S_PARSE_HAND_7_WAIT ;
-		S_PARSE_HAND_7_WAIT:
-			if(handshake_tvalid)
+				Next_State	=	S_PARSE_HAND_8_IDLE ;
+		S_PARSE_HAND_8_IDLE:
+			if(handshake_tvalid && handshake_tlast)
 				Next_State	=	S_PARSE_HAND_8	;
+			else	if(handshake_tvalid)
+				Next_State	=	S_ERR	;
 			else
-				Next_State	=	S_PARSE_HAND_7_WAIT ;
+				Next_State	=	S_PARSE_HAND_8_IDLE ;
+		
 		S_PARSE_HAND_8:
-			if(handshake_tvalid && !conditon) 
+			if(conditon) 
 				Next_State	=	S_WAIT_1 ;
-			else	if(handshake_tvalid)
+			else	
 				Next_State	=	S_WAIT_2 ;
-			else
-				Next_State	=	S_PARSE_HAND_8_WAIT ;
-		S_PARSE_HAND_8_WAIT:
-			if(handshake_tvalid && !conditon) 
-				Next_State	=	S_WAIT_1 ;
-			else	if(handshake_tvalid)
-				Next_State	=	S_WAIT_2 ;
-			else
-				Next_State	=	S_PARSE_HAND_8_WAIT ;
+		
 		S_RES_HAND_1:
 			if(req_tready)
 				Next_State	=	S_RES_HAND_2	;
@@ -316,26 +321,26 @@ begin
 			if(req_tready)
 				Next_State	=	S_RES_HAND_6	;
 			else
-				Next_State	=	S_RES_HAND_5_WAIT	;
+				Next_State	=	S_RES_HAND_5	;
 		S_RES_HAND_6:
 			if(req_tready)
 				Next_State	=	S_RES_HAND_7	;
 			else
-				Next_State	=	S_RES_HAND_6_WAIT	;
+				Next_State	=	S_RES_HAND_6	;
 		S_RES_HAND_7:
 			if(req_tready)
 				Next_State	=	S_RES_HAND_8	;
 			else
-				Next_State	=	S_RES_HAND_7_WAIT	;
+				Next_State	=	S_RES_HAND_7	;
 		S_RES_HAND_8:
 			if(req_tready)
 				Next_State	=	S_START	;
 			else
-				Next_State	=	S_RES_HAND_8_WAIT	;
+				Next_State	=	S_RES_HAND_8	;
 
 		S_WAIT_1:	Next_State	=	S_FIRST_RES	;
 		S_WAIT_2:
-			if(Peer_CONNECT_Typ == 1)
+			if(Peer_CONNECT_Type == 1)
 				Next_State	=	S_FIRST_RES	;
 			else
 				Next_State	=	S_SECOND_RES	;
@@ -343,8 +348,9 @@ begin
 		S_SECOND_RES:	Next_State	=	S_CONNECTED	;
 		S_CONNECTED:	Next_State	=	S_RES_HAND_1	;
 		S_CLOSE:	Next_State	=	S_IDLE		;
+		S_ERR:		Next_State	=	S_ERR		;
 		default:
-				NextState	=	'bx	;
+				Next_State	=	'bx	;
 	endcase
 
 end
@@ -408,8 +414,8 @@ begin
 		Peer_SYN_cookie		<=	32'h0;
 		Peer_IP_ADDRESS1	<=	32'h0;
 		Peer_IP_ADDRESS2	<=	32'h0;
-		conditon		<=	    0;
-
+		conditon		<=	    1;
+		NEG_MSSize		<=		0;
 	end
 	else	begin
 		case	(Next_State)
@@ -469,10 +475,12 @@ begin
 				Peer_SYN_cookie		<=	32'h0;
 				Peer_IP_ADDRESS1	<=	32'h0;
 				Peer_IP_ADDRESS2	<=	32'h0;
-				conditon		<=	0    ;
+				NEG_MSSize			<=	32'h0;
+				conditon		<=	1    ;
 				
 			end
 			S_INIT:	begin
+				Res_Connect			<=	1	;
 				Max_PktSize	<=	MSSize	-	32'd28	;
 				Max_PayloadSize	<=	MSSize	-	32'd44	;
 				Expiration_counter	<=	32'h1;
@@ -506,110 +514,103 @@ begin
 				Peer_SYN_cookie		<=	32'h0;
 				Peer_IP_ADDRESS1	<=	32'h0;
 				Peer_IP_ADDRESS2	<=	32'h0;
+				NEG_MSSize			<=	MSSize	;
 			end
 			S_START:
 			begin
+				Res_Connect			<=	0	;
+				req_tlast			<=	0	;
+				handshake_tready	<=	1 	;
+			end
+			S_PARSE_HAND_1_IDLE:
+			begin  //  NULL valid  			
+				handshake_tready	<=	1 ;
 			end
 			S_PARSE_HAND_1:
-			begin  //  NULL valid  
-				handshake_tready	<=	1 ;
+			begin
 				Peer_type		<=	handshake_tdata[63:32] ;
 				Peer_AddInfo		<=	handshake_tdata[31:0 ] ;
-
 			end
-			S_PARSE_HAND_1_WAIT:
-			begin
-				handshake_tready	<=	0 ;
+			S_PARSE_HAND_2_IDLE:
+			begin	
 			end
 			S_PARSE_HAND_2:
-			begin	
-				handshake_tready	<=	1 ;
+			begin
 				Peer_TimeStamp		<=	handshake_tdata[63:32] ;
 				Peer_Des_ID		<=	handshake_tdata[31:0 ] ;
-			end
-			S_PARSE_HAND_2_WAIT:
-			begin
-				handshake_tready	<=	0 ;
 			end
 			/*
 			* 	32bit	load Verison..
 			*	32bit	load Type... DGRAM or ...
 			*/
+			S_PARSE_HAND_3_IDLE:
+			begin
+			end
 			S_PARSE_HAND_3:
 			begin
-				handshake_tready	<=	1 ;
+				//handshake_tready	<=	0 ;
 				Peer_UDT_Version	<=	handshake_tdata[63:32] ;
 				Peer_Socket_type	<=	handshake_tdata[31:0 ] ;
-			end
-			S_PARSE_HAND_3_WAIT:
-			begin
-				handshake_tready	<=	0 ;
 			end
 			/*
 			* 	32bit	init_packet_num
 			* 	32bit	maximum	packet size
 			*/
+			S_PARSE_HAND_4_IDLE:
+			begin
+			end
 			S_PARSE_HAND_4:
 			begin
-				handshake_tready	<=	1;
 				Peer_INIT_SEQ_NUM	<=	handshake_tdata[63:32] ;
 				Peer_MSS		<=	handshake_tdata[31:0 ] ;
-			end
-			S_PARSE_HAND_4_WAIT:
-			begin
-				handshake_tready	<=	0;
 			end
 			/*
 			*	32bit maximum	flow windows size
 			*	32bit connect	type	
 			*/
+			S_PARSE_HAND_5_IDLE:
+			begin
+			end
 			S_PARSE_HAND_5:
 			begin
-				handshake_tready	<=	1;
 				Peer_MAX_FLOW_WINDOWS_SIZE	<=	handshake_tdata[63:32] ;
 				Peer_CONNECT_Type		<=	handshake_tdata[31:0 ] ;
-			end
-			S_PARSE_HAND_5_WAIT:
-			begin
-				handshake_tready	<=	0;
 			end
 			/*
 			* 	32bit	socket	ID
 			* 	32bit	SYN	cookie
 			*/
+			S_PARSE_HAND_6_IDLE:
+			begin
+			end
 			S_PARSE_HAND_6:
 			begin
-				handshake_tready	<=	1;
 				Peer_Self_ID		<=	handshake_tdata[63:32]	;
 				Peer_SYN_cookie		<=	handshake_tdata[31:0]	;
-			end
-			S_PARSE_HAND_6_WAIT:
-			begin
-				handshake_tready	<=	0;
 			end
 			/*
 			*	first 64bit of peer	IP	ADDRESS	 
 			*/
+			S_PARSE_HAND_7_IDLE:
+			begin
+			end
 			S_PARSE_HAND_7:
 			begin
-				handshake_tready	<=	1;
 				Peer_IP_ADDRESS1	<=	handshake_tdata	;
-			end
-			S_PARSE_HAND_7_WAIT:
-			begin
-				handshake_tready	<=	0;
 			end
 			/*
 			*	last 64bit of  peer	IP	ADDRESS	 
 			*/
+			S_PARSE_HAND_8_IDLE:
+			begin
+			end
 			S_PARSE_HAND_8:
 			begin
-				handshake_tready	<=	1;
+				if(Peer_Self_ID)
+					conditon	=	1 ;
+				else
+					conditon	=	0 ;
 				Peer_IP_ADDRESS2	<=	handshake_tdata ;
-			end
-			S_PARSE_HAND_8_WAIT:
-			begin
-				handshake_tready	<=	0;
 			end
 
 			S_RES_HAND_1:
@@ -661,6 +662,7 @@ begin
 				req_tdata		<=	Peer_IP_ADDRESS2 ;
 				req_tkeep		<=	8'hff ;
 				req_tvalid		<=	1	;
+				req_tlast		<=	1	;
 			end
 			S_WAIT_1:
 			begin
@@ -675,6 +677,7 @@ begin
 			S_FIRST_RES:
 			begin
 				Peer_Des_ID		<=	Peer_Self_ID	;
+				Peer_CONNECT_Type	<=	32'h1		;
 				Peer_SYN_cookie		<=	32'h0		;
 			end
 			S_SECOND_RES:
@@ -684,9 +687,14 @@ begin
 				Peer_Des_ID		<=	Peer_Self_ID	;
 
 				if( Peer_MSS	> MSSize)
+				begin
 					Peer_MSS	<=	MSSize ;
+					NEG_MSSize	<=	MSSize ;
+				end
 				else
-					MSSize		<=	Peer_MSS ;
+				begin
+					NEG_MSSize		<=	Peer_MSS ;
+				end
 
 
 				Peer_CONNECT_Type	<=	32'hffff_ffff			;
@@ -700,7 +708,7 @@ begin
 			/*
 			*	Peer_ID  output
 			*/
-		       		Peer_ISN	<=	Peer_INIT_SEQ_NUM	;
+		       	PeerISN	<=	Peer_INIT_SEQ_NUM	;
 				Max_PktSize	<=	MSSize	-	32'd28	;
 				Max_PayloadSize	<=	MSSize	-	32'd44	;
 				LastDecSeq	<=	Peer_INIT_SEQ_NUM	-	32'h1	;

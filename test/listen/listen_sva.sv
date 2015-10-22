@@ -1,58 +1,37 @@
-module	listen_sva(
-	input	clk	,	core_rst_n	,
-	input [63:0]	handshake_tdata	,	
-	input [7:0]	handshake_tkeep	,	
-	input 	handshake_tvalid	,	
-	input 	handshake_tlast	,
-	input 	Req_Close	,
-	input 	Req_Connect	,
-	input [31:0]	Snd_Buffer_Size	,	
-	input [31:0]	Rev_Buffer_Size	,	
-	input [31:0]	FlightFlagSize		,	
-	input [31:0]	MSSize	,
-	input [31:0]	req_tready	,
-	input [31:0]	handshake_tready,
-	input 	Res_Connect	,
-	input 	Res_Close	,
-	input [31:0]	Max_PktSize	,	
-	input [31:0]	Max_PayloadSize	,	
-	input [31:0]	Expiration_counter	,	
-	input [31:0]	Bandwidth		,	
-	input [31:0]	DeliveryRate		,	
-	input [31:0]	AckSeqNo		,
-	input [31:0]	LastAckTime	,	
-	input [31:0]	SYNInterval	,	
-	input [31:0]	RRT			,	
-	input [31:0]	RTTVar			,	
-	input [31:0]	MinNakInt		,	
-	input [31:0]	MinExpInt		,
-	input [31:0]	ACKInt		,	
-	input [31:0]	NAKInt		,	
-	input [31:0]	PktCount		,	
-	input [31:0]	LightACKCount		,	
-	input [31:0]	TargetTime		,	
-	input [31:0]	TimeDiff		,
-	input [31:0]	PeerISN		,	
-	input [31:0]	RcvLastAck	,	
-	input [31:0]	RcvLastAckAck		,	
-	input [31:0]	RcvCurrSeqNo		,	
-	input [31:0]	LastDecSeq		,	
-	input [31:0]	SndLastAck		,
-	input [31:0]	SndLastDataAck 	,	
-	input [31:0]	SndCurrSeqNo 	,	
-	input [31:0]	SndLastAck2  		,	
-	input [31:0]	SndLastAck2Time 	,	
-	input [31:0]	FlowWindowSize		,	
-	input [31:0]	LastRspTime		,		
-	input [31:0]	NextACKTime	,	
-	input [31:0]	NextNACKtime	,		
-
-	input [63:0]	req_tdata	,	
-	input [7:0]	req_tkeep	,	
-	input req_tvalid		,	
-	input req_tlast		,
-	output	err
-);
+module	listen_sva(	listen_if.AS	as);
 
 
+task	dump_log(input	string	filename);
+	int fid= $fopen("assertion_listen.log","w");
+    $fdisplay(fid,"[tb_listen]  %s \n",filename);
+    as.err =  1 ;
+    $fclose(fid);
+
+endtask
+
+initial
+begin
+
+	as.err	=	0 ;
+end
+
+
+sequence	loadtype(value);
+			@(posedge	as.clk)	(as.client_type_en  &&  as.client_type == value ) ;
+endsequence
+
+sequence	result(value);
+			@(posedge	as.clk)	( ##[0:32] as.serve_type_en	&&	as.serve_type	==	value);
+endsequence
+
+property	first_handshake_type;
+		loadtype(32'h0) |->    result(32'h1) ;
+endproperty
+
+property	second_handshake_type ;
+		loadtype(32'hffff_ffff) |->  result(32'hffff_ffff) ;
+endproperty
+
+assert_first_tpye:	assert	property(first_handshake_type)	else	dump_log("assert_first");
+assert_second_tpye:	assert	property(second_handshake_type)	else	dump_log("assert second");
 endmodule
