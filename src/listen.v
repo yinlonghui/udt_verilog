@@ -606,7 +606,7 @@ begin
 			end
 			S_PARSE_HAND_8:
 			begin
-				if(Peer_Self_ID)
+				if(Peer_CONNECT_Type == 0 )
 					conditon	=	1 ;
 				else
 					conditon	=	0 ;
